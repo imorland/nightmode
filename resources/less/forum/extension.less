@@ -520,38 +520,37 @@ body.dark {
 
     /* #region Dropdowns */
 
-    .Dropdown:not(.PostStreamScrubber) buttonbody {
-        background: @dark;
-        color: @main-text;
-    }
+    // .Dropdown button {
+    //     background: @dark;
+    //     color: @main-text;
+    // }
 
-    .Dropdown:not(.PostStreamScrubber) button.Dropdown-toggle {
+    .Dropdown button.Dropdown-toggle {
         color: @main-text-2;
     }
 
-    .Dropdown:not(.PostStreamScrubber) button.Dropdown-toggle:hover,
-    .Dropdown:not(.PostStreamScrubber) button.Dropdown-toggle:focus,
-    .Dropdown:not(.PostStreamScrubber)
-        button.Dropdown-toggle[aria-expanded="true"] {
+    .Dropdown.ButtonGroup button.Dropdown-toggle:hover,
+    .Dropdown.ButtonGroup button.Dropdown-toggle:focus,
+    .Dropdown.ButtonGroup button.Dropdown-toggle[aria-expanded="true"] {
         color: @main-text;
         background: @med-grey;
     }
 
-    .Dropdown-menu {
+    .Dropdown.ButtonGroup .Dropdown-menu {
         background-color: @grey;
         color: @main-text-2 !important;
     }
 
-    .Dropdown-menu > li > a,
-    .Dropdown-menu > li > button,
-    .Dropdown-menu > li > span {
+    .Dropdown .Dropdown-menu > li > a,
+    .Dropdown .Dropdown-menu > li > button,
+    .Dropdown .Dropdown-menu > li > span {
         color: @medium-text-0;
     }
 
-    .Dropdown-menu > li > a:hover,
-    .Dropdown-menu > li > a:focus,
-    .Dropdown:not(.PostStreamScrubber) .Dropdown-menu > li > button:hover,
-    .Dropdown:not(.PostStreamScrubber) .Dropdown-menu > li > button:focus {
+    .Dropdown .Dropdown-menu > li > a:hover,
+    .Dropdown .Dropdown-menu > li > a:focus,
+    .Dropdown .Dropdown-menu > li > button:hover,
+    .Dropdown .Dropdown-menu > li > button:focus {
         background-color: @med-grey;
         color: @main-text;
     }
