@@ -221,9 +221,7 @@ body.dark {
 
     .Search-results .UserSearchResult.active,
     .Search-results .DiscussionSearchResult.active,
-    .Search-results .SearchResult.active,
-    .Dropdown-menu > li.active > a,
-    .Dropdown-menu > li.active > button {
+    .Search-results .SearchResult.active {
         background-color: @med-grey !important;
     }
 
@@ -542,6 +540,11 @@ body.dark {
     .Dropdown .Dropdown-menu > li > button,
     .Dropdown .Dropdown-menu > li > span {
         color: @medium-text-0;
+    }
+
+    *:not(.item-nav) > .Dropdown .Dropdown-menu > li.active > a,
+    *:not(.item-nav) > .Dropdown .Dropdown-menu > li.active > button {
+        background: @med-grey;
     }
 
     *:not(.item-nav) > .Dropdown .Dropdown-menu > li > a:hover,
