@@ -600,7 +600,7 @@ body.dark {
     .Modal-content,
     .Modal-body,
     .Modal-header {
-        color: @medium-text-0 !important;
+        color: @main-text-4 !important;
         background-color: @dark !important;
     }
 
@@ -610,7 +610,7 @@ body.dark {
     .Modal-header h4,
     .Modal-header h5,
     .Modal-header h6 {
-        color: @medium-text-0 !important;
+        color: @main-text-4 !important;
     }
 
     .Modal .checkbox strong {
@@ -624,6 +624,10 @@ body.dark {
 
     .Modal .FormControl:focus {
         background-color: @med-grey;
+    }
+
+    .helpText {
+        color: @medium-text;
     }
 
     .SelectTagList > li.active {
@@ -679,7 +683,11 @@ body.dark {
         .DiscussionListItem-info,
     .DiscussionList:not(.DiscussionList--searchResults)
         .read
-        .DiscussionListItem-count {
+        .DiscussionListItem-count,
+    .DiscussionList:not(.DiscussionList--searchResults)
+        .read
+        .DiscussionListItem-content
+        .item-excerpt {
         color: @grey-text !important;
     }
 
