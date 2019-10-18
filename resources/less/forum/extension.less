@@ -69,10 +69,6 @@ body.dark {
         background: @black;
     }
 
-    a {
-        color: @main-text-3;
-    }
-
     .FormControl:focus,
     .FormControl.focus {
         color: @main-text-2;
@@ -569,6 +565,9 @@ body.dark {
         color: @medium-text;
     }
 
+    .PostStreamScrubber .Dropdown-menu {
+    }
+
     .PostStreamScrubber .Scrubber .Scrubber-before,
     .PostStreamScrubber .Scrubber .Scrubber-after,
     .PostStreamScrubber .Scrubber .Scrubber-handle {
@@ -797,7 +796,7 @@ body.dark {
     }
 
     .disabled .Checkbox-display {
-        color: fade(@light-color, 20%)
+        color: fade(@light-color, 20%);
     }
 
     label.checkbox > input[type="checkbox"] {
