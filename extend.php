@@ -14,5 +14,6 @@ return [
     new Extend\Locales(__DIR__ . '/resources/locale'),
     function (Dispatcher $events) {
         $events->subscribe(Listeners\Preferences::class);
+        $events->subscribe(Listeners\Permissions::class);
     },
 ];
