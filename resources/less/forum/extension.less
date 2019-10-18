@@ -555,10 +555,6 @@ body.dark {
         color: @main-text;
     }
 
-    .sideNav .Dropdown--select .Dropdown-menu {
-        background: unset;
-    }
-
     /* #endregion */
 
     /* #region Post Scrubber */
@@ -706,6 +702,15 @@ body.dark {
 
     .IndexPage-nav.sideNav .Dropdown-menu.dropdown-menu li.active * {
         color: @main-text-3 !important;
+    }
+
+    .sideNav .Dropdown--select .Dropdown-menu {
+        background: unset;
+    }
+
+    .item-nav > .Dropdown .Dropdown-menu > li > a:hover,
+    .item-nav > .Dropdown .Dropdown-menu > li > a:focus {
+        color: @main-text-3;
     }
 
     /* #endregion */
