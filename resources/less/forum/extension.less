@@ -181,20 +181,24 @@ body.dark {
 
     /* Search Results */
 
+    .Dropdown-menu.Search-results {
+        background: @grey;
+    }
+
     .Search-results .Dropdown-header {
         background-color: @grey !important;
         color: @medium-text !important;
     }
 
     .Search-results a.hasIcon {
-        background: @dark;
+        background: @grey;
     }
 
     .Search-results a.hasIcon:hover {
         background: @med-grey;
     }
 
-    .Search-results .UserSearchResult,
+    .Search-results .Dropdown-header .Search-results .UserSearchResult,
     .Search-results .DiscussionSearchResult,
     .Search-results .SearchResult {
         background-color: @grey;
@@ -220,10 +224,10 @@ body.dark {
         color: @main-text;
     }
 
-    .Search-results .UserSearchResult.active,
-    .Search-results .DiscussionSearchResult.active,
-    .Search-results .SearchResult.active {
-        background-color: @med-grey !important;
+    .Search-results .UserSearchResult.active > *,
+    .Search-results .DiscussionSearchResult.active > *,
+    .Search-results .SearchResult.active > * {
+        background-color: @lighter-grey !important;
     }
 
     /* #region Notifications */
@@ -537,9 +541,9 @@ body.dark {
         color: @main-text-2 !important;
     }
 
-    .Dropdown .Dropdown-menu > li > a,
-    .Dropdown .Dropdown-menu > li > button,
-    .Dropdown .Dropdown-menu > li > span {
+    .Dropdown-menu > li > a,
+    .Dropdown-menu > li > button,
+    .Dropdown-menu > li > span {
         color: @medium-text-0;
     }
 
