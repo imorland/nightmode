@@ -11,7 +11,7 @@ export default function() {
 
     User.prototype.canUseDarkMode = Model.attribute('useDarkMode');
 
-    if (user.canUseDarkMode()) {
+    if (app.session.user.canUseDarkMode()) {
         app.initializers.add('fof-nightmode', app => {
             extend(Page.prototype, 'init', function () {
                 if (app.session.user && app.session.user.preferences().fofNightMode) {
