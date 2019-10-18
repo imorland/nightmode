@@ -772,13 +772,13 @@ body.dark {
         color: @main-text;
     }
 
-    input[type="checkbox"] + .Checkbox-display {
-        // background: @red;
-    }
-
     .NotificationGrid td,
     .NotificationGrid th {
         color: @main-text;
+    }
+
+    .UserPage .UserPage-content .NotificationGrid {
+        background: @med-grey;
     }
 
     .item-notifications .NotificationGrid td,
@@ -789,6 +789,16 @@ body.dark {
     /* #endregion */
 
     // #region Custom Checkboxes
+
+    // Toggle Switches
+
+    .Checkbox--switch .Checkbox-display {
+        background: @red;
+    }
+
+    .disabled .Checkbox-display {
+        color: fade(@light-color, 20%)
+    }
 
     label.checkbox > input[type="checkbox"] {
         visibility: hidden !important;
