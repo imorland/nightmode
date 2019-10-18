@@ -1,4 +1,7 @@
 fof-nightmode:
+    admin:
+        permissions:
+            use: Can use darkmode
     forum:
         night: Dark mode
         day: Light mode
