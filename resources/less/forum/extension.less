@@ -604,6 +604,15 @@ body.dark {
         background-color: @dark !important;
     }
 
+    .Modal-header h1,
+    .Modal-header h2,
+    .Modal-header h3,
+    .Modal-header h4,
+    .Modal-header h5,
+    .Modal-header h6 {
+        color: @medium-text-0 !important;
+    }
+
     .Modal .checkbox strong {
         color: @main-text;
     }
@@ -615,6 +624,15 @@ body.dark {
 
     .Modal .FormControl:focus {
         background-color: @med-grey;
+    }
+
+    .SelectTagList > li.active {
+        background: @med-grey;
+        color: @light-color;
+    }
+
+    .SelectTagList > li.pinned + li:not(.pinned) {
+        border-color: @light-grey !important;
     }
 
     /* #endregion */
