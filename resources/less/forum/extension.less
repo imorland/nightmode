@@ -664,11 +664,19 @@ body.dark {
         background: @med-grey !important;
     }
 
-    .DiscussionListItem .DiscussionListItem-content * {
+    .DiscussionListItem-content,
+    .DiscussionListItem-info,
+    .DiscussionListItem-title,
+    .unread .DiscussionListItem-count {
         color: @main-text-2 !important;
     }
 
-    .DiscussionListItem .DiscussionListItem-content.read * {
+    .DiscussionList:not(.DiscussionList--searchResults)
+        .read
+        .DiscussionListItem-title,
+    .DiscussionList:not(.DiscussionList--searchResults)
+        .read
+        .DiscussionListItem-info {
         color: @grey-text !important;
     }
 
@@ -692,15 +700,6 @@ body.dark {
 
     .IndexPage-nav.sideNav .Dropdown-menu.dropdown-menu li.active * {
         color: @main-text-3 !important;
-    }
-
-    .IndexPage-nav.sideNav .Dropdown-menu.dropdown-menu li:hover *,
-    .IndexPage-nav.sideNav .Dropdown-menu.dropdown-menu li:focus * {
-        background: @lighter-grey !important;
-    }
-
-    .IndexPage-nav.sideNav .Dropdown-menu.dropdown-menu li:focus * {
-        background: @lighter-grey !important;
     }
 
     /* #endregion */
