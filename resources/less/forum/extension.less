@@ -1,3 +1,6 @@
+@should-display-extension-warning: true;
+@extension-warning-text: "Dark mode isn't an official giffgaff feature yet, so you can expect a couple of problems here and there.";
+
 /* General Colors */
 /* sorted dark -> light */
 
@@ -22,6 +25,7 @@
 
 @best-answer--accent: #06ce85;
 @red: #d0021b;
+@green: #58a400;
 
 /* Text Colors */
 
@@ -39,6 +43,23 @@ body.dark {
 }
 
 body.dark {
+    // #region Hero Extension Warning
+
+    .Hero::after {
+        & when(@should-display-extension-warning = true) {
+            display: block;
+            content: @extension-warning-text;
+            background: @med-grey;
+            color: @light-color-4;
+            font-size: 16px;
+            font-weight: 500;
+            padding: 8px 0;
+            text-align: center;
+        }
+    }
+
+    // #endregion
+
     .PageHero-title > a {
         color: fade(@black, 80%);
     }
@@ -47,10 +68,6 @@ body.dark {
     .Header-navigation .Navigation-back {
         color: @main-text;
         background: @black;
-    }
-
-    a {
-        color: @main-text-3;
     }
 
     .FormControl:focus,
@@ -164,13 +181,17 @@ body.dark {
 
     /* Search Results */
 
+    .Dropdown-menu.Search-results {
+        background: @grey;
+    }
+
     .Search-results .Dropdown-header {
         background-color: @grey !important;
         color: @medium-text !important;
     }
 
     .Search-results a.hasIcon {
-        background: @dark;
+        background: @grey;
     }
 
     .Search-results a.hasIcon:hover {
@@ -178,6 +199,12 @@ body.dark {
     }
 
     .Search-results .UserSearchResult,
+    .Search-results .DiscussionSearchResult,
+    .Search-results .SearchResult {
+        background: @grey;
+    }
+
+    .Search-results .Dropdown-header .Search-results .UserSearchResult,
     .Search-results .DiscussionSearchResult,
     .Search-results .SearchResult {
         background-color: @grey;
@@ -203,12 +230,10 @@ body.dark {
         color: @main-text;
     }
 
-    .Search-results .UserSearchResult.active,
-    .Search-results .DiscussionSearchResult.active,
-    .Search-results .SearchResult.active,
-    .Dropdown-menu > li.active > a,
-    .Dropdown-menu > li.active > button {
-        background-color: @med-grey !important;
+    .Search-results .UserSearchResult.active > *,
+    .Search-results .DiscussionSearchResult.active > *,
+    .Search-results .SearchResult.active > * {
+        background-color: @lighter-grey !important;
     }
 
     /* #region Notifications */
@@ -248,10 +273,12 @@ body.dark {
 
     /* #region Post Composer */
 
-    :-ms-input-placeholder,
-    ::-webkit-input-placeholder,
-    ::placeholder {
+    .FormControl::-moz-placeholder,
+    .FormControl:-ms-input-placeholder,
+    .FormControl::-webkit-input-placeholder,
+    .FormControl::placeholder {
         color: @medium-text !important;
+        opacity: 1;
     }
 
     .Composer,
@@ -463,6 +490,10 @@ body.dark {
         background: #00538a60;
     }
 
+    .SubscriptionMenuItem-description {
+        color: @main-text-4;
+    }
+
     /* #endregion */
 
     /* #region Primary Discussion Button */
@@ -500,24 +531,18 @@ body.dark {
 
     /* #region Dropdowns */
 
-    .Dropdown:not(.PostStreamScrubber) buttonbody {
-        background: @dark;
-        color: @main-text;
-    }
-
-    .Dropdown:not(.PostStreamScrubber) button.Dropdown-toggle {
+    .Dropdown button.Dropdown-toggle {
         color: @main-text-2;
     }
 
-    .Dropdown:not(.PostStreamScrubber) button.Dropdown-toggle:hover,
-    .Dropdown:not(.PostStreamScrubber) button.Dropdown-toggle:focus,
-    .Dropdown:not(.PostStreamScrubber)
-        button.Dropdown-toggle[aria-expanded="true"] {
+    .Dropdown.ButtonGroup button.Dropdown-toggle:hover,
+    .Dropdown.ButtonGroup button.Dropdown-toggle:focus,
+    .Dropdown.ButtonGroup button.Dropdown-toggle[aria-expanded="true"] {
         color: @main-text;
         background: @med-grey;
     }
 
-    .Dropdown-menu {
+    .Dropdown.ButtonGroup .Dropdown-menu {
         background-color: @grey;
         color: @main-text-2 !important;
     }
@@ -528,10 +553,15 @@ body.dark {
         color: @medium-text-0;
     }
 
-    .Dropdown-menu > li > a:hover,
-    .Dropdown-menu > li > a:focus,
-    .Dropdown:not(.PostStreamScrubber) .Dropdown-menu > li > button:hover,
-    .Dropdown:not(.PostStreamScrubber) .Dropdown-menu > li > button:focus {
+    *:not(.item-nav) > .Dropdown .Dropdown-menu > li.active > a,
+    *:not(.item-nav) > .Dropdown .Dropdown-menu > li.active > button {
+        background: @med-grey;
+    }
+
+    *:not(.item-nav) > .Dropdown .Dropdown-menu > li > a:hover,
+    *:not(.item-nav) > .Dropdown .Dropdown-menu > li > a:focus,
+    *:not(.item-nav) > .Dropdown .Dropdown-menu > li > button:hover,
+    *:not(.item-nav) > .Dropdown .Dropdown-menu > li > button:focus {
         background-color: @med-grey;
         color: @main-text;
     }
@@ -580,8 +610,17 @@ body.dark {
     .Modal-content,
     .Modal-body,
     .Modal-header {
-        color: @medium-text-0 !important;
+        color: @main-text-4 !important;
         background-color: @dark !important;
+    }
+
+    .Modal-header h1,
+    .Modal-header h2,
+    .Modal-header h3,
+    .Modal-header h4,
+    .Modal-header h5,
+    .Modal-header h6 {
+        color: @main-text-4 !important;
     }
 
     .Modal .checkbox strong {
@@ -597,6 +636,35 @@ body.dark {
         background-color: @med-grey;
     }
 
+    .helpText {
+        color: @medium-text;
+    }
+
+    .SelectTagList > li.active {
+        background: @med-grey !important;
+        color: @light-color !important;
+    }
+
+    .SelectTagList > li.pinned + li:not(.pinned) {
+        border-color: @light-grey !important;
+    }
+
+    .SelectTagList > li.selected.colored .TagIcon:before {
+        color: @black !important;
+    }
+
+    .SelectTagList > li.active {
+        color: @main-text !important;
+    }
+
+    .SelectTagList > li.active .TagIcon {
+        background: @medium-color !important;
+    }
+
+    .SelectTagList > li.active:hover .TagIcon {
+        background: @light-color !important;
+    }
+
     /* #endregion */
 
     /* #region Discussion Feed */
@@ -610,11 +678,30 @@ body.dark {
         background: @med-grey !important;
     }
 
-    .DiscussionListItem .DiscussionListItem-content * {
+    .DiscussionListItem-content,
+    .DiscussionListItem-info,
+    .DiscussionListItem-title,
+    .DiscussionListItem-count {
         color: @main-text-2 !important;
     }
 
-    .DiscussionListItem .DiscussionListItem-content.read * {
+    .DiscussionListItem-title mark {
+        color: @main-text !important;
+    }
+
+    .DiscussionList:not(.DiscussionList--searchResults)
+        .read
+        .DiscussionListItem-title,
+    .DiscussionList:not(.DiscussionList--searchResults)
+        .read
+        .DiscussionListItem-info,
+    .DiscussionList:not(.DiscussionList--searchResults)
+        .read
+        .DiscussionListItem-count,
+    .DiscussionList:not(.DiscussionList--searchResults)
+        .read
+        .DiscussionListItem-content
+        .item-excerpt {
         color: @grey-text !important;
     }
 
@@ -630,26 +717,68 @@ body.dark {
         color: @medium-text !important;
     }
 
-    .TagsPage .IndexPage-nav.sideNav .Dropdown-menu.dropdown-menu li * {
-        color: @medium-text !important;
-        padding-left: 6px;
-        padding-right: 4px;
-    }
-
     .IndexPage-nav.sideNav .Dropdown-menu.dropdown-menu li.active * {
         color: @main-text-3 !important;
     }
 
-    .IndexPage-nav.sideNav .Dropdown-menu.dropdown-menu li:hover *,
-    .IndexPage-nav.sideNav .Dropdown-menu.dropdown-menu li:focus * {
-        background: @lighter-grey !important;
+    .sideNav .Dropdown--select .Dropdown-menu {
+        background: unset;
     }
 
-    .IndexPage-nav.sideNav .Dropdown-menu.dropdown-menu li:focus * {
-        background: @lighter-grey !important;
+    .item-nav > .Dropdown .Dropdown-menu > li > a:hover,
+    .item-nav > .Dropdown .Dropdown-menu > li > a:focus {
+        color: @main-text-3;
     }
 
     /* #endregion */
+
+    // #region Pop-out Discussion Bar
+
+    .App.hasPane .DiscussionPage-list {
+        background: @dark;
+    }
+
+    .App.hasPane
+        .DiscussionListItem
+        .DiscussionListItem-controls
+        .Button--icon {
+        color: inherit;
+    }
+
+    .App.hasPane
+        .DiscussionListItem
+        .DiscussionListItem-content.read
+        .DiscussionListItem-info
+        .item-terminalPost,
+    .App.hasPane
+        .DiscussionListItem
+        .DiscussionListItem-content.read
+        .DiscussionListItem-info
+        .item-discussion-views,
+    .App.hasPane
+        .DiscussionListItem
+        .DiscussionListItem-content.read
+        .DiscussionListItem-info
+        .item-discussion-views::before,
+    .App.hasPane
+        .DiscussionListItem
+        .DiscussionListItem-content.read
+        .DiscussionListItem-info
+        .item-recipients
+        .RecipientLabel-text,
+    .App.hasPane
+        .DiscussionListItem
+        .DiscussionListItem-content.read
+        .DiscussionListItem-info
+        .item-recipients
+        .RecipientLabel::after,
+    .App.hasPane
+        .DiscussionListItem
+        .DiscussionListItem-content.read
+        .DiscussionListItem-info
+        .item-excerpt {
+        color: @main-text;
+    }
 
     /* #region User Page */
 
@@ -714,13 +843,13 @@ body.dark {
         color: @main-text;
     }
 
-    input[type="checkbox"] + .Checkbox-display {
-        // background: @red;
-    }
-
     .NotificationGrid td,
     .NotificationGrid th {
         color: @main-text;
+    }
+
+    .UserPage .UserPage-content .NotificationGrid {
+        background: @med-grey;
     }
 
     .item-notifications .NotificationGrid td,
@@ -731,6 +860,21 @@ body.dark {
     /* #endregion */
 
     // #region Custom Checkboxes
+
+    // Toggle Switches
+
+    .Checkbox--switch .Checkbox-display {
+        background: @red;
+    }
+
+    .on.Checkbox--switch .Checkbox-display {
+        background: @green;
+    }
+
+    .disabled .Checkbox-display {
+        color: fade(@light-color, 40%) !important;
+        cursor: not-allowed;
+    }
 
     label.checkbox > input[type="checkbox"] {
         visibility: hidden !important;
@@ -785,6 +929,17 @@ body.dark {
     label.checkbox > input[type="checkbox"]:disabled::before,
     label.checkbox > input[type="checkbox"]:disabled::after {
         cursor: not-allowed !important;
+    }
+
+    .SettingsPage
+        .item-notifications
+        .NotificationGrid-checkbox.highlighted
+        .Checkbox:not(.disabled),
+    .SettingsPage
+        .item-notifications
+        .NotificationGrid-checkbox
+        .Checkbox:hover:not(.disabled) {
+        background: @lighter-grey;
     }
 
     // #endregion

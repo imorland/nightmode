@@ -23,6 +23,10 @@
         {
             "name": "Ian Morland",
             "email": "ianm@giffgaff.co.uk"
+        },
+        {
+            "name": "David Wheatley",
+            "email": "davidwheatley03@gmail.com"
         }
     ],
     "support": {
@@ -36,7 +40,7 @@
         "flarum-extension": {
             "title": "giffgaff dark mode",
             "icon": {
-                "name": "far fa-moon",
+                "name": "fas fa-moon",
                 "backgroundColor": "#e74c3c",
                 "color": "#fff"
             }
