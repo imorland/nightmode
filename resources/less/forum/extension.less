@@ -715,6 +715,54 @@ body.dark {
 
     /* #endregion */
 
+    // #region Pop-out Discussion Bar
+
+    .DiscussionPage-list {
+        background: unset;
+    }
+
+    .App.hasPane
+        .DiscussionListItem
+        .DiscussionListItem-controls
+        .Button--icon {
+        color: inherit;
+    }
+
+    .App.hasPane
+        .DiscussionListItem
+        .DiscussionListItem-content.read
+        .DiscussionListItem-info
+        .item-terminalPost,
+    .App.hasPane
+        .DiscussionListItem
+        .DiscussionListItem-content.read
+        .DiscussionListItem-info
+        .item-discussion-views,
+    .App.hasPane
+        .DiscussionListItem
+        .DiscussionListItem-content.read
+        .DiscussionListItem-info
+        .item-discussion-views::before,
+    .App.hasPane
+        .DiscussionListItem
+        .DiscussionListItem-content.read
+        .DiscussionListItem-info
+        .item-recipients
+        .RecipientLabel-text,
+    .App.hasPane
+        .DiscussionListItem
+        .DiscussionListItem-content.read
+        .DiscussionListItem-info
+        .item-recipients
+        .RecipientLabel::after,
+    .App.hasPane
+        .DiscussionListItem
+        .DiscussionListItem-content.read
+        .DiscussionListItem-info
+        .item-excerpt {
+        color: @main-text;
+    }
+
     /* #region User Page */
 
     .UserPage .PostsUserPage .PostsUserPage-list > li {
