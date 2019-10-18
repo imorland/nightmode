@@ -2,7 +2,6 @@
 
 namespace FoF\NightMode\Listeners;
 
-
 use Flarum\Api\Event\Serializing;
 use Flarum\Api\Serializer\UserSerializer;
 use Illuminate\Contracts\Events\Dispatcher;

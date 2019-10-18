@@ -4,5 +4,5 @@ use Flarum\Database\Migration;
 use Flarum\Group\Group;
 
 return Migration::addPermissions([
-    'user.canUseDarkMode' => Group::ADMINISTRATOR_ID,
+    'user.canUseDarkMode' => Group::MODERATOR_ID,
 ]);
