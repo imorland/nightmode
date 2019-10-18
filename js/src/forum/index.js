@@ -11,8 +11,8 @@ export default function() {
 
     User.prototype.canUseDarkMode = Model.attribute('useDarkMode');
 
-    if (app.session.user.canUseDarkMode()) {
-        app.initializers.add('fof-nightmode', app => {
+    app.initializers.add('fof-nightmode', (app, user) => {
+        if (user.canUseDarkMode()) {
             extend(Page.prototype, 'init', function () {
                 if (app.session.user && app.session.user.preferences().fofNightMode) {
                     $('body').addClass('dark');
@@ -50,6 +50,6 @@ export default function() {
                     -1
                 );
             });
-        });
-    }
+        }
+    });
 }
