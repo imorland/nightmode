@@ -484,7 +484,7 @@ body.dark {
     }
 
     .SubscriptionMenuItem-description {
-        color: @light-color-4;
+        color: @main-text-4;
     }
 
     /* #endregion */
@@ -631,12 +631,28 @@ body.dark {
     }
 
     .SelectTagList > li.active {
-        background: @med-grey;
-        color: @light-color;
+        background: @med-grey !important;
+        color: @light-color !important;
     }
 
     .SelectTagList > li.pinned + li:not(.pinned) {
         border-color: @light-grey !important;
+    }
+
+    .SelectTagList > li.selected.colored .TagIcon:before {
+        color: @black !important;
+    }
+
+    .SelectTagList > li.active {
+        color: @main-text !important;
+    }
+
+    .SelectTagList > li.active .TagIcon {
+        background: @medium-color !important;
+    }
+
+    .SelectTagList > li.active:hover .TagIcon {
+        background: @light-color !important;
     }
 
     /* #endregion */
