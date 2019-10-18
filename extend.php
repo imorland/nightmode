@@ -10,7 +10,6 @@ return [
         ->css(__DIR__ . '/resources/less/forum/extension.less')
         ->js(__DIR__ . '/js/dist/forum.js'),
     (new Extend\Frontend('admin'))
-        ->css(__DIR__ . '/resources/less/admin/extension.less')
         ->js(__DIR__ . '/js/dist/admin.js'),
     new Extend\Locales(__DIR__ . '/resources/locale'),
     function (Dispatcher $events) {
