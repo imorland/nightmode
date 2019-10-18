@@ -1,3 +1,6 @@
+@should-display-extension-warning: true;
+@extension-warning-text: "Dark mode isn't an official giffgaff feature yet, so you can expect a couple of problems here and there.";
+
 /* General Colors */
 /* sorted dark -> light */
 
@@ -39,6 +42,23 @@ body.dark {
 }
 
 body.dark {
+    // #region Hero Extension Warning
+
+    .Hero::after {
+        & when(@should-display-extension-warning = true) {
+            display: block;
+            content: @extension-warning-text;
+            background: @med-grey;
+            color: @light-color-4;
+            font-size: 16px;
+            font-weight: 500;
+            padding: 8px 0;
+            text-align: center;
+        }
+    }
+
+    // #endregion
+
     .PageHero-title > a {
         color: fade(@black, 80%);
     }
