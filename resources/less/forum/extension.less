@@ -273,12 +273,21 @@ body.dark {
 
     /* #region Post Composer */
 
-    .FormControl::-moz-placeholder,
-    .FormControl:-ms-input-placeholder,
-    .FormControl::-webkit-input-placeholder,
-    .FormControl::placeholder {
-        color: @medium-text !important;
+    ::-moz-placeholder {
+        color: @grey-text !important;
         opacity: 1;
+    }
+
+    ::-webkit-input-placeholder {
+        color: @grey-text !important;
+    }
+
+    ::-ms-placeholder {
+        color: @grey-text !important;
+    }
+
+    ::placeholder {
+        color: @grey-text !important;
     }
 
     .Composer,
