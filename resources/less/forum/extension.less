@@ -23,7 +23,8 @@
 
 /* Special Colors */
 
-@best-answer--accent: #06ce85;
+@best-answer--accent: #007349;
+@best-answer--accent-hover: #06ce85;
 @red: #d0021b;
 @green: #58a400;
 
@@ -73,6 +74,7 @@ body.dark {
     .FormControl:focus,
     .FormControl.focus {
         color: @main-text-2;
+        border-color: @lighter-grey;
     }
 
     .Form-group > label {
@@ -273,12 +275,21 @@ body.dark {
 
     /* #region Post Composer */
 
-    .FormControl::-moz-placeholder,
-    .FormControl:-ms-input-placeholder,
-    .FormControl::-webkit-input-placeholder,
-    .FormControl::placeholder {
-        color: @medium-text !important;
+    ::-moz-placeholder {
+        color: @grey-text !important;
         opacity: 1;
+    }
+
+    ::-webkit-input-placeholder {
+        color: @grey-text !important;
+    }
+
+    ::-ms-placeholder {
+        color: @grey-text !important;
+    }
+
+    ::placeholder {
+        color: @grey-text !important;
     }
 
     .Composer,
@@ -293,6 +304,10 @@ body.dark {
 
     .Composer .ComposerBody-header h3 {
         color: @main-text-3 !important;
+    }
+
+    .Composer .ComposerBody-loading {
+        background: @grey !important;
     }
 
     .Composer .TextEditor textarea {
@@ -372,7 +387,21 @@ body.dark {
         color: @medium-text !important;
     }
 
+    .Post-body h1,
+    .Post-body h2,
+    .Post-body h3,
+    .Post-body h4,
+    .Post-body h5,
+    .Post-body h6 {
+        color: @main-text;
+    }
+
     /* #region Post Header */
+
+    .Post-header,
+    .Post-header a {
+        color: #777;
+    }
 
     /* Overrides default no-group avatar border to dark instead of light */
     .Post-header .Avatar.PostUser-avatar {
@@ -389,6 +418,20 @@ body.dark {
         right: 0;
         bottom: 0;
         background-color: fade(@black, 25%);
+        border-radius: 50%;
+    }
+
+    .MentionsDropdown .PostPreview .Avatar:after,
+    .PostMention-preview .PostPreview .Avatar:after,
+    .Post-mentionedBy-preview .PostPreview .Avatar:after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 8px;
+        left: 15px;
+        width: 24px;
+        height: 24px;
+        background-color: rgba(0, 0, 0, 0.25);
         border-radius: 50%;
     }
 
@@ -409,6 +452,27 @@ body.dark {
     .DiscussionPage .PostStream .PostStream-item .Post .item-bestAnswerPost {
         background-color: @med-grey;
         color: @main-text-2;
+        border-left: 4px solid fade(@green, 50%);
+    }
+
+    .DiscussionPage
+        .PostStream
+        .PostStream-item
+        .Post
+        .item-bestAnswerPost
+        .Post-body
+        a:not(.PostMention) {
+        color: @best-answer--accent !important;
+    }
+
+    .DiscussionPage
+        .PostStream
+        .PostStream-item
+        .Post
+        .item-bestAnswerPost
+        .Post-body
+        a:not(.PostMention):hover {
+        color: @best-answer--accent-hover !important;
     }
 
     .Post--BestAnswer a .username {
@@ -436,7 +500,7 @@ body.dark {
         .item-bestAnswerPost
         .Post-body
         a:active {
-        border-color: @best-answer--accent;
+        border-color: @best-answer--accent-hover;
     }
 
     /* #endregion */
@@ -467,6 +531,15 @@ body.dark {
     }
 
     /* #endregion */
+
+    .Post-mentionedBy a {
+        color: @main-text-3;
+    }
+
+    .Post-mentionedBy a > *:not(.username):hover,
+    .Post-mentionedBy a > .username:hover {
+        color: @main-text;
+    }
 
     /* #endregion */
 
@@ -533,6 +606,11 @@ body.dark {
 
     .Dropdown button.Dropdown-toggle {
         color: @main-text-2;
+    }
+
+    .Post .Dropdown-menu {
+        background: @med-grey !important;
+        color: @main-text !important;
     }
 
     .Dropdown.ButtonGroup button.Dropdown-toggle:hover,
@@ -603,6 +681,11 @@ body.dark {
         filter: brightness(0.85);
     }
 
+    .EmojiDropdown .Dropdown-header {
+        color: @main-text !important;
+        padding-top: 12px;
+    }
+
     /* #endregion */
 
     /* #region Modals */
@@ -634,6 +717,18 @@ body.dark {
 
     .Modal .FormControl:focus {
         background-color: @med-grey;
+    }
+
+    .Modal .VotesModal-list h4 {
+        color: @main-text-4 !important;
+    }
+
+    .Modal .VotesModal-list h2 {
+        color: @main-text !important;
+    }
+
+    .Modal .VotesModal-list a {
+        color: @medium-text !important;
     }
 
     .helpText {
@@ -833,6 +928,122 @@ body.dark {
             width: 32px;
             height: 32px;
         }
+
+        .Post.ReplyPlaceholder .Post-header span.Avatar.PostUser-avatar:after {
+            top: 3px;
+            left: 23px;
+            width: 32px;
+            height: 32px;
+        }
+
+        .Dropdown .Dropdown-menu > li > a *,
+        .Dropdown .Dropdown-menu > li > button * {
+            font-size: 16px !important;
+        }
+
+        .SelectTagListItem-name,
+        .SelectTagListItem-description {
+            font-style: 14px !important;
+        }
+
+        .DiscussionListItem
+            .DiscussionListItem-content.read
+            .DiscussionListItem-info
+            .item-terminalPost,
+        .DiscussionListItem
+            .DiscussionListItem-content.read
+            .DiscussionListItem-info
+            .item-discussion-views,
+        .DiscussionListItem
+            .DiscussionListItem-content.read
+            .DiscussionListItem-info
+            .item-discussion-views::before,
+        .DiscussionListItem
+            .DiscussionListItem-content.read
+            .DiscussionListItem-info
+            .item-recipients
+            .RecipientLabel-text,
+        .DiscussionListItem
+            .DiscussionListItem-content.read
+            .DiscussionListItem-info
+            .item-recipients
+            .RecipientLabel::after,
+        .DiscussionListItem
+            .DiscussionListItem-content.read
+            .DiscussionListItem-info
+            .item-excerpt {
+            color: @grey-text;
+        }
+
+        .DiscussionListItem
+            .DiscussionListItem-content.unread
+            .DiscussionListItem-info
+            .item-terminalPost,
+        .DiscussionListItem
+            .DiscussionListItem-content.unread
+            .DiscussionListItem-info
+            .item-discussion-views,
+        .DiscussionListItem
+            .DiscussionListItem-content.unread
+            .DiscussionListItem-info
+            .item-discussion-views::before,
+        .DiscussionListItem
+            .DiscussionListItem-content.unread
+            .DiscussionListItem-info
+            .item-recipients
+            .RecipientLabel-text,
+        .DiscussionListItem
+            .DiscussionListItem-content.unread
+            .DiscussionListItem-info
+            .item-recipients
+            .RecipientLabel::after,
+        .DiscussionListItem
+            .DiscussionListItem-content.unread
+            .DiscussionListItem-info
+            .item-excerpt {
+            color: @main-text-4;
+        }
+
+        .NotificationList {
+            // Shadow improves contrast between end of notifications and the page background
+            box-shadow: 0 0 10px 0px #000000bb;
+        }
+
+        // Adds "padding" after notification list
+        .NotificationList::after {
+            display: block;
+            height: 4px;
+            width: 100%;
+            content: "";
+        }
+
+        // Adds padding before notification list
+        .NotificationGroup {
+            padding-top: 4px;
+        }
+
+        .DiscussionListItem-title mark {
+            font-weight: bold;
+            color: @main-text;
+        }
+
+        .DiscussionList.DiscussionList--searchResults {
+            .DiscussionListItem
+                .DiscussionListItem-content.unread
+                .DiscussionListItem-title {
+                font-weight: normal;
+            }
+        }
+
+        .SelectTagList > li.pinned:not(.child),
+        .SelectTagList > li.pinned:not(.child) i {
+            color: @main-text-2 !important;
+        }
+
+        .TextEditor textarea {
+            line-height: 0.9 !important;
+            font-size: 14px !important;
+        }
     }
 
     /* #endregion */
@@ -874,6 +1085,19 @@ body.dark {
     .disabled .Checkbox-display {
         color: fade(@light-color, 40%) !important;
         cursor: not-allowed;
+    }
+
+    .PollOption .PollBar label.checkbox .checkmark {
+        top: 0;
+    }
+
+    .PollOption .PollBar:hover {
+        background: fade(@lighter-grey, 80%);
+    }
+
+    .PollOption .PollBar,
+    .PollOption .PollBar * {
+        cursor: pointer;
     }
 
     label.checkbox > input[type="checkbox"] {
