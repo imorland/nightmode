@@ -23,7 +23,8 @@
 
 /* Special Colors */
 
-@best-answer--accent: #06ce85;
+@best-answer--accent: #007349;
+@best-answer--accent-hover: #06ce85;
 @red: #d0021b;
 @green: #58a400;
 
@@ -435,6 +436,26 @@ body.dark {
         border-left: 4px solid fade(@best-answer--accent, 20%);
     }
 
+    .DiscussionPage
+        .PostStream
+        .PostStream-item
+        .Post
+        .item-bestAnswerPost
+        .Post-body
+        a:not(.PostMention) {
+        color: @best-answer--accent !important;
+    }
+
+    .DiscussionPage
+        .PostStream
+        .PostStream-item
+        .Post
+        .item-bestAnswerPost
+        .Post-body
+        a:not(.PostMention):hover {
+        color: @best-answer--accent-hover !important;
+    }
+
     .Post--BestAnswer a .username {
         color: @black;
     }
@@ -460,7 +481,7 @@ body.dark {
         .item-bestAnswerPost
         .Post-body
         a:active {
-        border-color: @best-answer--accent;
+        border-color: @best-answer--accent-hover;
     }
 
     /* #endregion */
