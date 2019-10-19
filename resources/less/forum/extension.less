@@ -513,6 +513,19 @@ body.dark {
 
     /* #endregion */
 
+    .Post-mentionedBy a > *:not(.username) {
+        color: @medium-color--darker;
+    }
+
+    .Post-mentionedBy a > .username {
+        color: @main-text-3;
+    }
+
+    .Post-mentionedBy a > *:not(.username):hover,
+    .Post-mentionedBy a > .username:hover {
+        color: @main-text;
+    }
+
     /* #endregion */
 
     /* #endregion */
