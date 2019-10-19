@@ -646,6 +646,18 @@ body.dark {
         background-color: @med-grey;
     }
 
+    .Modal .VotesModal-list h4 {
+        color: @main-text-4 !important;
+    }
+
+    .Modal .VotesModal-list h2 {
+        color: @main-text !important;
+    }
+
+    .Modal .VotesModal-list a {
+        color: @medium-text !important;
+    }
+
     .helpText {
         color: @medium-text;
     }
@@ -888,6 +900,15 @@ body.dark {
 
     .PollOption .PollBar label.checkbox .checkmark {
         top: 0;
+    }
+
+    .PollOption .PollBar:hover {
+        background: fade(@lighter-grey, 80%);
+    }
+
+    .PollOption .PollBar,
+    .PollOption .PollBar * {
+        cursor: pointer;
     }
 
     label.checkbox > input[type="checkbox"] {
