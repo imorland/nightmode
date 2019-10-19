@@ -73,6 +73,7 @@ body.dark {
     .FormControl:focus,
     .FormControl.focus {
         color: @main-text-2;
+        border-color: @lighter-grey;
     }
 
     .Form-group > label {
@@ -545,6 +546,10 @@ body.dark {
         color: @main-text-2;
     }
 
+    .Dropdown-menu {
+        background: @med-grey !important;
+    }
+
     .Dropdown.ButtonGroup button.Dropdown-toggle:hover,
     .Dropdown.ButtonGroup button.Dropdown-toggle:focus,
     .Dropdown.ButtonGroup button.Dropdown-toggle[aria-expanded="true"] {
@@ -611,6 +616,11 @@ body.dark {
     img.emoji {
         /* Dim emojis by 15% */
         filter: brightness(0.85);
+    }
+
+    .EmojiDropdown .Dropdown-header {
+        color: @main-text !important;
+        padding-top: 12px;
     }
 
     /* #endregion */
