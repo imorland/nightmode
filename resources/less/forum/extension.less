@@ -305,6 +305,10 @@ body.dark {
         color: @main-text-3 !important;
     }
 
+    .Composer .ComposerBody-loading {
+        background: @grey !important;
+    }
+
     .Composer .TextEditor textarea {
         color: @main-text-2 !important;
     }
@@ -864,6 +868,122 @@ body.dark {
             left: 3px;
             width: 32px;
             height: 32px;
+        }
+
+        .Post.ReplyPlaceholder .Post-header span.Avatar.PostUser-avatar:after {
+            top: 3px;
+            left: 23px;
+            width: 32px;
+            height: 32px;
+        }
+
+        .Dropdown .Dropdown-menu > li > a *,
+        .Dropdown .Dropdown-menu > li > button * {
+            font-size: 16px !important;
+        }
+
+        .SelectTagListItem-name,
+        .SelectTagListItem-description {
+            font-style: 14px !important;
+        }
+
+        .DiscussionListItem
+            .DiscussionListItem-content.read
+            .DiscussionListItem-info
+            .item-terminalPost,
+        .DiscussionListItem
+            .DiscussionListItem-content.read
+            .DiscussionListItem-info
+            .item-discussion-views,
+        .DiscussionListItem
+            .DiscussionListItem-content.read
+            .DiscussionListItem-info
+            .item-discussion-views::before,
+        .DiscussionListItem
+            .DiscussionListItem-content.read
+            .DiscussionListItem-info
+            .item-recipients
+            .RecipientLabel-text,
+        .DiscussionListItem
+            .DiscussionListItem-content.read
+            .DiscussionListItem-info
+            .item-recipients
+            .RecipientLabel::after,
+        .DiscussionListItem
+            .DiscussionListItem-content.read
+            .DiscussionListItem-info
+            .item-excerpt {
+            color: @grey-text;
+        }
+
+        .DiscussionListItem
+            .DiscussionListItem-content.unread
+            .DiscussionListItem-info
+            .item-terminalPost,
+        .DiscussionListItem
+            .DiscussionListItem-content.unread
+            .DiscussionListItem-info
+            .item-discussion-views,
+        .DiscussionListItem
+            .DiscussionListItem-content.unread
+            .DiscussionListItem-info
+            .item-discussion-views::before,
+        .DiscussionListItem
+            .DiscussionListItem-content.unread
+            .DiscussionListItem-info
+            .item-recipients
+            .RecipientLabel-text,
+        .DiscussionListItem
+            .DiscussionListItem-content.unread
+            .DiscussionListItem-info
+            .item-recipients
+            .RecipientLabel::after,
+        .DiscussionListItem
+            .DiscussionListItem-content.unread
+            .DiscussionListItem-info
+            .item-excerpt {
+            color: @main-text-4;
+        }
+
+        .NotificationList {
+            // Shadow improves contrast between end of notifications and the page background
+            box-shadow: 0 0 10px 0px #000000bb;
+        }
+
+        // Adds "padding" after notification list
+        .NotificationList::after {
+            display: block;
+            height: 4px;
+            width: 100%;
+            content: "";
+        }
+
+        // Adds padding before notification list
+        .NotificationGroup {
+            padding-top: 4px;
+        }
+
+        .DiscussionListItem-title mark {
+            font-weight: bold;
+            color: @main-text;
+        }
+
+        .DiscussionList.DiscussionList--searchResults {
+            .DiscussionListItem
+                .DiscussionListItem-content.unread
+                .DiscussionListItem-title {
+                font-weight: normal;
+            }
+        }
+
+        .SelectTagList > li.pinned:not(.child),
+        .SelectTagList > li.pinned:not(.child) i {
+            color: @main-text-2 !important;
+        }
+
+        .TextEditor textarea {
+            line-height: 0.9 !important;
+            font-size: 14px !important;
         }
     }
 
