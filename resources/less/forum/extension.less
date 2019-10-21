@@ -2,6 +2,9 @@
 @extension-warning-text: "You're using dark mode - a member created extension for the giffgaff community.";
 
 /* General Colors */
+
+@gg-yellow: #fcc31e;
+
 /* sorted dark -> light */
 
 @black: #000;
@@ -11,9 +14,10 @@
 @med-grey: #313131;
 @lighter-grey: #444;
 @light-grey: #555;
+@lightest-grey: #666;
 
 @contrast-grey: #999;
-@medium-color--darker: #bbb;
+@medium-color--lighter: #bbb;
 @medium-color: #aaa;
 
 @light-color-4: #ccc;
@@ -35,7 +39,7 @@
 @main-text-3: @light-color-3;
 @main-text-4: @light-color-4;
 @medium-text: @medium-color;
-@medium-text-0: @medium-color--darker;
+@medium-text-0: @medium-color--lighter;
 @grey-text: @contrast-grey;
 
 body.dark {
@@ -348,7 +352,7 @@ body.dark {
 
     .Post-body a {
         color: @medium-text-0 !important;
-        border-color: @medium-color--darker;
+        border-color: @medium-color--lighter;
     }
 
     .Post-body a:hover,
@@ -461,46 +465,13 @@ body.dark {
         .Post
         .item-bestAnswerPost
         .Post-body
-        a:not(.PostMention) {
-        color: @best-answer--accent !important;
-    }
-
-    .DiscussionPage
-        .PostStream
-        .PostStream-item
-        .Post
-        .item-bestAnswerPost
-        .Post-body
-        a:not(.PostMention):hover {
-        color: @best-answer--accent-hover !important;
+        a {
+        color: unset;
+        border-bottom-color: unset;
     }
 
     .Post--BestAnswer a .username {
         color: @black;
-    }
-
-    .DiscussionPage
-        .PostStream
-        .PostStream-item
-        .Post
-        .item-bestAnswerPost
-        .Post-body
-        a:hover,
-    .DiscussionPage
-        .PostStream
-        .PostStream-item
-        .Post
-        .item-bestAnswerPost
-        .Post-body
-        a:focus,
-    .DiscussionPage
-        .PostStream
-        .PostStream-item
-        .Post
-        .item-bestAnswerPost
-        .Post-body
-        a:active {
-        border-color: @best-answer--accent-hover;
     }
 
     /* #endregion */
@@ -532,13 +503,18 @@ body.dark {
 
     /* #endregion */
 
-    .Post-mentionedBy a {
-        color: @main-text-3;
+    .DiscussionPage .PostStream .PostStream-item .Post .item-replies {
+        color: @contrast-grey;
     }
 
-    .Post-mentionedBy a > *:not(.username):hover,
-    .Post-mentionedBy a > .username:hover {
-        color: @main-text;
+    .Post-mentionedBy a,
+    .Post-mentionedBy a .username {
+        color: @main-text-3 !important;
+    }
+
+    .Post-mentionedBy a:hover,
+    .Post-mentionedBy a:hover > * {
+        color: @main-text !important;
     }
 
     /* #endregion */
@@ -1088,7 +1064,7 @@ body.dark {
     }
 
     .PollOption .PollBar label.checkbox .checkmark {
-        top: 0;
+        top: 0 !important;
     }
 
     .PollOption .PollBar:hover {
@@ -1098,6 +1074,18 @@ body.dark {
     .PollOption .PollBar,
     .PollOption .PollBar * {
         cursor: pointer;
+    }
+
+    .PollOption .PollBar[data-selected="true"] {
+        border-color: @contrast-grey;
+    }
+
+    .PollOption .PollBar .PollOption-active {
+        background: @lightest-grey;
+    }
+
+    .PollVoted .PollBar[data-selected="true"] .PollPercent {
+        color: @medium-color !important;
     }
 
     label.checkbox > input[type="checkbox"] {
@@ -1182,4 +1170,100 @@ body.dark {
     }
 
     /* #endregion */
+
+    // #region flatpickr calendar
+
+    .flatpickr-calendar {
+        background: @med-grey;
+        box-shadow: 1px 0 0 @lightest-grey, -1px 0 0 @lightest-grey,
+            0 1px 0 @lightest-grey, 0 -1px 0 @lightest-grey,
+            0 3px 13px rgba(0, 0, 0, 0.08);
+    }
+
+    .flatpickr-calendar {
+        .flatpickr-months .flatpickr-prev-month,
+        .flatpickr-months .flatpickr-next-month {
+            color: @main-text;
+            fill: @main-text;
+        }
+
+        .flatpickr-months .flatpickr-prev-month:hover svg,
+        .flatpickr-months .flatpickr-next-month:hover svg {
+            fill: @main-text-4;
+        }
+
+        .flatpickr-months .flatpickr-month {
+            color: @light-color;
+            fill: @light-color;
+        }
+
+        span.flatpickr-weekday {
+            color: @light-color-2;
+            padding-top: 8px;
+        }
+
+        .flatpickr-day {
+            color: @light-color-2;
+        }
+
+        .flatpickr-day.flatpickr-disabled,
+        .flatpickr-day.flatpickr-disabled:hover {
+            color: @lightest-grey;
+        }
+
+        .flatpickr-day.today {
+            border-color: @gg-yellow;
+        }
+
+        .flatpickr-day.flatpickr-disabled,
+        .flatpickr-day.flatpickr-disabled:hover,
+        .flatpickr-day.prevMonthDay,
+        .flatpickr-day.nextMonthDay,
+        .flatpickr-day.notAllowed,
+        .flatpickr-day.notAllowed.prevMonthDay,
+        .flatpickr-day.notAllowed.nextMonthDay {
+            color: @medium-color--lighter;
+        }
+
+        .flatpickr-day.inRange,
+        .flatpickr-day.prevMonthDay.inRange,
+        .flatpickr-day.nextMonthDay.inRange,
+        .flatpickr-day.today.inRange,
+        .flatpickr-day.prevMonthDay.today.inRange,
+        .flatpickr-day.nextMonthDay.today.inRange,
+        .flatpickr-day:hover,
+        .flatpickr-day.prevMonthDay:hover,
+        .flatpickr-day.nextMonthDay:hover,
+        .flatpickr-day:focus,
+        .flatpickr-day.prevMonthDay:focus,
+        .flatpickr-day.nextMonthDay:focus {
+            color: @main-text;
+            background: @lighter-grey;
+            border-color: @lighter-grey;
+            outline: 0;
+            cursor: pointer;
+        }
+
+        .flatpickr-monthDropdown-months option {
+            background-color: @lighter-grey !important;
+        }
+
+        .flatpickr-time input {
+            color: @light-color-2;
+        }
+
+        .flatpickr-time input:hover,
+        .flatpickr-time .flatpickr-am-pm:hover,
+        .flatpickr-time input:focus,
+        .flatpickr-time .flatpickr-am-pm:focus {
+            background: @light-grey;
+        }
+
+        .flatpickr-time .flatpickr-time-separator,
+        .flatpickr-time .flatpickr-am-pm {
+            color: @light-color-2;
+        }
+    }
+
+    // #endregion
 }
