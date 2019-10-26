@@ -408,8 +408,8 @@ body.dark {
     }
 
     /* Overrides default no-group avatar border to dark instead of light */
-    .Post-header .Avatar.PostUser-avatar {
-        border-color: @light-grey !important;
+    .Avatar.PostUser-avatar {
+        position: relative;
     }
 
     /* Darkens letter-based avatars */
@@ -417,12 +417,13 @@ body.dark {
         content: "";
         display: block;
         position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
+        top: -3px;
+        left: -3px;
+        right: -3px;
+        bottom: -3px;
         background-color: fade(@black, 25%);
         border-radius: 50%;
+        border: 3px solid fade(@light-grey, 25%);
     }
 
     .MentionsDropdown .PostPreview .Avatar:after,
@@ -898,18 +899,8 @@ body.dark {
             color: @main-text-2 !important;
         }
 
-        .Post-header span.Avatar.PostUser-avatar:after {
-            top: -6px;
-            left: 3px;
-            width: 32px;
-            height: 32px;
-        }
-
-        .Post.ReplyPlaceholder .Post-header span.Avatar.PostUser-avatar:after {
-            top: 3px;
-            left: 23px;
-            width: 32px;
-            height: 32px;
+        .DiscussionPage .PostStream .PostStream-item .Post.ReplyPlaceholder {
+            background-color: @lighter-grey;
         }
 
         .Dropdown .Dropdown-menu > li > a *,
@@ -1063,25 +1054,21 @@ body.dark {
         cursor: not-allowed;
     }
 
-    .PollOption .PollBar label.checkbox .checkmark {
-        top: 0 !important;
-    }
-
     .PollOption .PollBar:hover {
-        background: fade(@lighter-grey, 80%);
+        background: fade(@lighter-grey, 80%) !important;
     }
 
     .PollOption .PollBar,
     .PollOption .PollBar * {
-        cursor: pointer;
+        cursor: pointer !important;
     }
 
     .PollOption .PollBar[data-selected="true"] {
-        border-color: @contrast-grey;
+        border-color: @contrast-grey !important;
     }
 
     .PollOption .PollBar .PollOption-active {
-        background: @lightest-grey;
+        background: @lightest-grey !important;
     }
 
     .PollVoted .PollBar[data-selected="true"] .PollPercent {
