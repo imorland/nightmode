@@ -407,13 +407,17 @@ body.dark {
         color: #777;
     }
 
-    /* Overrides default no-group avatar border to dark instead of light */
-    .Avatar.PostUser-avatar {
+    /* Changes default white border to dark */
+    .Avatar {
         position: relative;
     }
 
+   .PostUser-avatar.Avatar {
+        position: absolute;
+    }
+
     /* Darkens letter-based avatars */
-    .Post-header span.Avatar.PostUser-avatar:after {
+    .Avatar:after {
         content: "";
         display: block;
         position: absolute;
@@ -422,21 +426,6 @@ body.dark {
         right: -3px;
         bottom: -3px;
         background-color: fade(@black, 25%);
-        border-radius: 50%;
-        border: 3px solid fade(@light-grey, 25%);
-    }
-
-    .MentionsDropdown .PostPreview .Avatar:after,
-    .PostMention-preview .PostPreview .Avatar:after,
-    .Post-mentionedBy-preview .PostPreview .Avatar:after {
-        content: "";
-        display: block;
-        position: absolute;
-        top: 8px;
-        left: 15px;
-        width: 24px;
-        height: 24px;
-        background-color: rgba(0, 0, 0, 0.25);
         border-radius: 50%;
     }
 
