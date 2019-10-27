@@ -410,6 +410,7 @@ body.dark {
     /* Changes default white border to dark */
     .Avatar {
         position: relative;
+        border-color: #141414;
     }
 
    .PostUser-avatar.Avatar {
@@ -421,12 +422,16 @@ body.dark {
         content: "";
         display: block;
         position: absolute;
-        top: -3px;
-        left: -3px;
-        right: -3px;
-        bottom: -3px;
-        background-color: fade(@black, 25%);
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        background-color: fade(@black, 10%);
         border-radius: 50%;
+    }
+
+    .UserCard-avatar .Avatar:after {
+        border-width: 4px;
     }
 
     .Post-header .UserCard .username {
