@@ -1,5 +1,5 @@
 @should-display-extension-warning: true;
-@extension-warning-text: "You're using dark mode - a member created extension for the giffgaff community.";
+@extension-warning-text : "You're using dark mode - a member created extension for the giffgaff community.";
 
 /* General Colors */
 
@@ -7,50 +7,131 @@
 
 /* sorted dark -> light */
 
-@black: #000;
-@dark: #151515;
-@grey: #212121;
-@grey-accent: #262626; /* used for table color only */
-@med-grey: #313131;
-@lighter-grey: #444;
-@light-grey: #555;
-@lightest-grey: #666;
-
-@contrast-grey: #999;
-@medium-color--lighter: #bbb;
-@medium-color: #aaa;
-
-@light-color-4: #ccc;
-@light-color-3: #ddd;
-@light-color-2: #eee;
-@light-color: #fff;
-
-/* Special Colors */
-
-@best-answer--accent: #007349;
-@best-answer--accent-hover: #06ce85;
-@red: #d0021b;
-@green: #58a400;
-
-/* Text Colors */
-
-@main-text: @light-color;
-@main-text-2: @light-color-2;
-@main-text-3: @light-color-3;
-@main-text-4: @light-color-4;
-@medium-text: @medium-color;
-@medium-text-0: @medium-color--lighter;
-@grey-text: @contrast-grey;
-
-body.dark {
+body.dark:not(.dark--oled) {
     background: @dark;
     color: @main-text;
+
+    @black : #000;
+    @dark : #151515;
+    @grey : #212121;
+    @grey-accent: #262626;
+    /* used for table color only */
+    @med-grey : #313131;
+    @lighter-grey : #444;
+    @light-grey : #555;
+    @lightest-grey: #666;
+
+    @contrast-grey : #999;
+    @medium-color--lighter: #bbb;
+    @medium-color : #aaa;
+
+    @light-color-4: #ccc;
+    @light-color-3: #ddd;
+    @light-color-2: #eee;
+    @light-color : #fff;
+
+    /* Special Colors */
+
+    @best-answer--accent : #007349;
+    @best-answer--accent-hover: #06ce85;
+    @red : #d0021b;
+    @green : #58a400;
+
+    @borderColor: @black;
+
+    /* Text Colors */
+
+    @main-text : @light-color;
+    @main-text-2 : @light-color-2;
+    @main-text-3 : @light-color-3;
+    @main-text-4 : @light-color-4;
+    @medium-text : @medium-color;
+    @medium-text-0: @medium-color--lighter;
+    @grey-text : @contrast-grey;
+
+    .styleMixin();
 }
 
-body.dark {
+body.dark.dark--oled {
+    background: @dark;
+    color: @main-text;
+
+    @black : #000;
+    @dark : #000;
+    @grey : #111;
+    @grey-accent : #141414;
+    @med-grey : #181818;
+    @lighter-grey : #222;
+    @light-grey : #2a2a2a;
+    @lightest-grey: #333;
+
+    @contrast-grey : #999;
+    @medium-color--lighter: #bbb;
+    @medium-color : #aaa;
+
+    @light-color-4: #ccc;
+    @light-color-3: #ddd;
+    @light-color-2: #eee;
+    @light-color : #fff;
+
+    /* Special Colors */
+
+    @best-answer--accent : #007349;
+    @best-answer--accent-hover: #06ce85;
+    @red : #d0021b;
+    @green : #58a400;
+
+    @borderColor: @grey;
+
+    /* Text Colors */
+
+    @main-text : @light-color;
+    @main-text-2 : @light-color-2;
+    @main-text-3 : @light-color-3;
+    @main-text-4 : @light-color-4;
+    @medium-text : @medium-color;
+    @medium-text-0: @medium-color--lighter;
+    @grey-text : @contrast-grey;
+
+    .styleMixin();
+
+    /* OLED overrides */
+
+    .App:not(.hasPane) .DiscussionListItem {
+        background-color: @black !important;
+    }
+
+    .App .DiscussionListItem .DiscussionListItem-content.read {
+        background: none !important;
+    }
+
+    .App:not(.hasPane) .DiscussionListItem:hover {
+        border-color: lighten(@borderColor, 10%) !important;
+        background-color: lighten(@black, 4%) !important;
+    }
+
+    .App:not(.hasPane) .DiscussionListItem:before {
+        background-color: lighten(@borderColor, 10%) !important;
+    }
+
+    .PostStream-item {
+        background-color: @black !important;
+        border: 2px solid @borderColor;
+    }
+
+    .PostStream-item .Post {
+        background-color: transparent !important;
+    }
+
+    .TagsPage-content .TagTiles > li.TagTile {
+        border: 2px solid @borderColor;
+    }
+}
+
+.styleMixin() {
     // #region Hero Extension Warning
 
-    .Hero::after {
+    .Hero:after {
         & when(@should-display-extension-warning = true) {
             display: block;
             content: @extension-warning-text;
@@ -58,7 +139,7 @@ body.dark {
             color: @light-color-4;
             font-size: 16px;
             font-weight: 500;
-            padding: 8px 0;
+            padding: 8px 4px;
             text-align: center;
         }
     }
@@ -180,6 +261,7 @@ body.dark {
         color: @main-text-2;
         background-color: @grey;
     }
+
     .App-header .FormControl:focus {
         color: @main-text-2;
         background-color: @med-grey;
@@ -329,6 +411,7 @@ body.dark {
         background-color: @lighter-grey !important;
         border-radius: 50%;
     }
+
     .Composer .TextEditor-controls li:nth-child(3) .Button:hover,
     .Composer .TextEditor-controls li:nth-child(3) .Button:focus {
         background-color: @lighter-grey !important;
@@ -413,8 +496,10 @@ body.dark {
         border-color: #141414;
     }
 
-   .PostUser-avatar.Avatar {
-        position: absolute;
+    @media (min-width: 767px) {
+        .PostUser-avatar.Avatar {
+            position: absolute;
+        }
     }
 
     /* Darkens letter-based avatars */
@@ -737,6 +822,14 @@ body.dark {
 
     .DiscussionListItem {
         background: @grey !important;
+    }
+
+    .App:not(.hasPane) .DiscussionListItem {
+        border-color: @borderColor !important;
+    }
+
+    .App:not(.hasPane) .DiscussionListItem:before {
+        background-color: @borderColor !important;
     }
 
     .DiscussionListItem:hover,

@@ -25,5 +25,6 @@ class Preferences
     public function addUserPreference(ConfigureUserPreferences $event)
     {
         $event->add('fofNightMode', 'boolval', false);
+        $event->add('fofNightModeOledType', 'boolval', false);
     }
 }
