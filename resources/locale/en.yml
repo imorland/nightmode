@@ -7,5 +7,6 @@ fof-nightmode:
         night: Dark mode
         day: Light mode
         user:
-            settings:
-                oled: Make dark mode even darker (OLED mode)
+                settings:
+                    oled_on: Enable OLED dark mode
+                    oled_off: Disable OLED dark mode
