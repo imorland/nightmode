@@ -90,7 +90,7 @@ body.dark.dark--oled {
     @red : #d0021b;
     @green : #58a400;
 
-    @borderColor: @grey;
+    @borderColor: @light-grey;
 
     /* Text Colors */
 
@@ -105,6 +105,11 @@ body.dark.dark--oled {
     .styleMixin();
 
     /* OLED overrides */
+
+    // Separates header from main page content as they're the same colour
+    .App header.App-header {
+        border-bottom: 1px solid @lightest-grey;
+    }
 
     .App:not(.hasPane) .DiscussionListItem {
         background-color: @black !important;
@@ -123,12 +128,15 @@ body.dark.dark--oled {
         background-color: lighten(@borderColor, 10%) !important;
     }
 
-    .PostStream-item {
+    .PostStream-item,
+    .UserPage .PostsUserPage .PostsUserPage-list > li {
         background-color: @black !important;
         border: 2px solid @borderColor;
     }
 
-    .PostStream-item .Post {
+    .PostStream-item .Post,
+    .UserPage .PostsUserPage .PostsUserPage-list > li,
+    .UserPage .PostsUserPage .PostsUserPage-list > li .Post {
         background-color: transparent !important;
     }
 
@@ -690,23 +698,26 @@ body.dark.dark--oled {
         color: @main-text-2 !important;
     }
 
-    .Dropdown-menu > li > a,
-    .Dropdown-menu > li > button,
-    .Dropdown-menu > li > span {
-        color: @medium-text-0;
-    }
+    *:not(.item-nav) {
+        > .Dropdown .Dropdown-menu > li > a,
+        > .Dropdown .Dropdown-menu > li > button,
+        > .Dropdown .Dropdown-menu > li > span {
+            background-color: @grey;
+            color: @medium-text-0;
+        }
 
-    *:not(.item-nav) > .Dropdown .Dropdown-menu > li.active > a,
-    *:not(.item-nav) > .Dropdown .Dropdown-menu > li.active > button {
-        background: @med-grey;
-    }
+        > .Dropdown .Dropdown-menu > li.active > a,
+        > .Dropdown .Dropdown-menu > li.active > button {
+            background: @med-grey;
+        }
 
-    *:not(.item-nav) > .Dropdown .Dropdown-menu > li > a:hover,
-    *:not(.item-nav) > .Dropdown .Dropdown-menu > li > a:focus,
-    *:not(.item-nav) > .Dropdown .Dropdown-menu > li > button:hover,
-    *:not(.item-nav) > .Dropdown .Dropdown-menu > li > button:focus {
-        background-color: @med-grey;
-        color: @main-text;
+        > .Dropdown .Dropdown-menu > li > a:hover,
+        > .Dropdown .Dropdown-menu > li > a:focus,
+        > .Dropdown .Dropdown-menu > li > button:hover,
+        > .Dropdown .Dropdown-menu > li > button:focus {
+            background-color: @med-grey;
+            color: @main-text;
+        }
     }
 
     /* #endregion */
