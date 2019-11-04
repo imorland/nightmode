@@ -395,43 +395,56 @@ body.dark.dark--oled {
         color: @grey-text !important;
     }
 
-    .Composer,
-    .Composer.active {
+    .Composer {
         background-color: fade(@grey, 97.5%);
         color: @main-text;
-    }
 
-    .Composer .Composer-controls {
-        background-color: @med-grey !important;
-    }
+        &.active {
+            background-color: fade(@grey, 97.5%);
+            color: @main-text;
+        }
 
-    .Composer .ComposerBody-header h3 {
-        color: @main-text-3 !important;
-    }
+        &-controls {
+            background-color: @med-grey !important;
+        }
 
-    .Composer .ComposerBody-loading {
-        background: @grey !important;
-    }
+        &Body-header h3 {
+            color: @main-text-3 !important;
+        }
 
-    .Composer .TextEditor textarea {
-        color: @main-text-2 !important;
-    }
+        &Body-loading {
+            background: @grey !important;
+        }
 
-    .Composer .TextEditor-controls li:not(:first-child) .Button {
-        background-color: unset !important;
-    }
+        .TextEditor {
+            textarea {
+                color: @main-text-2 !important;
+            }
 
-    .Composer .TextEditor-controls li:nth-child(2) .Button:hover,
-    .Composer .TextEditor-controls li:nth-child(2) .Button:focus,
-    .Composer .TextEditor-controls .TextEditor-toolbar .Button:hover,
-    .Composer .TextEditor-controls .TextEditor-toolbar .Button:focus {
-        background-color: @lighter-grey !important;
-        border-radius: 50%;
-    }
+            &-controls li:not(:first-child) .Button {
+                background-color: unset !important;
+            }
 
-    .Composer .TextEditor-controls li:nth-child(3) .Button:hover,
-    .Composer .TextEditor-controls li:nth-child(3) .Button:focus {
-        background-color: @lighter-grey !important;
+            &-controls {
+                .TextEditor-toolbar {
+                    .Button:not(.flagrow-upload-button) {
+                        &:hover,
+                        &:focus {
+                            background-color: @lighter-grey !important;
+                            border-radius: 50%;
+                        }
+                    }
+                }
+                li {
+                    .Button.flagrow-upload-button {
+                        &:focus,
+                        &:hover {
+                            background-color: @lighter-grey !important;
+                        }
+                    }
+                }
+            }
+        }
     }
 
     /* #endregion */
@@ -443,42 +456,72 @@ body.dark.dark--oled {
         background: @grey !important;
     }
 
-    .Post-body p,
-    .Post-body ul,
-    .Post-body ol,
-    .Post-body blockquote {
-        color: @main-text;
-    }
+    .Post {
+        .Post-header {
+            color: #777;
+            a {
+                color: #777;
+            }
 
-    .Post-body a {
-        color: @medium-text-0 !important;
-        border-color: @medium-color--lighter;
-    }
+            .UserCard .username {
+                color: @main-text-2 !important;
+            }
 
-    .Post-body a:hover,
-    .Post-body a:focus,
-    .Post-body a:active {
-        color: @main-text-2 !important;
-        border-color: @main-text;
-    }
+            .username {
+                color: @medium-text-0;
+            }
+        }
+        &--BestAnswer a .username {
+            color: @black;
+        }
+        .Post-body {
+            p,
+            ul,
+            ol,
+            blockquote {
+                color: @main-text;
+            }
 
-    /* Quotes */
-    .Post-body blockquote {
-        color: @medium-text-0 !important;
-        background-color: @med-grey !important;
-        border-color: #3a3a3a !important;
-    }
+            a {
+                color: @medium-text-0 !important;
+                border-color: @medium-color--lighter;
 
-    /* Inline monospace */
-    .Post-body code {
-        font-family: "Fira Code", Consolas, monospace;
-        background-color: @med-grey;
-        color: @main-text-2 !important;
-    }
+                &:hover,
+                &:focus,
+                &:active {
+                    color: @main-text-2 !important;
+                    border-color: @main-text;
+                }
+            }
 
-    /* Code blocks */
-    .Post-body pre {
-        background-color: @med-grey;
+            /* Quotes */
+            blockquote {
+                color: @medium-text-0 !important;
+                background-color: @med-grey !important;
+                border-color: #3a3a3a !important;
+            }
+
+            /* Inline monospace */
+            code {
+                font-family: "Fira Code", Consolas, monospace;
+                background-color: @med-grey;
+                color: @main-text-2 !important;
+            }
+
+            /* Code blocks */
+            pre {
+                background-color: @med-grey;
+            }
+
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                color: @main-text;
+            }
+        }
     }
 
     .MentionsDropdown .PostPreview,
@@ -487,24 +530,10 @@ body.dark.dark--oled {
         color: @main-text-3;
     }
 
-    .PostPreview .username {
-        color: @medium-text !important;
-    }
-
-    .Post-body h1,
-    .Post-body h2,
-    .Post-body h3,
-    .Post-body h4,
-    .Post-body h5,
-    .Post-body h6 {
-        color: @main-text;
-    }
-
     /* #region Post Header */
 
-    .Post-header,
-    .Post-header a {
-        color: #777;
+    .PostPreview .username {
+        color: @medium-text !important;
     }
 
     /* Changes default white border to dark */
@@ -536,39 +565,29 @@ body.dark.dark--oled {
         border-width: 4px;
     }
 
-    .Post-header .UserCard .username {
-        color: @main-text-2 !important;
-    }
-
-    .Post-header .username {
-        color: @medium-text-0;
-    }
-
     /* #endregion */
 
     /* #region Post Footer */
 
     /* #region Best Answers */
 
-    .DiscussionPage .PostStream .PostStream-item .Post .item-bestAnswerPost {
-        background-color: @med-grey;
-        color: @main-text-2;
-        border-left: 4px solid fade(@green, 50%);
-    }
+    .DiscussionPage {
+        .PostStream {
+            .PostStream-item {
+                .Post {
+                    .item-bestAnswerPost {
+                        background-color: @med-grey;
+                        color: @main-text-2;
+                        border-left: 4px solid fade(@green, 50%);
 
-    .DiscussionPage
-        .PostStream
-        .PostStream-item
-        .Post
-        .item-bestAnswerPost
-        .Post-body
-        a {
-        color: unset;
-        border-bottom-color: unset;
-    }
-
-    .Post--BestAnswer a .username {
-        color: @black;
+                        .Post-body a {
+                            color: unset;
+                            border-bottom-color: unset;
+                        }
+                    }
+                }
+            }
+        }
     }
 
     /* #endregion */
