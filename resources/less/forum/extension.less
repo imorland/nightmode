@@ -128,6 +128,10 @@ body.dark.dark--oled {
         background-color: lighten(@borderColor, 10%) !important;
     }
 
+    .DiscussionPage .PostStream .PostStream-item .Post .item-bestAnswerPost {
+        background-color: fade(@grey, 50%) !important;
+    }
+
     .PostStream-item,
     .UserPage .PostsUserPage .PostsUserPage-list > li {
         background-color: @black !important;
@@ -472,7 +476,8 @@ body.dark.dark--oled {
             }
         }
         &--BestAnswer a .username {
-            color: @black;
+            // override grey for username in post header to meet accessibility contrast requirements between green banner and text
+            color: @black !important;
         }
         .Post-body {
             p,
