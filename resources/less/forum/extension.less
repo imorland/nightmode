@@ -1,56 +1,158 @@
 @should-display-extension-warning: true;
-@extension-warning-text: "You're using dark mode - a member created extension for the giffgaff community.";
+@extension-warning-text : "You're using dark mode - a member created extension for the giffgaff community.";
 
 /* General Colors */
 
 @gg-yellow: #fcc31e;
 
-/* sorted dark -> light */
-
-@black: #000;
-@dark: #151515;
-@grey: #212121;
-@grey-accent: #262626; /* used for table color only */
-@med-grey: #313131;
-@lighter-grey: #444;
-@light-grey: #555;
-@lightest-grey: #666;
-
-@contrast-grey: #999;
-@medium-color--lighter: #bbb;
-@medium-color: #aaa;
-
-@light-color-4: #ccc;
-@light-color-3: #ddd;
-@light-color-2: #eee;
-@light-color: #fff;
-
-/* Special Colors */
-
-@best-answer--accent: #007349;
-@best-answer--accent-hover: #06ce85;
-@red: #d0021b;
-@green: #58a400;
-
-/* Text Colors */
-
-@main-text: @light-color;
-@main-text-2: @light-color-2;
-@main-text-3: @light-color-3;
-@main-text-4: @light-color-4;
-@medium-text: @medium-color;
-@medium-text-0: @medium-color--lighter;
-@grey-text: @contrast-grey;
-
-body.dark {
-    background: @dark;
-    color: @main-text;
+.ggDarkModeBanner {
+    position: fixed;
+    padding: 8px 4px;
+    font-size: 1rem;
+    text-align: center;
+    background: #00528a;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
-body.dark {
+body.dark:not(.dark--oled) {
+    background: @dark;
+    color: @main-text;
+
+    @black : #000;
+    @dark : #151515;
+    @grey : #212121;
+    @grey-accent: #262626;
+    /* used for table color only */
+    @med-grey : #313131;
+    @lighter-grey : #444;
+    @light-grey : #555;
+    @lightest-grey: #666;
+
+    @contrast-grey : #999;
+    @medium-color--lighter: #bbb;
+    @medium-color : #aaa;
+
+    @light-color-4: #ccc;
+    @light-color-3: #ddd;
+    @light-color-2: #eee;
+    @light-color : #fff;
+
+    /* Special Colors */
+
+    @best-answer--accent : #007349;
+    @best-answer--accent-hover: #06ce85;
+    @red : #d0021b;
+    @green : #58a400;
+
+    @borderColor: @black;
+
+    /* Text Colors */
+
+    @main-text : @light-color;
+    @main-text-2 : @light-color-2;
+    @main-text-3 : @light-color-3;
+    @main-text-4 : @light-color-4;
+    @medium-text : @medium-color;
+    @medium-text-0: @medium-color--lighter;
+    @grey-text : @contrast-grey;
+
+    .styleMixin();
+}
+
+body.dark.dark--oled {
+    background: @dark;
+    color: @main-text;
+
+    @black : #000;
+    @dark : #000;
+    @grey : #111;
+    @grey-accent : #141414;
+    @med-grey : #181818;
+    @lighter-grey : #222;
+    @light-grey : #2a2a2a;
+    @lightest-grey: #333;
+
+    @contrast-grey : #999;
+    @medium-color--lighter: #bbb;
+    @medium-color : #aaa;
+
+    @light-color-4: #ccc;
+    @light-color-3: #ddd;
+    @light-color-2: #eee;
+    @light-color : #fff;
+
+    /* Special Colors */
+
+    @best-answer--accent : #007349;
+    @best-answer--accent-hover: #06ce85;
+    @red : #d0021b;
+    @green : #58a400;
+
+    @borderColor: @light-grey;
+
+    /* Text Colors */
+
+    @main-text : @light-color;
+    @main-text-2 : @light-color-2;
+    @main-text-3 : @light-color-3;
+    @main-text-4 : @light-color-4;
+    @medium-text : @medium-color;
+    @medium-text-0: @medium-color--lighter;
+    @grey-text : @contrast-grey;
+
+    .styleMixin();
+
+    /* OLED overrides */
+
+    // Separates header from main page content as they're the same colour
+    .App header.App-header {
+        border-bottom: 1px solid @lightest-grey;
+    }
+
+    .App:not(.hasPane) .DiscussionListItem {
+        background-color: @black !important;
+    }
+
+    .App .DiscussionListItem .DiscussionListItem-content.read {
+        background: none !important;
+    }
+
+    .App:not(.hasPane) .DiscussionListItem:hover {
+        border-color: lighten(@borderColor, 10%) !important;
+        background-color: lighten(@black, 4%) !important;
+    }
+
+    .App:not(.hasPane) .DiscussionListItem:before {
+        background-color: lighten(@borderColor, 10%) !important;
+    }
+
+    .DiscussionPage .PostStream .PostStream-item .Post .item-bestAnswerPost {
+        background-color: fade(@grey, 50%) !important;
+    }
+
+    .PostStream-item,
+    .UserPage .PostsUserPage .PostsUserPage-list > li {
+        background-color: @black !important;
+        border: 2px solid @borderColor;
+    }
+
+    .PostStream-item .Post,
+    .UserPage .PostsUserPage .PostsUserPage-list > li,
+    .UserPage .PostsUserPage .PostsUserPage-list > li .Post {
+        background-color: transparent !important;
+    }
+
+    .TagsPage-content .TagTiles > li.TagTile {
+        border: 2px solid @borderColor;
+    }
+}
+
+.styleMixin() {
     // #region Hero Extension Warning
 
-    .Hero::after {
+    .Hero:after {
         & when(@should-display-extension-warning = true) {
             display: block;
             content: @extension-warning-text;
@@ -58,7 +160,7 @@ body.dark {
             color: @light-color-4;
             font-size: 16px;
             font-weight: 500;
-            padding: 8px 0;
+            padding: 8px 4px;
             text-align: center;
         }
     }
@@ -180,6 +282,7 @@ body.dark {
         color: @main-text-2;
         background-color: @grey;
     }
+
     .App-header .FormControl:focus {
         color: @main-text-2;
         background-color: @med-grey;
@@ -296,42 +399,56 @@ body.dark {
         color: @grey-text !important;
     }
 
-    .Composer,
-    .Composer.active {
+    .Composer {
         background-color: fade(@grey, 97.5%);
         color: @main-text;
-    }
 
-    .Composer .Composer-controls {
-        background-color: @med-grey !important;
-    }
+        &.active {
+            background-color: fade(@grey, 97.5%);
+            color: @main-text;
+        }
 
-    .Composer .ComposerBody-header h3 {
-        color: @main-text-3 !important;
-    }
+        &-controls {
+            background-color: @med-grey !important;
+        }
 
-    .Composer .ComposerBody-loading {
-        background: @grey !important;
-    }
+        &Body-header h3 {
+            color: @main-text-3 !important;
+        }
 
-    .Composer .TextEditor textarea {
-        color: @main-text-2 !important;
-    }
+        &Body-loading {
+            background: @grey !important;
+        }
 
-    .Composer .TextEditor-controls li:not(:first-child) .Button {
-        background-color: unset !important;
-    }
+        .TextEditor {
+            textarea {
+                color: @main-text-2 !important;
+            }
 
-    .Composer .TextEditor-controls li:nth-child(2) .Button:hover,
-    .Composer .TextEditor-controls li:nth-child(2) .Button:focus,
-    .Composer .TextEditor-controls .TextEditor-toolbar .Button:hover,
-    .Composer .TextEditor-controls .TextEditor-toolbar .Button:focus {
-        background-color: @lighter-grey !important;
-        border-radius: 50%;
-    }
-    .Composer .TextEditor-controls li:nth-child(3) .Button:hover,
-    .Composer .TextEditor-controls li:nth-child(3) .Button:focus {
-        background-color: @lighter-grey !important;
+            &-controls li:not(:first-child) .Button {
+                background-color: unset !important;
+            }
+
+            &-controls {
+                .TextEditor-toolbar {
+                    .Button:not(.flagrow-upload-button) {
+                        &:hover,
+                        &:focus {
+                            background-color: @lighter-grey !important;
+                            border-radius: 50%;
+                        }
+                    }
+                }
+                li {
+                    .Button.flagrow-upload-button {
+                        &:focus,
+                        &:hover {
+                            background-color: @lighter-grey !important;
+                        }
+                    }
+                }
+            }
+        }
     }
 
     /* #endregion */
@@ -343,42 +460,73 @@ body.dark {
         background: @grey !important;
     }
 
-    .Post-body p,
-    .Post-body ul,
-    .Post-body ol,
-    .Post-body blockquote {
-        color: @main-text;
-    }
+    .Post {
+        .Post-header {
+            color: #777;
+            a {
+                color: #777;
+            }
 
-    .Post-body a {
-        color: @medium-text-0 !important;
-        border-color: @medium-color--lighter;
-    }
+            .UserCard .username {
+                color: @main-text-2 !important;
+            }
 
-    .Post-body a:hover,
-    .Post-body a:focus,
-    .Post-body a:active {
-        color: @main-text-2 !important;
-        border-color: @main-text;
-    }
+            .username {
+                color: @medium-text-0;
+            }
+        }
+        &--BestAnswer a .username {
+            // override grey for username in post header to meet accessibility contrast requirements between green banner and text
+            color: @black !important;
+        }
+        .Post-body {
+            p,
+            ul,
+            ol,
+            blockquote {
+                color: @main-text;
+            }
 
-    /* Quotes */
-    .Post-body blockquote {
-        color: @medium-text-0 !important;
-        background-color: @med-grey !important;
-        border-color: #3a3a3a !important;
-    }
+            a {
+                color: @medium-text-0 !important;
+                border-color: @medium-color--lighter;
 
-    /* Inline monospace */
-    .Post-body code {
-        font-family: "Fira Code", Consolas, monospace;
-        background-color: @med-grey;
-        color: @main-text-2 !important;
-    }
+                &:hover,
+                &:focus,
+                &:active {
+                    color: @main-text-2 !important;
+                    border-color: @main-text;
+                }
+            }
 
-    /* Code blocks */
-    .Post-body pre {
-        background-color: @med-grey;
+            /* Quotes */
+            blockquote {
+                color: @medium-text-0 !important;
+                background-color: @med-grey !important;
+                border-color: #3a3a3a !important;
+            }
+
+            /* Inline monospace */
+            code {
+                font-family: "Fira Code", Consolas, monospace;
+                background-color: @med-grey;
+                color: @main-text-2 !important;
+            }
+
+            /* Code blocks */
+            pre {
+                background-color: @med-grey;
+            }
+
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                color: @main-text;
+            }
+        }
     }
 
     .MentionsDropdown .PostPreview,
@@ -387,24 +535,10 @@ body.dark {
         color: @main-text-3;
     }
 
-    .PostPreview .username {
-        color: @medium-text !important;
-    }
-
-    .Post-body h1,
-    .Post-body h2,
-    .Post-body h3,
-    .Post-body h4,
-    .Post-body h5,
-    .Post-body h6 {
-        color: @main-text;
-    }
-
     /* #region Post Header */
 
-    .Post-header,
-    .Post-header a {
-        color: #777;
+    .PostPreview .username {
+        color: @medium-text !important;
     }
 
     /* Changes default white border to dark */
@@ -413,8 +547,10 @@ body.dark {
         border-color: #141414;
     }
 
-   .PostUser-avatar.Avatar {
-        position: absolute;
+    @media (min-width: 767px) {
+        .PostUser-avatar.Avatar {
+            position: absolute;
+        }
     }
 
     /* Darkens letter-based avatars */
@@ -434,39 +570,29 @@ body.dark {
         border-width: 4px;
     }
 
-    .Post-header .UserCard .username {
-        color: @main-text-2 !important;
-    }
-
-    .Post-header .username {
-        color: @medium-text-0;
-    }
-
     /* #endregion */
 
     /* #region Post Footer */
 
     /* #region Best Answers */
 
-    .DiscussionPage .PostStream .PostStream-item .Post .item-bestAnswerPost {
-        background-color: @med-grey;
-        color: @main-text-2;
-        border-left: 4px solid fade(@green, 50%);
-    }
+    .DiscussionPage {
+        .PostStream {
+            .PostStream-item {
+                .Post {
+                    .item-bestAnswerPost {
+                        background-color: @med-grey;
+                        color: @main-text-2;
+                        border-left: 4px solid fade(@green, 50%);
 
-    .DiscussionPage
-        .PostStream
-        .PostStream-item
-        .Post
-        .item-bestAnswerPost
-        .Post-body
-        a {
-        color: unset;
-        border-bottom-color: unset;
-    }
-
-    .Post--BestAnswer a .username {
-        color: @black;
+                        .Post-body a {
+                            color: unset;
+                            border-bottom-color: unset;
+                        }
+                    }
+                }
+            }
+        }
     }
 
     /* #endregion */
@@ -596,23 +722,26 @@ body.dark {
         color: @main-text-2 !important;
     }
 
-    .Dropdown-menu > li > a,
-    .Dropdown-menu > li > button,
-    .Dropdown-menu > li > span {
-        color: @medium-text-0;
-    }
+    *:not(.item-nav) {
+        > .Dropdown .Dropdown-menu > li > a,
+        > .Dropdown .Dropdown-menu > li > button,
+        > .Dropdown .Dropdown-menu > li > span {
+            background-color: @grey;
+            color: @medium-text-0;
+        }
 
-    *:not(.item-nav) > .Dropdown .Dropdown-menu > li.active > a,
-    *:not(.item-nav) > .Dropdown .Dropdown-menu > li.active > button {
-        background: @med-grey;
-    }
+        > .Dropdown .Dropdown-menu > li.active > a,
+        > .Dropdown .Dropdown-menu > li.active > button {
+            background: @med-grey;
+        }
 
-    *:not(.item-nav) > .Dropdown .Dropdown-menu > li > a:hover,
-    *:not(.item-nav) > .Dropdown .Dropdown-menu > li > a:focus,
-    *:not(.item-nav) > .Dropdown .Dropdown-menu > li > button:hover,
-    *:not(.item-nav) > .Dropdown .Dropdown-menu > li > button:focus {
-        background-color: @med-grey;
-        color: @main-text;
+        > .Dropdown .Dropdown-menu > li > a:hover,
+        > .Dropdown .Dropdown-menu > li > a:focus,
+        > .Dropdown .Dropdown-menu > li > button:hover,
+        > .Dropdown .Dropdown-menu > li > button:focus {
+            background-color: @med-grey;
+            color: @main-text;
+        }
     }
 
     /* #endregion */
@@ -737,6 +866,14 @@ body.dark {
 
     .DiscussionListItem {
         background: @grey !important;
+    }
+
+    .App:not(.hasPane) .DiscussionListItem {
+        border-color: @borderColor !important;
+    }
+
+    .App:not(.hasPane) .DiscussionListItem:before {
+        background-color: @borderColor !important;
     }
 
     .DiscussionListItem:hover,

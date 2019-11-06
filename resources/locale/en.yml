@@ -2,6 +2,11 @@ fof-nightmode:
     admin:
         permissions:
             use: Can use dark mode
+            changeType: Can change dark mode type
     forum:
         night: Dark mode
         day: Light mode
+        user:
+                settings:
+                    oled_on: Enable OLED dark mode
+                    oled_off: Disable OLED dark mode
