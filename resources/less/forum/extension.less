@@ -47,6 +47,7 @@ body.dark:not(.dark--oled) {
     @green : #58a400;
 
     @borderColor: @black;
+    @composerBg: fade(@grey, 97.5%);
 
     /* Text Colors */
 
@@ -91,6 +92,7 @@ body.dark.dark--oled {
     @green : #58a400;
 
     @borderColor: @light-grey;
+    @composerBg: fade(@black, 92.5%);
 
     /* Text Colors */
 
@@ -146,6 +148,10 @@ body.dark.dark--oled {
 
     .TagsPage-content .TagTiles > li.TagTile {
         border: 2px solid @borderColor;
+    }
+
+    .Modal {
+        border: 4px solid @borderColor;
     }
 }
 
@@ -400,16 +406,19 @@ body.dark.dark--oled {
     }
 
     .Composer {
-        background-color: fade(@grey, 97.5%);
+        background-color: @composerBg;
         color: @main-text;
+        border-color: @borderColor;
 
         &.active {
-            background-color: fade(@grey, 97.5%);
+            background-color: lighten(@composerBg, 4);
             color: @main-text;
+            border-color: @borderColor;
         }
 
         &-controls {
-            background-color: @med-grey !important;
+            background-color: @grey !important;
+            border-color: @borderColor;
         }
 
         &Body-header h3 {
@@ -418,6 +427,10 @@ body.dark.dark--oled {
 
         &Body-loading {
             background: @grey !important;
+        }
+
+        &-footer {
+            border-color: @borderColor;
         }
 
         .TextEditor {
