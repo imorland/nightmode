@@ -11,6 +11,7 @@ export default function() {
         darkModeTurningOn = false
     ) {
         if (
+            !app.session.user ||
             !_app.session.user.canUseDarkMode() ||
             !_app.session.user.canChangeDarkModeType()
         )
