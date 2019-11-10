@@ -4,7 +4,6 @@ import PermissionGrid from "flarum/components/PermissionGrid";
 
 app.initializers.add("fof-nightmode", () => {
     extend(PermissionGrid.prototype, "startItems", items => {
-        console.log(items);
         
         items.add(
             "use-dark-mode",
