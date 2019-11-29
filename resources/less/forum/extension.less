@@ -731,7 +731,7 @@ body.dark.dark--oled {
         color: @main-text-2;
     }
 
-    .Post .Dropdown-menu {
+    .Dropdown-menu {
         background: @med-grey !important;
         color: @main-text !important;
     }
@@ -807,9 +807,21 @@ body.dark.dark--oled {
         filter: brightness(0.85);
     }
 
-    .EmojiDropdown .Dropdown-header {
-        color: @main-text !important;
-        padding-top: 12px;
+    .EmojiDropdown {
+        background-color: @grey;
+
+        .Dropdown-header {
+            color: @main-text !important;
+            padding-top: 12px;
+        }
+
+        > li > button {
+            color: @medium-text;
+        }
+
+        > li.active > button {
+            background-color: @lighter-grey;
+        }
     }
 
     /* #endregion */
