@@ -1,5 +1,5 @@
 @should-display-extension-warning: true;
-@extension-warning-text : "You're using dark mode - a member created extension for the giffgaff community.";
+@extension-warning-text: "You're using dark mode - a member created extension for the giffgaff community.";
 
 /* General Colors */
 
@@ -20,44 +20,44 @@ body.dark:not(.dark--oled) {
     background: @dark;
     color: @main-text;
 
-    @black : #000;
-    @dark : #151515;
-    @grey : #212121;
+    @black: #000;
+    @dark: #151515;
+    @grey: #212121;
     @grey-accent: #262626;
     /* used for table color only */
-    @med-grey : #313131;
-    @lighter-grey : #444;
-    @light-grey : #555;
+    @med-grey: #313131;
+    @lighter-grey: #444;
+    @light-grey: #555;
     @lightest-grey: #666;
 
-    @contrast-grey : #999;
+    @contrast-grey: #999;
     @medium-color--lighter: #bbb;
-    @medium-color : #aaa;
+    @medium-color: #aaa;
 
     @light-color-4: #ccc;
     @light-color-3: #ddd;
     @light-color-2: #eee;
-    @light-color : #fff;
+    @light-color: #fff;
 
     /* Special Colors */
 
-    @best-answer--accent : #007349;
+    @best-answer--accent: #007349;
     @best-answer--accent-hover: #06ce85;
-    @red : #d0021b;
-    @green : #58a400;
+    @red: #d0021b;
+    @green: #58a400;
 
     @borderColor: @black;
     @composerBg: fade(@grey, 97.5%);
 
     /* Text Colors */
 
-    @main-text : @light-color;
-    @main-text-2 : @light-color-2;
-    @main-text-3 : @light-color-3;
-    @main-text-4 : @light-color-4;
-    @medium-text : @medium-color;
+    @main-text: @light-color;
+    @main-text-2: @light-color-2;
+    @main-text-3: @light-color-3;
+    @main-text-4: @light-color-4;
+    @medium-text: @medium-color;
     @medium-text-0: @medium-color--lighter;
-    @grey-text : @contrast-grey;
+    @grey-text: @contrast-grey;
 
     .styleMixin();
 }
@@ -66,43 +66,43 @@ body.dark.dark--oled {
     background: @dark;
     color: @main-text;
 
-    @black : #000;
-    @dark : #000;
-    @grey : #111;
-    @grey-accent : #141414;
-    @med-grey : #181818;
-    @lighter-grey : #222;
-    @light-grey : #2a2a2a;
+    @black: #000;
+    @dark: #000;
+    @grey: #111;
+    @grey-accent: #141414;
+    @med-grey: #181818;
+    @lighter-grey: #222;
+    @light-grey: #2a2a2a;
     @lightest-grey: #333;
 
-    @contrast-grey : #999;
+    @contrast-grey: #999;
     @medium-color--lighter: #bbb;
-    @medium-color : #aaa;
+    @medium-color: #aaa;
 
     @light-color-4: #ccc;
     @light-color-3: #ddd;
     @light-color-2: #eee;
-    @light-color : #fff;
+    @light-color: #fff;
 
     /* Special Colors */
 
-    @best-answer--accent : #007349;
+    @best-answer--accent: #007349;
     @best-answer--accent-hover: #06ce85;
-    @red : #d0021b;
-    @green : #58a400;
+    @red: #d0021b;
+    @green: #58a400;
 
     @borderColor: @light-grey;
     @composerBg: fade(@black, 92.5%);
 
     /* Text Colors */
 
-    @main-text : @light-color;
-    @main-text-2 : @light-color-2;
-    @main-text-3 : @light-color-3;
-    @main-text-4 : @light-color-4;
-    @medium-text : @medium-color;
+    @main-text: @light-color;
+    @main-text-2: @light-color-2;
+    @main-text-3: @light-color-3;
+    @main-text-4: @light-color-4;
+    @medium-text: @medium-color;
     @medium-text-0: @medium-color--lighter;
-    @grey-text : @contrast-grey;
+    @grey-text: @contrast-grey;
 
     .styleMixin();
 
@@ -168,6 +168,19 @@ body.dark.dark--oled {
             font-weight: 500;
             padding: 8px 4px;
             text-align: center;
+        }
+    }
+
+    // #endregion
+
+    // #region New Photography Tag
+
+    .gg-c-cards__card {
+        color: @main-text;
+
+        &::before {
+            border-color: @borderColor;
+            background-color: @dark;
         }
     }
 
@@ -922,8 +935,8 @@ body.dark.dark--oled {
     }
 
     .DiscussionListItem .DiscussionListItem-content .item-excerpt {
-      color: @light-color !important;
-      background-color: @grey !important;
+        color: @light-color !important;
+        background-color: @grey !important;
     }
 
     /* #endregion */
