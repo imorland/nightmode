@@ -181,6 +181,12 @@ body.dark.dark--oled {
         &::before {
             border-color: @borderColor;
             background-color: @dark;
+            transition: background 0.2s;
+        }
+
+        &:hover::before,
+        &:focus::before {
+            background-color: @med-grey !important;
         }
     }
 
