@@ -180,7 +180,7 @@ body.dark.dark--oled {
 
         &::before {
             border-color: @borderColor;
-            background-color: @dark;
+            background-color: @grey;
             transition: background 0.2s;
         }
 
@@ -959,27 +959,6 @@ body.dark.dark--oled {
 
     /* #endregion */
 
-    /* #region Feed Navbar */
-
-    .IndexPage-nav.sideNav .Dropdown-menu.dropdown-menu li * {
-        color: @medium-text !important;
-    }
-
-    .IndexPage-nav.sideNav .Dropdown-menu.dropdown-menu li.active * {
-        color: @main-text-3 !important;
-    }
-
-    .sideNav .Dropdown--select .Dropdown-menu {
-        background: unset;
-    }
-
-    .item-nav > .Dropdown .Dropdown-menu > li > a:hover,
-    .item-nav > .Dropdown .Dropdown-menu > li > a:focus {
-        color: @main-text-3;
-    }
-
-    /* #endregion */
-
     // #region Pop-out Discussion Bar
 
     .App.hasPane .DiscussionPage-list {
@@ -1428,4 +1407,27 @@ body.dark.dark--oled {
     }
 
     // #endregion
+
+    /* Inserted last to override other styles */
+
+    /* #region Feed Navbar */
+
+    .IndexPage-nav.sideNav .Dropdown-menu.dropdown-menu li * {
+        color: @medium-text !important;
+    }
+
+    .IndexPage-nav.sideNav .Dropdown-menu.dropdown-menu li.active * {
+        color: @main-text-3 !important;
+    }
+
+    .sideNav .Dropdown--select .Dropdown-menu {
+        background: none;
+    }
+
+    .item-nav > .Dropdown .Dropdown-menu > li > a:hover,
+    .item-nav > .Dropdown .Dropdown-menu > li > a:focus {
+        color: @main-text-3;
+    }
+
+    /* #endregion */
 }
