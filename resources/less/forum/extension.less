@@ -972,39 +972,77 @@ body.dark.dark--oled {
         color: inherit;
     }
 
-    .App.hasPane
-        .DiscussionListItem
-        .DiscussionListItem-content.read
-        .DiscussionListItem-info
-        .item-terminalPost,
-    .App.hasPane
-        .DiscussionListItem
-        .DiscussionListItem-content.read
-        .DiscussionListItem-info
-        .item-discussion-views,
-    .App.hasPane
-        .DiscussionListItem
-        .DiscussionListItem-content.read
-        .DiscussionListItem-info
-        .item-discussion-views::before,
-    .App.hasPane
-        .DiscussionListItem
-        .DiscussionListItem-content.read
-        .DiscussionListItem-info
-        .item-recipients
-        .RecipientLabel-text,
-    .App.hasPane
-        .DiscussionListItem
-        .DiscussionListItem-content.read
-        .DiscussionListItem-info
-        .item-recipients
-        .RecipientLabel::after,
-    .App.hasPane
-        .DiscussionListItem
-        .DiscussionListItem-content.read
-        .DiscussionListItem-info
-        .item-excerpt {
-        color: @main-text;
+    // App Pane styles
+
+    .App {
+        .hasPane {
+            .DiscussionListItem {
+                &.active {
+                    background-color: @lighter-grey;
+
+                    .DiscussionListItem-content {
+                        background-color: @lighter-grey;
+                    }
+                }
+
+                // Read thread
+                .DiscussionListItem-content.read {
+                    .DiscussionListItem-info {
+                        .item-terminalPost,
+                        .item-discussion-views,
+                        .item-discussion-views::before,
+                        .item-recipients .RecipientLabel-text,
+                        .item-recipients .RecipientLabel::after,
+                        .item-excerpt {
+                            color: @medium-text-0;
+                        }
+                    }
+                }
+
+                // Unread thread
+                .DiscussionListItem-content.unread {
+                    .DiscussionListItem-info {
+                        .item-terminalPost,
+                        .item-discussion-views,
+                        .item-discussion-views::before,
+                        .item-recipients .RecipientLabel-text,
+                        .item-recipients .RecipientLabel::after,
+                        .item-excerpt {
+                            color: @main-text;
+                        }
+
+                        .item-tags {
+                            background-color: @light-grey !important;
+                            .TagLabel-text {
+                                color: @main-text !important;
+                            }
+                        }
+                    }
+                }
+
+                // Active or hovered thread
+                .DiscussionListItem-content.active,
+                .DiscussionListItem-content:hover {
+                    .DiscussionListItem-info {
+                        .item-terminalPost,
+                        .item-discussion-views,
+                        .item-discussion-views::before,
+                        .item-recipients .RecipientLabel-text,
+                        .item-recipients .RecipientLabel::after,
+                        .item-excerpt {
+                            color: @main-text;
+                        }
+
+                        .item-tags {
+                            background-color: @lighter-grey !important;
+                            .TagLabel-text {
+                                color: @main-text !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     /* #region User Page */
