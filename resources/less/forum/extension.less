@@ -106,28 +106,43 @@ body.dark.dark--oled {
 
     .styleMixin();
 
-    /* OLED overrides */
+    /* 
+    
+ #######  ##       ######## ########      #######  ##     ## ######## ########  ########  #### ########  ########  ######  
+##     ## ##       ##       ##     ##    ##     ## ##     ## ##       ##     ## ##     ##  ##  ##     ## ##       ##    ## 
+##     ## ##       ##       ##     ##    ##     ## ##     ## ##       ##     ## ##     ##  ##  ##     ## ##       ##       
+##     ## ##       ######   ##     ##    ##     ## ##     ## ######   ########  ########   ##  ##     ## ######    ######  
+##     ## ##       ##       ##     ##    ##     ##  ##   ##  ##       ##   ##   ##   ##    ##  ##     ## ##             ## 
+##     ## ##       ##       ##     ##    ##     ##   ## ##   ##       ##    ##  ##    ##   ##  ##     ## ##       ##    ## 
+ #######  ######## ######## ########      #######     ###    ######## ##     ## ##     ## #### ########  ########  ######  
+    
+    */
 
     // Separates header from main page content as they're the same colour
-    .App header.App-header {
-        border-bottom: 1px solid @lightest-grey;
-    }
 
-    .App:not(.hasPane) .DiscussionListItem {
-        background-color: @black !important;
-    }
+    .App {
+        header.App-header {
+            border-bottom: 1px solid @lightest-grey;
+        }
 
-    .App .DiscussionListItem .DiscussionListItem-content.read {
-        background: none !important;
-    }
+        .DiscussionListItem .DiscussionListItem-content.read {
+            background: none !important;
+        }
 
-    .App:not(.hasPane) .DiscussionListItem:hover {
-        border-color: lighten(@borderColor, 10%) !important;
-        background-color: lighten(@black, 4%) !important;
-    }
+        &:not(.hasPane) {
+            .DiscussionListItem {
+                background-color: @black !important;
 
-    .App:not(.hasPane) .DiscussionListItem:before {
-        background-color: lighten(@borderColor, 10%) !important;
+                &:hover {
+                    border-color: lighten(@borderColor, 10%) !important;
+                    background-color: lighten(@black, 4%) !important;
+                }
+
+                &:before {
+                    background-color: lighten(@borderColor, 10%) !important;
+                }
+            }
+        }
     }
 
     .DiscussionPage .PostStream .PostStream-item .Post .item-bestAnswerPost {
@@ -159,7 +174,7 @@ body.dark.dark--oled {
     // #region Hero Extension Warning
 
     .Hero:after {
-        & when(@should-display-extension-warning = true) {
+        & when(@should-display-extension-warning =true) {
             display: block;
             content: @extension-warning-text;
             background: @med-grey;
@@ -196,16 +211,20 @@ body.dark.dark--oled {
         color: fade(@black, 80%);
     }
 
-    .Header-navigation .Navigation-pin,
-    .Header-navigation .Navigation-back {
-        color: @main-text;
-        background: @black;
+    .Header-navigation {
+        .Navigation-pin,
+        .Navigation-back {
+            color: @main-text;
+            background: @black;
+        }
     }
 
-    .FormControl:focus,
-    .FormControl.focus {
-        color: @main-text-2;
-        border-color: @lighter-grey;
+    .FormControl {
+        &:focus,
+        &.focus {
+            color: @main-text-2;
+            border-color: @lighter-grey;
+        }
     }
 
     .Form-group > label {
@@ -235,68 +254,50 @@ body.dark.dark--oled {
 
     /* #region Tags Page */
 
-    div.TagsPage-content .TagTiles > li.TagTile {
+    .TagsPage-content .TagTiles > li.TagTile {
         background-color: @grey !important;
-    }
 
-    .TagsPage-content .TagTiles > li.TagTile a {
-        color: @main-text-2 !important;
-    }
+        a {
+            color: @main-text-2 !important;
+        }
 
-    .TagsPage-content
-        .TagTiles
-        > li.TagTile
-        .TagTile-info
-        .TagTile-description {
-        color: @medium-text-0 !important;
+        .TagTile-info .TagTile-description {
+            color: @medium-text-0 !important;
+        }
     }
 
     /* #endregion */
 
     /* #region Nav Pane */
 
-    .App.hasPane .DiscussionListItem .DiscussionListItem-content.unread {
-        background-color: @med-grey !important;
-    }
-
-    .App.hasPane .DiscussionListItem .DiscussionListItem-content.read {
-        background-color: @grey !important;
-    }
-
-    .App.hasPane .DiscussionListItem .DiscussionListItem-content:hover,
-    .App.hasPane .DiscussionListItem .DiscussionListItem-content:focus {
-        background-color: @lighter-grey !important;
-    }
-
     .App.hasPane
         .DiscussionListItem
-        .DiscussionListItem-content.unread:hover
-        .DiscussionListItem-info
-        .item-tags
-        .TagLabel,
-    .App.hasPane
         .DiscussionListItem
-        .DiscussionListItem-content.unread:focus
-        .DiscussionListItem-info
-        .item-tags
-        .TagLabel {
-        background-color: @black !important;
-        color: @main-text !important;
-    }
+        .DiscussionListItem-content {
+        &.unread {
+            background-color: @med-grey !important;
 
-    .App.hasPane
-        .DiscussionListItem
-        .DiscussionListItem-content.unread:hover
-        .DiscussionListItem-info
-        .item-tags
-        .TagLabel-text,
-    .App.hasPane
-        .DiscussionListItem
-        .DiscussionListItem-content.unread:focus
-        .DiscussionListItem-info
-        .item-tags
-        .TagLabel-text {
-        color: @main-text !important;
+            &:hover,
+            &:focus {
+                .DiscussionListItem-info .item-tags .TagLabel {
+                    background-color: @black !important;
+                    color: @main-text !important;
+
+                    &-text {
+                        color: @main-text !important;
+                    }
+                }
+            }
+        }
+
+        &.read {
+            background-color: @grey !important;
+        }
+
+        &:hover,
+        &:focus {
+            background-color: @lighter-grey !important;
+        }
     }
 
     /* #endregion */
@@ -306,99 +307,103 @@ body.dark.dark--oled {
     .App-header .FormControl {
         color: @main-text-2;
         background-color: @grey;
-    }
 
-    .App-header .FormControl:focus {
-        color: @main-text-2;
-        background-color: @med-grey;
+        &:focus {
+            color: @main-text-2;
+            background-color: @med-grey;
+        }
     }
 
     /* Search Results */
 
     .Dropdown-menu.Search-results {
         background: @grey;
-    }
 
-    .Search-results .Dropdown-header {
-        background-color: @grey !important;
-        color: @medium-text !important;
-    }
+        .Dropdown-header {
+            background-color: @grey !important;
+            color: @medium-text !important;
+        }
 
-    .Search-results a.hasIcon {
-        background: @grey;
-    }
+        a.hasIcon {
+            background: @grey;
 
-    .Search-results a.hasIcon:hover {
-        background: @med-grey;
-    }
+            &:hover {
+                background: @med-grey;
+            }
+        }
 
-    .Search-results .UserSearchResult,
-    .Search-results .DiscussionSearchResult,
-    .Search-results .SearchResult {
-        background: @grey;
-    }
+        .UserSearchResult,
+        .DiscussionSearchResult,
+        .SearchResult {
+            background: @grey;
+        }
 
-    .Search-results .Dropdown-header .Search-results .UserSearchResult,
-    .Search-results .DiscussionSearchResult,
-    .Search-results .SearchResult {
-        background-color: @grey;
-        color: @main-text-4;
-    }
+        .Dropdown-header .Search-results .UserSearchResult,
+        .DiscussionSearchResult,
+        .SearchResult {
+            background-color: @grey;
+            color: @main-text-4;
+        }
 
-    .Search-results .UserSearchResult:hover,
-    .Search-results .DiscussionSearchResult:hover,
-    .Search-results .SearchResult:hover {
-        background-color: @med-grey;
-        color: @main-text;
-    }
+        .UserSearchResult:hover,
+        .DiscussionSearchResult:hover,
+        .SearchResult:hover {
+            background-color: @med-grey;
+            color: @main-text;
+        }
 
-    .Search-results .UserSearchResult .username,
-    .Search-results .DiscussionSearchResult .username,
-    .Search-results .SearchResult .username {
-        color: @main-text-4;
-    }
+        .UserSearchResult .username,
+        .DiscussionSearchResult .username,
+        .SearchResult .username {
+            color: @main-text-4;
+        }
 
-    .Search-results .UserSearchResult:hover .username,
-    .Search-results .DiscussionSearchResult:hover .username,
-    .Search-results .SearchResult:hover .username {
-        color: @main-text;
-    }
+        .UserSearchResult:hover .username,
+        .DiscussionSearchResult:hover .username,
+        .SearchResult:hover .username {
+            color: @main-text;
+        }
 
-    .Search-results .UserSearchResult.active > *,
-    .Search-results .DiscussionSearchResult.active > *,
-    .Search-results .SearchResult.active > * {
-        background-color: @lighter-grey !important;
+        .UserSearchResult.active > *,
+        .DiscussionSearchResult.active > *,
+        .SearchResult.active > * {
+            background-color: @lighter-grey !important;
+        }
     }
 
     /* #region Notifications */
 
     .NotificationList {
         background-color: @grey;
-    }
 
-    .NotificationList-header h4,
-    .NotificationList-header .Button {
-        color: @medium-text;
-    }
+        &-header h4,
+        &-header .Button {
+            color: @medium-text;
+        }
 
-    .NotificationGroup-header {
-        color: @main-text-2 !important;
-    }
+        .Notification {
+            &.unread {
+                background-color: @med-grey;
+            }
 
-    .Notification.unread {
-        background-color: @med-grey;
-    }
+            &-content {
+                color: @main-text-3 !important;
+            }
 
-    .NotificationGroup-content .Notification:hover {
-        background-color: @lighter-grey;
-    }
+            &-excerpt {
+                color: @grey-text !important;
+            }
+        }
 
-    .Notification-content {
-        color: @main-text-3 !important;
-    }
+        .NotificationGroup {
+            &-header {
+                color: @main-text-2 !important;
+            }
 
-    .Notification-excerpt {
-        color: @grey-text !important;
+            &-content .Notification:hover {
+                background-color: @lighter-grey;
+            }
+        }
     }
 
     /* #endregion */
@@ -406,6 +411,9 @@ body.dark.dark--oled {
     /* #endregion */
 
     /* #region Post Composer */
+
+    // THESE MUST BE KEPT AS SEPARATE RULES
+    // TO MAKE SURE THEY WORK CORRECTLY!
 
     ::-moz-placeholder {
         color: @grey-text !important;
@@ -462,21 +470,16 @@ body.dark.dark--oled {
             }
 
             &-controls {
-                .TextEditor-toolbar {
-                    .Button:not(.flagrow-upload-button) {
-                        &:hover,
-                        &:focus {
-                            background-color: @lighter-grey !important;
-                            border-radius: 50%;
-                        }
-                    }
+                .TextEditor-toolbar .Button:not(.flagrow-upload-button) &:hover,
+                &:focus {
+                    background-color: @lighter-grey !important;
+                    border-radius: 50%;
                 }
-                li {
-                    .Button.flagrow-upload-button {
-                        &:focus,
-                        &:hover {
-                            background-color: @lighter-grey !important;
-                        }
+
+                li .Button.flagrow-upload-button {
+                    &:focus,
+                    &:hover {
+                        background-color: @lighter-grey !important;
                     }
                 }
             }
@@ -495,6 +498,7 @@ body.dark.dark--oled {
     .Post {
         .Post-header {
             color: #777;
+
             a {
                 color: #777;
             }
@@ -507,10 +511,12 @@ body.dark.dark--oled {
                 color: @medium-text-0;
             }
         }
+
         &--BestAnswer a .username {
             // override grey for username in post header to meet accessibility contrast requirements between green banner and text
             color: @black !important;
         }
+
         .Post-body {
             p,
             ul,
@@ -631,14 +637,17 @@ body.dark.dark--oled {
 
     /* #region Post Actions */
 
-    .PostStream-item .Post aside.Post-actions,
-    aside.Post-actions button {
-        color: @medium-text-0;
-    }
+    .PostStream-item {
+        aside.Post-actions {
+            button {
+                color: @medium-text-0;
 
-    .PostStream-item .Post aside.Post-actions button:hover,
-    .PostStream-item .Post aside.Post-actions button:focus {
-        color: @main-text-2;
+                &:hover,
+                &:focus {
+                    color: @main-text-2;
+                }
+            }
+        }
     }
 
     /* #region Reactions */
@@ -649,9 +658,11 @@ body.dark.dark--oled {
 
     /* #region Reaction Button */
 
-    .Reactions button.Button svg.button-react path,
-    .Reactions button.Button svg.button-react polygon {
-        fill: @light-color-2;
+    .Reactions button.Button svg.button-react {
+        path,
+        polygon {
+            fill: @light-color-2;
+        }
     }
 
     /* #endregion */
@@ -660,14 +671,19 @@ body.dark.dark--oled {
         color: @contrast-grey;
     }
 
-    .Post-mentionedBy a,
-    .Post-mentionedBy a .username {
-        color: @main-text-3 !important;
+    .Post-mentionedBy {
+        a,
+        a .username {
+            color: @main-text-3 !important;
+        }
     }
 
-    .Post-mentionedBy a:hover,
-    .Post-mentionedBy a:hover > * {
+    .Post-mentionedBy a:hover {
         color: @main-text !important;
+
+        > * {
+            color: @main-text !important;
+        }
     }
 
     /* #endregion */
@@ -687,9 +703,11 @@ body.dark.dark--oled {
 
     /* #region Follow Button */
 
-    .Dropdown.SubscriptionMenu .Button.SubscriptionMenu-button--follow,
-    .Dropdown.SubscriptionMenu-button.SubscriptionMenu-button--follow {
-        background: #00538a60;
+    .Dropdown.SubscriptionMenu {
+        .Button.SubscriptionMenu-button--follow,
+        &-button.SubscriptionMenu-button--follow {
+            background: #00538a60;
+        }
     }
 
     .SubscriptionMenuItem-description {
@@ -700,9 +718,15 @@ body.dark.dark--oled {
 
     /* #region Primary Discussion Button */
 
-    button.Button--primary .Button-label:before,
-    button.Button--primary .Button-label:after {
-        filter: brightness(2.25);
+    // Brightens call-to-action doodles
+    // Maybe better to switch to recoloured SVG
+    // ** Unsupported on IE **
+    // https://caniuse.com/#feat=css-filters
+    button.Button--primary .Button-label {
+        :before,
+        :after {
+            filter: brightness(2.25);
+        }
     }
 
     .DiscussionPage
@@ -711,16 +735,10 @@ body.dark.dark--oled {
         .itemCount1
         button.Button--primary {
         background-color: @grey;
-    }
-
-    .DiscussionPage
-        .DiscussionPage-nav
-        .item-controls
-        .itemCount1
-        button.Button--primary
         .Button-label {
-        border-color: @grey;
-        color: @black;
+            border-color: @grey;
+            color: @black;
+        }
     }
 
     /* #endregion */
@@ -742,11 +760,13 @@ body.dark.dark--oled {
         color: @main-text !important;
     }
 
-    .Dropdown.ButtonGroup button.Dropdown-toggle:hover,
-    .Dropdown.ButtonGroup button.Dropdown-toggle:focus,
-    .Dropdown.ButtonGroup button.Dropdown-toggle[aria-expanded="true"] {
-        color: @main-text;
-        background: @med-grey;
+    .Dropdown.ButtonGroup button.Dropdown-toggle {
+        &:hover,
+        &:focus,
+        &[aria-expanded="true"] {
+            color: @main-text;
+            background: @med-grey;
+        }
     }
 
     .Dropdown.ButtonGroup .Dropdown-menu {
@@ -755,24 +775,30 @@ body.dark.dark--oled {
     }
 
     *:not(.item-nav) {
-        > .Dropdown .Dropdown-menu > li > a,
-        > .Dropdown .Dropdown-menu > li > button,
-        > .Dropdown .Dropdown-menu > li > span {
-            background-color: @grey;
-            color: @medium-text-0;
-        }
+        > .Dropdown .Dropdown-menu > li {
+            > a,
+            > button {
+                background-color: @grey;
+                color: @medium-text-0;
 
-        > .Dropdown .Dropdown-menu > li.active > a,
-        > .Dropdown .Dropdown-menu > li.active > button {
-            background: @med-grey;
-        }
+                &:hover,
+                &:focus {
+                    background-color: @med-grey;
+                    color: @main-text;
+                }
+            }
 
-        > .Dropdown .Dropdown-menu > li > a:hover,
-        > .Dropdown .Dropdown-menu > li > a:focus,
-        > .Dropdown .Dropdown-menu > li > button:hover,
-        > .Dropdown .Dropdown-menu > li > button:focus {
-            background-color: @med-grey;
-            color: @main-text;
+            > span {
+                background-color: @grey;
+                color: @medium-text-0;
+            }
+
+            &.active {
+                > a,
+                > button {
+                    background: @med-grey;
+                }
+            }
         }
     }
 
@@ -780,28 +806,29 @@ body.dark.dark--oled {
 
     /* #region Post Scrubber */
 
-    .Scrubber a:hover,
-    .Scrubber a:focus {
-        color: @medium-text;
-    }
+    .PostStreamScrubber .Scrubber .Scrubber {
+        a:hover,
+        a:focus {
+            color: @medium-text;
+        }
 
-    .PostStreamScrubber .Scrubber .Scrubber-before,
-    .PostStreamScrubber .Scrubber .Scrubber-after,
-    .PostStreamScrubber .Scrubber .Scrubber-handle {
-        border-color: @medium-color;
-    }
+        &-before,
+        &-after,
+        &-handle {
+            border-color: @medium-color;
+        }
 
-    .PostStreamScrubber .Scrubber .Scrubber-handle .Scrubber-bar {
-        background-color: @medium-color;
-    }
+        &-handle {
+            background-color: @med-grey;
+            color: @main-text-2;
 
-    .PostStreamScrubber .Scrubber .Scrubber-handle {
-        background-color: @med-grey;
-        color: @main-text-2;
-    }
-
-    .PostStreamScrubber .Scrubber .Scrubber-handle .Scrubber-description {
-        color: @grey-text;
+            .Scrubber-bar {
+                background-color: @medium-color;
+            }
+            .Scrubber-description {
+                color: @grey-text;
+            }
+        }
     }
 
     /* #endregion */
@@ -821,12 +848,14 @@ body.dark.dark--oled {
             padding-top: 12px;
         }
 
-        > li > button {
-            color: @medium-text;
-        }
+        > li {
+            > button {
+                color: @medium-text;
+            }
 
-        > li.active > button {
-            background-color: @lighter-grey;
+            &.active > button {
+                background-color: @lighter-grey;
+            }
         }
     }
 
@@ -834,74 +863,77 @@ body.dark.dark--oled {
 
     /* #region Modals */
 
-    .Modal-content,
-    .Modal-body,
-    .Modal-header {
-        color: @main-text-4 !important;
-        background-color: @dark !important;
-    }
+    .Modal {
+        &-content,
+        &-body,
+        &-header {
+            color: @main-text-4 !important;
+            background-color: @dark !important;
+        }
 
-    .Modal-header h1,
-    .Modal-header h2,
-    .Modal-header h3,
-    .Modal-header h4,
-    .Modal-header h5,
-    .Modal-header h6 {
-        color: @main-text-4 !important;
-    }
+        &-header {
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                color: @main-text-4 !important;
+            }
+        }
 
-    .Modal .checkbox strong {
-        color: @main-text;
-    }
+        .checkbox strong {
+            color: @main-text;
+        }
 
-    .Modal .FormControl {
-        background-color: @grey;
-        color: @main-text-2;
-    }
+        .FormControl {
+            background-color: @grey;
+            color: @main-text-2;
+            &:focus {
+                background-color: @med-grey;
+            }
+        }
 
-    .Modal .FormControl:focus {
-        background-color: @med-grey;
-    }
+        .VotesModal-list {
+            h4 {
+                color: @main-text-4 !important;
+            }
+            h2 {
+                color: @main-text !important;
+            }
+            a {
+                color: @medium-text !important;
+            }
+        }
 
-    .Modal .VotesModal-list h4 {
-        color: @main-text-4 !important;
-    }
+        .helpText {
+            color: @medium-text;
+        }
 
-    .Modal .VotesModal-list h2 {
-        color: @main-text !important;
-    }
+        .SelectTagList {
+            > li {
+                &.active {
+                    background: @med-grey !important;
+                    color: @main-text !important;
 
-    .Modal .VotesModal-list a {
-        color: @medium-text !important;
-    }
+                    .TagIcon {
+                        background: @medium-color !important;
+                    }
 
-    .helpText {
-        color: @medium-text;
-    }
+                    > li.active:hover .TagIcon {
+                        background: @light-color !important;
+                    }
+                }
 
-    .SelectTagList > li.active {
-        background: @med-grey !important;
-        color: @light-color !important;
-    }
+                &.pinned + li:not(.pinned) {
+                    border-color: @light-grey !important;
+                }
 
-    .SelectTagList > li.pinned + li:not(.pinned) {
-        border-color: @light-grey !important;
-    }
-
-    .SelectTagList > li.selected.colored .TagIcon:before {
-        color: @black !important;
-    }
-
-    .SelectTagList > li.active {
-        color: @main-text !important;
-    }
-
-    .SelectTagList > li.active .TagIcon {
-        background: @medium-color !important;
-    }
-
-    .SelectTagList > li.active:hover .TagIcon {
-        background: @light-color !important;
+                &.selected.colored .TagIcon:before {
+                    color: @black !important;
+                }
+            }
+        }
     }
 
     /* #endregion */
@@ -910,51 +942,48 @@ body.dark.dark--oled {
 
     .DiscussionListItem {
         background: @grey !important;
+
+        &:hover,
+        &:focus {
+            background: @med-grey !important;
+        }
+
+        &-content,
+        &-info,
+        &-title,
+        &-count {
+            color: @main-text-2 !important;
+        }
+
+        &-title mark {
+            color: @main-text !important;
+        }
+
+        &:not(.DiscussionList--searchResults) {
+            .read {
+                .DiscussionListItem-title,
+                .DiscussionListItem-info,
+                .DiscussionListItem-count,
+                .DiscussionListItem-content .item-excerpt {
+                    color: @grey-text !important;
+                }
+            }
+        }
+
+        & .DiscussionListItem-content .item-excerpt {
+            color: @light-color !important;
+            background-color: @grey !important;
+        }
     }
 
-    .App:not(.hasPane) .DiscussionListItem {
-        border-color: @borderColor !important;
-    }
+    .App:not(.hasPane) {
+        .DiscussionListItem {
+            border-color: @borderColor !important;
 
-    .App:not(.hasPane) .DiscussionListItem:before {
-        background-color: @borderColor !important;
-    }
-
-    .DiscussionListItem:hover,
-    .DiscussionListItem:focus {
-        background: @med-grey !important;
-    }
-
-    .DiscussionListItem-content,
-    .DiscussionListItem-info,
-    .DiscussionListItem-title,
-    .DiscussionListItem-count {
-        color: @main-text-2 !important;
-    }
-
-    .DiscussionListItem-title mark {
-        color: @main-text !important;
-    }
-
-    .DiscussionList:not(.DiscussionList--searchResults)
-        .read
-        .DiscussionListItem-title,
-    .DiscussionList:not(.DiscussionList--searchResults)
-        .read
-        .DiscussionListItem-info,
-    .DiscussionList:not(.DiscussionList--searchResults)
-        .read
-        .DiscussionListItem-count,
-    .DiscussionList:not(.DiscussionList--searchResults)
-        .read
-        .DiscussionListItem-content
-        .item-excerpt {
-        color: @grey-text !important;
-    }
-
-    .DiscussionListItem .DiscussionListItem-content .item-excerpt {
-        color: @light-color !important;
-        background-color: @grey !important;
+            &:before {
+                background-color: @borderColor !important;
+            }
+        }
     }
 
     /* #endregion */
@@ -963,13 +992,6 @@ body.dark.dark--oled {
 
     .App.hasPane .DiscussionPage-list {
         background: @dark;
-    }
-
-    .App.hasPane
-        .DiscussionListItem
-        .DiscussionListItem-controls
-        .Button--icon {
-        color: inherit;
     }
 
     // App Pane styles
@@ -983,6 +1005,10 @@ body.dark.dark--oled {
                     .DiscussionListItem-content {
                         background-color: @lighter-grey;
                     }
+                }
+
+                .DiscussionListItem-controls .Button--icon {
+                    color: inherit;
                 }
 
                 // Read thread
@@ -1013,6 +1039,7 @@ body.dark.dark--oled {
 
                         .item-tags {
                             background-color: @light-grey !important;
+
                             .TagLabel-text {
                                 color: @main-text !important;
                             }
@@ -1035,6 +1062,7 @@ body.dark.dark--oled {
 
                         .item-tags {
                             background-color: @lighter-grey !important;
+
                             .TagLabel-text {
                                 color: @main-text !important;
                             }
@@ -1051,14 +1079,18 @@ body.dark.dark--oled {
         background-color: @grey;
     }
 
-    .sideNav .Dropdown--select .Dropdown-menu > li > a {
-        color: @medium-text-0;
-    }
+    .sideNav .Dropdown--select .Dropdown-menu {
+        > li {
+            > a {
+                color: @medium-text-0;
+            }
 
-    .sideNav .Dropdown--select .Dropdown-menu > li.active > a,
-    .sideNav .Dropdown--select .Dropdown-menu > li:hover > a,
-    .sideNav .Dropdown--select .Dropdown-menu > li:focus > a {
-        color: @main-text;
+            &.active > a,
+            &:hover > a,
+            &:focus > a {
+                color: @main-text;
+            }
+        }
     }
 
     /* #region Edit User Dialog */
@@ -1074,18 +1106,27 @@ body.dark.dark--oled {
             background: @dark;
         }
 
-        .DiscussionListItem .DiscussionListItem-content.unread {
-            background-color: @med-grey !important;
+        .DiscussionListItem {
+            .DiscussionListItem-content {
+                &.unread {
+                    background-color: @med-grey !important;
+                }
+
+                &.read {
+                    background-color: @grey !important;
+                }
+            }
         }
 
-        .DiscussionListItem .DiscussionListItem-content.read {
-            background-color: @grey !important;
-        }
-
-        .Dropdown .Dropdown-menu > li > a,
-        .Dropdown .Dropdown-menu > li > button {
-            background: @med-grey !important;
-            color: @main-text-2 !important;
+        .Dropdown .Dropdown-menu > li {
+            > a,
+            > button {
+                background: @med-grey !important;
+                color: @main-text-2 !important;
+                * {
+                    font-size: 16px !important;
+                }
+            }
         }
 
         .IndexPage-nav.sideNav .Dropdown-menu.dropdown-menu li * {
@@ -1096,11 +1137,6 @@ body.dark.dark--oled {
             background-color: @lighter-grey;
         }
 
-        .Dropdown .Dropdown-menu > li > a *,
-        .Dropdown .Dropdown-menu > li > button * {
-            font-size: 16px !important;
-        }
-
         .SelectTagListItem-name,
         .SelectTagListItem-description {
             font-style: 14px !important;
@@ -1108,78 +1144,46 @@ body.dark.dark--oled {
 
         .DiscussionListItem
             .DiscussionListItem-content.read
-            .DiscussionListItem-info
+            .DiscussionListItem-info {
             .item-terminalPost,
-        .DiscussionListItem
-            .DiscussionListItem-content.read
-            .DiscussionListItem-info
             .item-discussion-views,
-        .DiscussionListItem
-            .DiscussionListItem-content.read
-            .DiscussionListItem-info
             .item-discussion-views::before,
-        .DiscussionListItem
-            .DiscussionListItem-content.read
-            .DiscussionListItem-info
-            .item-recipients
-            .RecipientLabel-text,
-        .DiscussionListItem
-            .DiscussionListItem-content.read
-            .DiscussionListItem-info
-            .item-recipients
-            .RecipientLabel::after,
-        .DiscussionListItem
-            .DiscussionListItem-content.read
-            .DiscussionListItem-info
+            .item-recipients .RecipientLabel-text,
+            .item-recipients .RecipientLabel::after,
             .item-excerpt {
-            color: @grey-text;
+                color: @grey-text;
+            }
         }
 
         .DiscussionListItem
             .DiscussionListItem-content.unread
-            .DiscussionListItem-info
+            .DiscussionListItem-info {
             .item-terminalPost,
-        .DiscussionListItem
-            .DiscussionListItem-content.unread
-            .DiscussionListItem-info
             .item-discussion-views,
-        .DiscussionListItem
-            .DiscussionListItem-content.unread
-            .DiscussionListItem-info
             .item-discussion-views::before,
-        .DiscussionListItem
-            .DiscussionListItem-content.unread
-            .DiscussionListItem-info
-            .item-recipients
-            .RecipientLabel-text,
-        .DiscussionListItem
-            .DiscussionListItem-content.unread
-            .DiscussionListItem-info
-            .item-recipients
-            .RecipientLabel::after,
-        .DiscussionListItem
-            .DiscussionListItem-content.unread
-            .DiscussionListItem-info
+            .item-recipients .RecipientLabel-text,
+            .item-recipients .RecipientLabel::after,
             .item-excerpt {
-            color: @main-text-4;
+                color: @main-text-4;
+            }
         }
 
         .NotificationList {
             // Shadow improves contrast between end of notifications and the page background
             box-shadow: 0 0 10px 0px #000000bb;
-        }
 
-        // Adds "padding" after notification list
-        .NotificationList::after {
-            display: block;
-            height: 4px;
-            width: 100%;
-            content: "";
-        }
+            // Adds "padding" after notification list
+            &::after {
+                display: block;
+                height: 4px;
+                width: 100%;
+                content: "";
+            }
 
-        // Adds padding before notification list
-        .NotificationGroup {
-            padding-top: 4px;
+            // Adds padding before notification list
+            .NotificationGroup {
+                padding-top: 4px;
+            }
         }
 
         .DiscussionListItem-title mark {
@@ -1246,21 +1250,26 @@ body.dark.dark--oled {
         cursor: not-allowed;
     }
 
-    .PollOption .PollBar:hover {
-        background: fade(@lighter-grey, 80%) !important;
-    }
+    .PollOption {
+        .PollBar {
+            cursor: pointer !important;
 
-    .PollOption .PollBar,
-    .PollOption .PollBar * {
-        cursor: pointer !important;
-    }
+            * {
+                cursor: pointer !important;
+            }
 
-    .PollOption .PollBar[data-selected="true"] {
-        border-color: @contrast-grey !important;
-    }
+            &:hover {
+                background: fade(@lighter-grey, 80%) !important;
+            }
 
-    .PollOption .PollBar .PollOption-active {
-        background: @lightest-grey !important;
+            &[data-selected="true"] {
+                border-color: @contrast-grey !important;
+            }
+
+            & .PollOption-active {
+                background: @lightest-grey !important;
+            }
+        }
     }
 
     .PollVoted .PollBar[data-selected="true"] .PollPercent {
@@ -1271,66 +1280,62 @@ body.dark.dark--oled {
         visibility: hidden !important;
         margin-right: 16px !important;
         position: relative !important;
+
+        &::before,
+        &::after {
+            position: absolute !important;
+        }
+
+        &::before {
+            content: "" !important;
+            display: inline-block !important;
+            visibility: visible !important;
+
+            height: 20px !important;
+            width: 20px !important;
+
+            border: 2px solid @light-color !important;
+
+            /* centres with label text */
+            top: -3px !important;
+
+            cursor: pointer !important;
+
+            &:disabled {
+                cursor: not-allowed !important;
+                background: fade(@light-color, 20%) !important;
+            }
+        }
+
+        > input[type="checkbox"]:checked::after {
+            content: "" !important;
+            display: inline-block !important;
+            visibility: visible !important;
+
+            height: 5px !important;
+            width: 10px !important;
+
+            border-left: 2px solid @light-color !important;
+            border-bottom: 2px solid @light-color !important;
+
+            transform: rotate(-45deg) !important;
+
+            left: 5px !important;
+            bottom: 4px !important;
+
+            cursor: pointer !important;
+        }
+
+        > input[type="checkbox"]:disabled::after {
+            cursor: not-allowed !important;
+        }
     }
 
-    label.checkbox > input[type="checkbox"]::before,
-    label.checkbox > input[type="checkbox"]::after {
-        position: absolute !important;
-    }
-
-    label.checkbox > input[type="checkbox"]::before {
-        content: "" !important;
-        display: inline-block !important;
-        visibility: visible !important;
-
-        height: 20px !important;
-        width: 20px !important;
-
-        border: 2px solid @light-color !important;
-
-        /* centres with label text */
-        top: -3px !important;
-
-        cursor: pointer !important;
-    }
-
-    label.checkbox > input[type="checkbox"]:disabled::before {
-        background: fade(@light-color, 20%) !important;
-    }
-
-    label.checkbox > input[type="checkbox"]:checked::after {
-        content: "" !important;
-        display: inline-block !important;
-        visibility: visible !important;
-
-        height: 5px !important;
-        width: 10px !important;
-
-        border-left: 2px solid @light-color !important;
-        border-bottom: 2px solid @light-color !important;
-
-        transform: rotate(-45deg) !important;
-
-        left: 5px !important;
-        bottom: 4px !important;
-
-        cursor: pointer !important;
-    }
-
-    label.checkbox > input[type="checkbox"]:disabled::before,
-    label.checkbox > input[type="checkbox"]:disabled::after {
-        cursor: not-allowed !important;
-    }
-
-    .SettingsPage
-        .item-notifications
-        .NotificationGrid-checkbox.highlighted
-        .Checkbox:not(.disabled),
-    .SettingsPage
-        .item-notifications
-        .NotificationGrid-checkbox
+    .SettingsPage .item-notifications .NotificationGrid-checkbox {
+        &.highlighted .Checkbox:not(.disabled),
         .Checkbox:hover:not(.disabled) {
-        background: @lighter-grey;
+            background: @lighter-grey;
+        }
     }
 
     // #endregion
@@ -1341,11 +1346,11 @@ body.dark.dark--oled {
         background-color: @grey-accent !important;
         background-clip: content-box;
         max-width: max-content;
-    }
 
-    table td,
-    table th {
-        border-color: @lighter-grey !important;
+        td,
+        th {
+            border-color: @lighter-grey !important;
+        }
     }
 
     /* #endregion */
@@ -1357,23 +1362,22 @@ body.dark.dark--oled {
         box-shadow: 1px 0 0 @lightest-grey, -1px 0 0 @lightest-grey,
             0 1px 0 @lightest-grey, 0 -1px 0 @lightest-grey,
             0 3px 13px rgba(0, 0, 0, 0.08);
-    }
 
-    .flatpickr-calendar {
-        .flatpickr-months .flatpickr-prev-month,
-        .flatpickr-months .flatpickr-next-month {
-            color: @main-text;
-            fill: @main-text;
-        }
+        .flatpickr-months {
+            .flatpickr-prev-month,
+            .flatpickr-next-month {
+                color: @main-text;
+                fill: @main-text;
 
-        .flatpickr-months .flatpickr-prev-month:hover svg,
-        .flatpickr-months .flatpickr-next-month:hover svg {
-            fill: @main-text-4;
-        }
+                &:hover svg {
+                    fill: @main-text-4;
+                }
+            }
 
-        .flatpickr-months .flatpickr-month {
-            color: @light-color;
-            fill: @light-color;
+            .flatpickr-month {
+                color: @light-color;
+                fill: @light-color;
+            }
         }
 
         span.flatpickr-weekday {
@@ -1383,64 +1387,72 @@ body.dark.dark--oled {
 
         .flatpickr-day {
             color: @light-color-2;
-        }
 
-        .flatpickr-day.flatpickr-disabled,
-        .flatpickr-day.flatpickr-disabled:hover {
-            color: @lightest-grey;
-        }
+            &.flatpickr-disabled,
+            &.flatpickr-disabled:hover {
+                color: @lightest-grey;
+            }
 
-        .flatpickr-day.today {
-            border-color: @gg-yellow;
-        }
+            &.today {
+                border-color: @gg-yellow;
+            }
 
-        .flatpickr-day.flatpickr-disabled,
-        .flatpickr-day.flatpickr-disabled:hover,
-        .flatpickr-day.prevMonthDay,
-        .flatpickr-day.nextMonthDay,
-        .flatpickr-day.notAllowed,
-        .flatpickr-day.notAllowed.prevMonthDay,
-        .flatpickr-day.notAllowed.nextMonthDay {
-            color: @medium-color--lighter;
-        }
+            &.flatpickr-disabled,
+            &.flatpickr-disabled:hover,
+            &.prevMonthDay,
+            &.nextMonthDay,
+            &.notAllowed,
+            &.notAllowed.prevMonthDay,
+            &.notAllowed.nextMonthDay {
+                color: @medium-color--lighter;
+            }
 
-        .flatpickr-day.inRange,
-        .flatpickr-day.prevMonthDay.inRange,
-        .flatpickr-day.nextMonthDay.inRange,
-        .flatpickr-day.today.inRange,
-        .flatpickr-day.prevMonthDay.today.inRange,
-        .flatpickr-day.nextMonthDay.today.inRange,
-        .flatpickr-day:hover,
-        .flatpickr-day.prevMonthDay:hover,
-        .flatpickr-day.nextMonthDay:hover,
-        .flatpickr-day:focus,
-        .flatpickr-day.prevMonthDay:focus,
-        .flatpickr-day.nextMonthDay:focus {
-            color: @main-text;
-            background: @lighter-grey;
-            border-color: @lighter-grey;
-            outline: 0;
-            cursor: pointer;
+            &.inRange,
+            &.prevMonthDay.inRange,
+            &.nextMonthDay.inRange,
+            &.today.inRange,
+            &.prevMonthDay.today.inRange,
+            &.nextMonthDay.today.inRange,
+            &:hover,
+            &.prevMonthDay:hover,
+            &.nextMonthDay:hover,
+            &:focus,
+            &.prevMonthDay:focus,
+            &.nextMonthDay:focus {
+                color: @main-text;
+                background: @lighter-grey;
+                border-color: @lighter-grey;
+                outline: 0;
+                cursor: pointer;
+            }
         }
 
         .flatpickr-monthDropdown-months option {
             background-color: @lighter-grey !important;
         }
 
-        .flatpickr-time input {
-            color: @light-color-2;
-        }
+        .flatpickr-time {
+            input {
+                color: @light-color-2;
 
-        .flatpickr-time input:hover,
-        .flatpickr-time .flatpickr-am-pm:hover,
-        .flatpickr-time input:focus,
-        .flatpickr-time .flatpickr-am-pm:focus {
-            background: @light-grey;
-        }
+                &:hover,
+                &:focus {
+                    background: @light-grey;
+                }
+            }
 
-        .flatpickr-time .flatpickr-time-separator,
-        .flatpickr-time .flatpickr-am-pm {
-            color: @light-color-2;
+            .flatpickr-am-pm {
+                color: @light-color-2;
+
+                &:hover,
+                &:focus {
+                    background: @light-grey;
+                }
+            }
+
+            .flatpickr-time-separator {
+                color: @light-color-2;
+            }
         }
     }
 
@@ -1450,12 +1462,14 @@ body.dark.dark--oled {
 
     /* #region Feed Navbar */
 
-    .IndexPage-nav.sideNav .Dropdown-menu.dropdown-menu li * {
-        color: @medium-text !important;
-    }
+    .IndexPage-nav.sideNav .Dropdown-menu.dropdown-menu li {
+        * {
+            color: @medium-text !important;
+        }
 
-    .IndexPage-nav.sideNav .Dropdown-menu.dropdown-menu li.active * {
-        color: @main-text-3 !important;
+        &.active * {
+            color: @main-text-3 !important;
+        }
     }
 
     .sideNav .Dropdown--select .Dropdown-menu,
