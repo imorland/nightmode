@@ -513,7 +513,9 @@ body.dark.dark--oled {
         }
 
         &--BestAnswer a .username {
-            // override grey for username in post header to meet accessibility contrast requirements between green banner and text
+            // override grey for username in post header to
+            // meet accessibility contrast requirements between
+            // green banner and text
             color: @black !important;
         }
 
@@ -537,13 +539,6 @@ body.dark.dark--oled {
                 }
             }
 
-            /* Quotes */
-            blockquote {
-                color: @medium-text-0 !important;
-                background-color: @med-grey !important;
-                border-color: #3a3a3a !important;
-            }
-
             /* Inline monospace */
             code {
                 font-family: "Fira Code", Consolas, monospace;
@@ -554,6 +549,19 @@ body.dark.dark--oled {
             /* Code blocks */
             pre {
                 background-color: @med-grey;
+            }
+
+            /* Quotes */
+            blockquote {
+                color: @medium-text-0 !important;
+                background-color: @med-grey !important;
+                border-color: #3a3a3a !important;
+
+                // Embedded code in quotes
+                code,
+                pre {
+                    background-color: @lighter-grey;
+                }
             }
 
             h1,
