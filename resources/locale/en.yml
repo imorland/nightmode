@@ -10,3 +10,12 @@ fof-nightmode:
             settings:
                 oled_on: Enable OLED dark mode
                 oled_off: Disable OLED dark mode
+        auto_theme:
+            dialog:
+                title: "Dark mode"
+                message: We've automatically enabled dark mode based on your device's theme.
+                prompt: Would you like to keep dark mode enabled, or disable it?
+                note: If you want to change back, click your username at the top of the screen, then click "Light mode".
+                note_mobile: If you want to change back, tap the menu icon in the top-left corner, tap your username, then tap "Light mode".
+                keep_enabled_btn: Leave it on
+                turn_off_btn: Switch it off

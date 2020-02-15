@@ -105,7 +105,8 @@ export default function() {
 
                         // Toggle night mode on or off by changing the user preference
                         app.session.user.savePreferences({
-                            fofNightMode: lightState
+                            fofNightMode: lightState,
+                            fofNightModeOverrideAuto: true
                         });
 
                         $("body").toggleClass("dark");
@@ -134,7 +135,7 @@ export default function() {
 
                             // Toggle night mode on or off by changing the user preference
                             app.session.user.savePreferences({
-                                fofNightModeOledType: !oledState
+                                fofNightModeOledType: !oledState,
                             });
 
                             $("body").toggleClass("dark--oled");
