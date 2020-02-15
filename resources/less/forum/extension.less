@@ -614,22 +614,14 @@ body.dark.dark--oled {
 
     /* #region Best Answers */
 
-    .DiscussionPage {
-        .PostStream {
-            .PostStream-item {
-                .Post {
-                    .item-bestAnswerPost {
-                        background-color: @med-grey;
-                        color: @main-text-2;
-                        border-left: 4px solid fade(@green, 50%);
+    .DiscussionPage .PostStream .PostStream-item .Post .item-bestAnswerPost {
+        background-color: @med-grey;
+        color: @main-text-2;
+        border-left: 4px solid fade(@green, 50%);
 
-                        .Post-body a {
-                            color: unset;
-                            border-bottom-color: unset;
-                        }
-                    }
-                }
-            }
+        .Post-body a {
+            color: unset;
+            border-bottom-color: unset;
         }
     }
 
@@ -637,16 +629,12 @@ body.dark.dark--oled {
 
     /* #region Post Actions */
 
-    .PostStream-item {
-        aside.Post-actions {
-            button {
-                color: @medium-text-0;
+    .PostStream-item aside.Post-actions button {
+        color: @medium-text-0;
 
-                &:hover,
-                &:focus {
-                    color: @main-text-2;
-                }
-            }
+        &:hover,
+        &:focus {
+            color: @main-text-2;
         }
     }
 
@@ -774,30 +762,28 @@ body.dark.dark--oled {
         color: @main-text-2 !important;
     }
 
-    *:not(.item-nav) {
-        > .Dropdown .Dropdown-menu > li {
+    *:not(.item-nav) > .Dropdown .Dropdown-menu > li {
+        > a,
+        > button {
+            background-color: @grey;
+            color: @medium-text-0;
+
+            &:hover,
+            &:focus {
+                background-color: @med-grey;
+                color: @main-text;
+            }
+        }
+
+        > span {
+            background-color: @grey;
+            color: @medium-text-0;
+        }
+
+        &.active {
             > a,
             > button {
-                background-color: @grey;
-                color: @medium-text-0;
-
-                &:hover,
-                &:focus {
-                    background-color: @med-grey;
-                    color: @main-text;
-                }
-            }
-
-            > span {
-                background-color: @grey;
-                color: @medium-text-0;
-            }
-
-            &.active {
-                > a,
-                > button {
-                    background: @med-grey;
-                }
+                background: @med-grey;
             }
         }
     }
@@ -996,77 +982,73 @@ body.dark.dark--oled {
 
     // App Pane styles
 
-    .App {
-        .hasPane {
-            .DiscussionListItem {
-                &.active {
-                    background-color: @lighter-grey;
+    .App .hasPane .DiscussionListItem {
+        &.active {
+            background-color: @lighter-grey;
 
-                    .DiscussionListItem-content {
-                        background-color: @lighter-grey;
+            .DiscussionListItem-content {
+                background-color: @lighter-grey;
+            }
+        }
+
+        .DiscussionListItem-controls .Button--icon {
+            color: inherit;
+        }
+
+        // Read thread
+        .DiscussionListItem-content.read {
+            .DiscussionListItem-info {
+                .item-terminalPost,
+                .item-discussion-views,
+                .item-discussion-views::before,
+                .item-recipients .RecipientLabel-text,
+                .item-recipients .RecipientLabel::after,
+                .item-excerpt {
+                    color: @medium-text-0;
+                }
+            }
+        }
+
+        // Unread thread
+        .DiscussionListItem-content.unread {
+            .DiscussionListItem-info {
+                .item-terminalPost,
+                .item-discussion-views,
+                .item-discussion-views::before,
+                .item-recipients .RecipientLabel-text,
+                .item-recipients .RecipientLabel::after,
+                .item-excerpt {
+                    color: @main-text;
+                }
+
+                .item-tags {
+                    background-color: @light-grey !important;
+
+                    .TagLabel-text {
+                        color: @main-text !important;
                     }
                 }
+            }
+        }
 
-                .DiscussionListItem-controls .Button--icon {
-                    color: inherit;
+        // Active or hovered thread
+        .DiscussionListItem-content.active,
+        .DiscussionListItem-content:hover {
+            .DiscussionListItem-info {
+                .item-terminalPost,
+                .item-discussion-views,
+                .item-discussion-views::before,
+                .item-recipients .RecipientLabel-text,
+                .item-recipients .RecipientLabel::after,
+                .item-excerpt {
+                    color: @main-text;
                 }
 
-                // Read thread
-                .DiscussionListItem-content.read {
-                    .DiscussionListItem-info {
-                        .item-terminalPost,
-                        .item-discussion-views,
-                        .item-discussion-views::before,
-                        .item-recipients .RecipientLabel-text,
-                        .item-recipients .RecipientLabel::after,
-                        .item-excerpt {
-                            color: @medium-text-0;
-                        }
-                    }
-                }
+                .item-tags {
+                    background-color: @lighter-grey !important;
 
-                // Unread thread
-                .DiscussionListItem-content.unread {
-                    .DiscussionListItem-info {
-                        .item-terminalPost,
-                        .item-discussion-views,
-                        .item-discussion-views::before,
-                        .item-recipients .RecipientLabel-text,
-                        .item-recipients .RecipientLabel::after,
-                        .item-excerpt {
-                            color: @main-text;
-                        }
-
-                        .item-tags {
-                            background-color: @light-grey !important;
-
-                            .TagLabel-text {
-                                color: @main-text !important;
-                            }
-                        }
-                    }
-                }
-
-                // Active or hovered thread
-                .DiscussionListItem-content.active,
-                .DiscussionListItem-content:hover {
-                    .DiscussionListItem-info {
-                        .item-terminalPost,
-                        .item-discussion-views,
-                        .item-discussion-views::before,
-                        .item-recipients .RecipientLabel-text,
-                        .item-recipients .RecipientLabel::after,
-                        .item-excerpt {
-                            color: @main-text;
-                        }
-
-                        .item-tags {
-                            background-color: @lighter-grey !important;
-
-                            .TagLabel-text {
-                                color: @main-text !important;
-                            }
-                        }
+                    .TagLabel-text {
+                        color: @main-text !important;
                     }
                 }
             }
