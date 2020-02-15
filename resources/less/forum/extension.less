@@ -29,6 +29,7 @@ body.dark:not(.dark--oled) {
     @dark: #151515;
     @grey: #212121;
     @grey-accent: #262626;
+
     /* used for table color only */
     @med-grey: #313131;
     @lighter-grey: #444;
@@ -111,16 +112,16 @@ body.dark.dark--oled {
 
     .styleMixin();
 
-    /* 
-    
- #######  ##       ######## ########      #######  ##     ## ######## ########  ########  #### ########  ########  ######  
-##     ## ##       ##       ##     ##    ##     ## ##     ## ##       ##     ## ##     ##  ##  ##     ## ##       ##    ## 
-##     ## ##       ##       ##     ##    ##     ## ##     ## ##       ##     ## ##     ##  ##  ##     ## ##       ##       
-##     ## ##       ######   ##     ##    ##     ## ##     ## ######   ########  ########   ##  ##     ## ######    ######  
-##     ## ##       ##       ##     ##    ##     ##  ##   ##  ##       ##   ##   ##   ##    ##  ##     ## ##             ## 
-##     ## ##       ##       ##     ##    ##     ##   ## ##   ##       ##    ##  ##    ##   ##  ##     ## ##       ##    ## 
- #######  ######## ######## ########      #######     ###    ######## ##     ## ##     ## #### ########  ########  ######  
-    
+    /*
+
+ #######  ##       ######## ########      #######  ##     ## ######## ########  ########  #### ########  ########  ######
+##     ## ##       ##       ##     ##    ##     ## ##     ## ##       ##     ## ##     ##  ##  ##     ## ##       ##    ##
+##     ## ##       ##       ##     ##    ##     ## ##     ## ##       ##     ## ##     ##  ##  ##     ## ##       ##
+##     ## ##       ######   ##     ##    ##     ## ##     ## ######   ########  ########   ##  ##     ## ######    ######
+##     ## ##       ##       ##     ##    ##     ##  ##   ##  ##       ##   ##   ##   ##    ##  ##     ## ##             ##
+##     ## ##       ##       ##     ##    ##     ##   ## ##   ##       ##    ##  ##    ##   ##  ##     ## ##       ##    ##
+ #######  ######## ######## ########      #######     ###    ######## ##     ## ##     ## #### ########  ########  ######
+
     */
 
     // Separates header from main page content as they're the same colour
@@ -143,7 +144,7 @@ body.dark.dark--oled {
                     background-color: lighten(@black, 4%) !important;
                 }
 
-                &:before {
+                &::before {
                     background-color: lighten(@borderColor, 10%) !important;
                 }
             }
@@ -178,7 +179,7 @@ body.dark.dark--oled {
 .styleMixin() {
     // #region Hero Extension Warning
 
-    .Hero:after {
+    .Hero::after {
         & when(@should-display-extension-warning =true) {
             display: block;
             content: @extension-warning-text;
@@ -275,10 +276,7 @@ body.dark.dark--oled {
 
     /* #region Nav Pane */
 
-    .App.hasPane
-        .DiscussionListItem
-        .DiscussionListItem
-        .DiscussionListItem-content {
+    .App.hasPane .DiscussionListItem .DiscussionListItem .DiscussionListItem-content {
         &.unread {
             background-color: @med-grey !important;
 
@@ -527,8 +525,7 @@ body.dark.dark--oled {
         .Post-body {
             p,
             ul,
-            ol,
-            blockquote {
+            ol {
                 color: @main-text;
             }
 
@@ -556,19 +553,17 @@ body.dark.dark--oled {
                 background-color: @med-grey;
             }
 
-            /* Quotes */
+            // Items embedded in quotes (max level 3)
             blockquote {
                 color: @medium-text-0 !important;
                 border-color: #3a3a3a !important;
-            }
-
-            // Items embedded in quotes (max level 3)
-            blockquote {
                 background-color: @med-grey !important;
+
                 blockquote,
                 code,
                 pre {
                     background-color: @lighter-grey !important;
+
                     blockquote,
                     code,
                     pre {
@@ -618,19 +613,19 @@ body.dark.dark--oled {
     }
 
     /* Darkens letter-based avatars */
-    .Avatar:after {
+    .Avatar::after {
         content: "";
         display: block;
         position: absolute;
-        top: 0px;
-        left: 0px;
-        right: 0px;
-        bottom: 0px;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
         background-color: fade(@black, 10%);
         border-radius: 50%;
     }
 
-    .UserCard-avatar .Avatar:after {
+    .UserCard-avatar .Avatar::after {
         border-width: 4px;
     }
 
@@ -737,6 +732,7 @@ body.dark.dark--oled {
             background-color: @med-grey;
             color: @light-color-4;
         }
+
         .Button-label {
             // SVG doodles from gg static CDN, converted to data
             // URIs, and set to use @contrast-grey as their colour
@@ -747,23 +743,23 @@ body.dark.dark--oled {
                 @svg: escape(
                     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36.9 37.1"><path fill="@{contrast-grey}" d="M3.7 36A34.4 34.4 0 0028.2 2.9c0-3.9-6-3.9-6 0a28.3 28.3 0 01-20 27.3c-3.8 1-2.2 6.9 1.5 5.8zM33.2 16a17.5 17.5 0 01-11.5 17.4c-2.2.8-1.3 4.3 1 3.5a21.2 21.2 0 0014.2-21c-.1-2.3-3.8-2.3-3.7 0z"/></svg>'
                 );
+
                 background-image: url("data:image/svg+xml,@{svg}");
             }
+
             &::before {
                 @svg: escape(
                     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36.9 37.1"><path fill="@{contrast-grey}" d="M33.2 1A34.4 34.4 0 008.7 34.3c0 3.8 6 3.8 6 0A28.3 28.3 0 0134.8 6.9c3.7-1.1 2.1-7-1.6-5.8zM3.7 21.1A17.5 17.5 0 0115.2 3.7c2.3-.8 1.3-4.4-1-3.6A21.2 21.2 0 000 21.1c.1 2.4 3.8 2.4 3.7 0z"/></svg>'
                 );
+
                 background-image: url("data:image/svg+xml,@{svg}");
             }
         }
     }
 
-    .DiscussionPage
-        .DiscussionPage-nav
-        .item-controls
-        .itemCount1
-        button.Button--primary {
+    .DiscussionPage .DiscussionPage-nav .item-controls .itemCount1 button.Button--primary {
         background-color: @grey;
+
         .Button-label {
             border-color: @grey;
             color: @black;
@@ -852,6 +848,7 @@ body.dark.dark--oled {
             .Scrubber-bar {
                 background-color: @medium-color;
             }
+
             .Scrubber-description {
                 color: @grey-text;
             }
@@ -920,6 +917,7 @@ body.dark.dark--oled {
         .FormControl {
             background-color: @grey;
             color: @main-text-2;
+
             &:focus {
                 background-color: @med-grey;
             }
@@ -929,9 +927,11 @@ body.dark.dark--oled {
             h4 {
                 color: @main-text-4 !important;
             }
+
             h2 {
                 color: @main-text !important;
             }
+
             a {
                 color: @medium-text !important;
             }
@@ -960,7 +960,7 @@ body.dark.dark--oled {
                     border-color: @light-grey !important;
                 }
 
-                &.selected.colored .TagIcon:before {
+                &.selected.colored .TagIcon::before {
                     color: @black !important;
                 }
             }
@@ -1011,7 +1011,7 @@ body.dark.dark--oled {
         .DiscussionListItem {
             border-color: @borderColor !important;
 
-            &:before {
+            &::before {
                 background-color: @borderColor !important;
             }
         }
@@ -1150,6 +1150,7 @@ body.dark.dark--oled {
             > button {
                 background: @med-grey !important;
                 color: @main-text-2 !important;
+
                 * {
                     font-size: 16px !important;
                 }
@@ -1169,9 +1170,7 @@ body.dark.dark--oled {
             font-style: 14px !important;
         }
 
-        .DiscussionListItem
-            .DiscussionListItem-content.read
-            .DiscussionListItem-info {
+        .DiscussionListItem .DiscussionListItem-content.read .DiscussionListItem-info {
             .item-terminalPost,
             .item-discussion-views,
             .item-discussion-views::before,
@@ -1182,9 +1181,7 @@ body.dark.dark--oled {
             }
         }
 
-        .DiscussionListItem
-            .DiscussionListItem-content.unread
-            .DiscussionListItem-info {
+        .DiscussionListItem .DiscussionListItem-content.unread .DiscussionListItem-info {
             .item-terminalPost,
             .item-discussion-views,
             .item-discussion-views::before,
@@ -1197,7 +1194,7 @@ body.dark.dark--oled {
 
         .NotificationList {
             // Shadow improves contrast between end of notifications and the page background
-            box-shadow: 0 0 10px 0px #000000bb;
+            box-shadow: 0 0 10px 0 #000b;
 
             // Adds "padding" after notification list
             &::after {
@@ -1219,9 +1216,7 @@ body.dark.dark--oled {
         }
 
         .DiscussionList.DiscussionList--searchResults {
-            .DiscussionListItem
-                .DiscussionListItem-content.unread
-                .DiscussionListItem-title {
+            .DiscussionListItem .DiscussionListItem-content.unread .DiscussionListItem-title {
                 font-weight: normal;
             }
         }
@@ -1317,15 +1312,12 @@ body.dark.dark--oled {
             content: "" !important;
             display: inline-block !important;
             visibility: visible !important;
-
             height: 20px !important;
             width: 20px !important;
-
             border: 2px solid @light-color !important;
 
             /* centres with label text */
             top: -3px !important;
-
             cursor: pointer !important;
 
             &:disabled {
@@ -1338,18 +1330,13 @@ body.dark.dark--oled {
             content: "" !important;
             display: inline-block !important;
             visibility: visible !important;
-
             height: 5px !important;
             width: 10px !important;
-
             border-left: 2px solid @light-color !important;
             border-bottom: 2px solid @light-color !important;
-
             transform: rotate(-45deg) !important;
-
             left: 5px !important;
             bottom: 4px !important;
-
             cursor: pointer !important;
         }
 
@@ -1386,8 +1373,11 @@ body.dark.dark--oled {
 
     .flatpickr-calendar {
         background: @med-grey;
-        box-shadow: 1px 0 0 @lightest-grey, -1px 0 0 @lightest-grey,
-            0 1px 0 @lightest-grey, 0 -1px 0 @lightest-grey,
+        box-shadow:
+            1px 0 0 @lightest-grey,
+            -1px 0 0 @lightest-grey,
+            0 1px 0 @lightest-grey,
+            0 -1px 0 @lightest-grey,
             0 3px 13px rgba(0, 0, 0, 0.08);
 
         .flatpickr-months {
@@ -1518,15 +1508,18 @@ body.dark.dark--oled {
             font-size: 16px;
             text-align: center;
         }
+
         .ggNightModeModal--negativeButton {
             height: unset;
             padding: 8px 12px;
         }
+
         @media @small-screen {
             .ggNightModeModal-note--large-screen {
                 display: none;
             }
         }
+
         @media @small-screen {
             .ggNightModeModal-note--small-screen {
                 display: none;
