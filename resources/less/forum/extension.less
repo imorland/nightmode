@@ -25,6 +25,9 @@ body.dark:not(.dark--oled) {
     background: @dark;
     color: @main-text;
 
+    @checkbox-border: #eee;
+    @checkbox-bg: #313131;
+
     @black: #000;
     @dark: #151515;
     @grey: #212121;
@@ -71,6 +74,9 @@ body.dark:not(.dark--oled) {
 body.dark.dark--oled {
     background: @dark;
     color: @main-text;
+
+    @checkbox-border: #ddd;
+    @checkbox-bg: #141414;
 
     @black: #000;
     @dark: #000;
@@ -1291,17 +1297,29 @@ body.dark.dark--oled {
             & .PollOption-active {
                 background: @lightest-grey !important;
             }
-        }
-    }
 
-    .PollVoted .PollBar[data-selected="true"] .PollPercent {
-        color: @medium-color !important;
+            // override poll checkbox colours
+            // ? It's really annoying that the polls use their own custom checkboxes :(
+            .checkmark {
+                background: @checkbox-bg !important;
+                border-color: @checkbox-border !important;
+
+                &::after {
+                    background: none !important;
+                    border-color: @checkbox-border !important;
+                    color: @checkbox-border !important;
+                }
+            }
+        }
     }
 
     label.checkbox > input[type="checkbox"] {
         visibility: hidden !important;
         margin-right: 16px !important;
         position: relative !important;
+
+        background: @checkbox-bg !important;
+        border-color: @checkbox-border !important;
 
         &::before,
         &::after {
@@ -1319,14 +1337,9 @@ body.dark.dark--oled {
             /* centres with label text */
             top: -3px !important;
             cursor: pointer !important;
-
-            &:disabled {
-                cursor: not-allowed !important;
-                background: fade(@light-color, 20%) !important;
-            }
         }
 
-        > input[type="checkbox"]:checked::after {
+        &:checked::after {
             content: "" !important;
             display: inline-block !important;
             visibility: visible !important;
@@ -1340,8 +1353,15 @@ body.dark.dark--oled {
             cursor: pointer !important;
         }
 
-        > input[type="checkbox"]:disabled::after {
-            cursor: not-allowed !important;
+        &:disabled {
+            &::before,
+            &::after {
+                cursor: not-allowed !important;
+            }
+
+            &::before {
+                background: fade(@light-color, 20%) !important;
+            }
         }
     }
 
