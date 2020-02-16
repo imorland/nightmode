@@ -51,8 +51,6 @@ body.dark:not(.dark--oled) {
 
     /* Special Colors */
 
-    @best-answer--accent: #007349;
-    @best-answer--accent-hover: #06ce85;
     @red: #d0021b;
     @green: #58a400;
 
@@ -99,8 +97,6 @@ body.dark.dark--oled {
 
     /* Special Colors */
 
-    @best-answer--accent: #007349;
-    @best-answer--accent-hover: #06ce85;
     @red: #d0021b;
     @green: #58a400;
 
@@ -643,7 +639,7 @@ body.dark.dark--oled {
     /* #region Best Answers */
 
     .DiscussionPage .PostStream .PostStream-item .Post .item-bestAnswerPost {
-        background-color: @med-grey;
+        background-color: fade(@green, 15%);
         color: @main-text-2;
         border-left: 4px solid fade(@green, 50%);
 
