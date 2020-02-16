@@ -9,6 +9,7 @@
 /* General Colors */
 
 @gg-yellow: #fcc31e;
+@gg-pink: #eb5f8e;
 
 .ggDarkModeBanner {
     position: fixed;
@@ -1292,10 +1293,18 @@ body.dark.dark--oled {
 
             &[data-selected="true"] {
                 border-color: @contrast-grey !important;
+
+                .PollAnswer {
+                    color: @main-text;
+                }
+            }
+
+            .PollPercent {
+                color: @main-text-3 !important;
             }
 
             & .PollOption-active {
-                background: @lightest-grey !important;
+                background: fade(@gg-pink, 60%) !important;
             }
 
             // override poll checkbox colours
