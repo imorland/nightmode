@@ -39,7 +39,14 @@ export default function() {
         ) {
             let banner = document.createElement("section");
             banner.className = "ggDarkModeBanner";
-            banner.innerHTML = `If dark mode is still too light, you can <a href='#' class="blackmodebannershow">switch to black mode</a> (saves battery on OLED screens). <a href="#" class="dismiss-btn" title="Dismiss alert"><i class="fas fa-times"></i></a>`;
+            banner.innerHTML =
+                _app.translator
+                    .trans("fof-nightmode.forum.oled_banner", {
+                        a1: `<a href='#' class="blackmodebannershow">`,
+                        a2: `</a>`
+                    })
+                    .join("") +
+                ` <a href="#" class="dismiss-btn" title="Dismiss alert"><i class="fas fa-times"></i></a>`;
 
             document.body.appendChild(banner);
 

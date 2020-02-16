@@ -6,6 +6,9 @@ fof-nightmode:
     forum:
         night: Dark mode
         day: Light mode
+        # a1 and a2 are variables for the anchor tag, replaced in addMenuItems.js
+        # ! They must remain for the automatic switch link to work !
+        oled_banner: 'If dark mode is still too light, you can {a1}switch to black mode{a2} (saves battery on OLED screens).'
         user:
             settings:
                 oled_on: Enable OLED dark mode

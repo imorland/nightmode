@@ -179,8 +179,8 @@ body.dark.dark--oled {
 .styleMixin() {
     // #region Hero Extension Warning
 
-    .Hero::after {
-        & when(@should-display-extension-warning =true) {
+    .Hero:after {
+        & when(@should-display-extension-warning = true) {
             display: block;
             content: @extension-warning-text;
             background: @med-grey;
