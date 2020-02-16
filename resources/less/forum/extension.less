@@ -1504,15 +1504,22 @@ body.dark.dark--oled {
     // #region Auto Theme Modal
 
     .ggNightModeModal {
-        .Modal-body .ggNightModeModal--auto-theme {
-            .ggNightModeModal--paragraph {
-                font-size: 16px;
-                text-align: center;
+        .Modal-body {
+            // Override stupid 56px top margin on small devices
+            @media @small-screen {
+                margin-top: 8px !important;
             }
 
-            .ggNightModeModal--negativeButton {
-                height: unset;
-                padding: 8px 12px;
+            .ggNightModeModal--auto-theme {
+                .ggNightModeModal--paragraph {
+                    font-size: 16px;
+                    text-align: center;
+                }
+
+                .ggNightModeModal--negativeButton {
+                    height: unset;
+                    padding: 8px 12px;
+                }
             }
         }
 
