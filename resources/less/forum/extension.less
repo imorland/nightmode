@@ -1503,29 +1503,36 @@ body.dark.dark--oled {
 
     // #region Auto Theme Modal
 
-    .Modal-body .ggNightModeModal--auto-theme {
-        .ggNightModeModal--paragraph {
-            font-size: 16px;
-            text-align: center;
-        }
+    .ggNightModeModal {
+        .Modal-body .ggNightModeModal--auto-theme {
+            .ggNightModeModal--paragraph {
+                font-size: 16px;
+                text-align: center;
+            }
 
-        .ggNightModeModal--negativeButton {
-            height: unset;
-            padding: 8px 12px;
-        }
-
-        @media @small-screen {
-            .ggNightModeModal-note--large-screen {
-                display: none;
+            .ggNightModeModal--negativeButton {
+                height: unset;
+                padding: 8px 12px;
             }
         }
 
-        @media @small-screen {
+        .Modal-footer {
+            .ggNightModeModal-note--large-screen {
+                display: block;
+
+                @media @small-screen {
+                    display: none;
+                }
+            }
+
             .ggNightModeModal-note--small-screen {
-                display: none;
+                display: block;
+
+                @media @large-screen {
+                    display: none;
+                }
             }
         }
     }
-
     // #endregion
 }
