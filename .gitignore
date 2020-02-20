@@ -6,7 +6,6 @@ node_modules
 bower_components
 .idea
 .floo*
-package-lock.json
 
 # ignore vscode compiled css file
 resources/less/forum/extension.css

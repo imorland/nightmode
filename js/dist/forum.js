@@ -109,6 +109,24 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _inheritsLoose; });
+function _inheritsLoose(subClass, superClass) {
+  subClass.prototype = Object.create(superClass.prototype);
+  subClass.prototype.constructor = subClass;
+  subClass.__proto__ = superClass;
+}
+
+/***/ }),
+
 /***/ "./src/forum/addMenuItems.js":
 /*!***********************************!*\
   !*** ./src/forum/addMenuItems.js ***!
@@ -186,7 +204,8 @@ __webpack_require__.r(__webpack_exports__);
           DisplayOledPromptIfNeeded(app, false, !lightState, lightState); // Toggle night mode on or off by changing the user preference
 
           app.session.user.savePreferences({
-            fofNightMode: lightState
+            fofNightMode: lightState,
+            fofNightModeOverrideAuto: true
           });
           $("body").toggleClass("dark");
         }
@@ -217,6 +236,133 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/forum/components/AutoThemeModal.js":
+/*!************************************************!*\
+  !*** ./src/forum/components/AutoThemeModal.js ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return AutoThemeModal; });
+/* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inheritsLoose */ "./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js");
+/* harmony import */ var flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! flarum/components/Modal */ "flarum/components/Modal");
+/* harmony import */ var flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! flarum/components/Button */ "flarum/components/Button");
+/* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Button__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var flarum_utils_KeyboardNavigatable__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! flarum/utils/KeyboardNavigatable */ "flarum/utils/KeyboardNavigatable");
+/* harmony import */ var flarum_utils_KeyboardNavigatable__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(flarum_utils_KeyboardNavigatable__WEBPACK_IMPORTED_MODULE_3__);
+
+
+
+
+
+var AutoThemeModal =
+/*#__PURE__*/
+function (_Modal) {
+  Object(_babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(AutoThemeModal, _Modal);
+
+  function AutoThemeModal() {
+    return _Modal.apply(this, arguments) || this;
+  }
+
+  var _proto = AutoThemeModal.prototype;
+
+  _proto.isDismissible = function isDismissible() {
+    return false;
+  };
+
+  _proto.init = function init() {
+    _Modal.prototype.init.call(this);
+
+    this.selected = [];
+    this.filter = m.prop("");
+    this.focused = false;
+    this.option = true; // TODO: Make keyboard accessible
+    // this.navigator = new KeyboardNavigatable();
+    // this.navigator
+    //     .onUp(() => this.setIndex(this.getCurrentNumericIndex() - 1, true))
+    //     .onDown(() =>
+    //         this.setIndex(this.getCurrentNumericIndex() + 1, true)
+    //     )
+    //     .onSelect(this.select.bind(this))
+    //     .onRemove(() => this.selected.splice(this.selected.length - 1, 1));
+  };
+
+  _proto.className = function className() {
+    return "ggNightModeModal";
+  };
+
+  _proto.title = function title() {
+    return app.translator.trans("fof-nightmode.forum.auto_theme.dialog.title");
+  };
+
+  _proto.content = function content() {
+    var _this = this;
+
+    return [m("div", {
+      className: "Modal-body"
+    }, m("div", {
+      className: "ggNightModeModal--auto-theme"
+    }, m("p", {
+      className: "ggNightModeModal--paragraph"
+    }, app.translator.trans("fof-nightmode.forum.auto_theme.dialog.message")), m("p", {
+      className: "ggNightModeModal--paragraph"
+    }, m("strong", null, app.translator.trans("fof-nightmode.forum.auto_theme.dialog.prompt")))), m("div", {
+      className: "Form Form--centered"
+    }, m("div", {
+      className: "Form-group"
+    }, flarum_components_Button__WEBPACK_IMPORTED_MODULE_2___default.a.component({
+      className: "Button Button--primary",
+      icon: "fas fa-check",
+      children: app.translator.trans("fof-nightmode.forum.auto_theme.dialog.keep_enabled_btn"),
+      onclick: function onclick(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        _this.onButtonClick("keep");
+      }
+    })), m("div", {
+      className: "Form-group"
+    }, flarum_components_Button__WEBPACK_IMPORTED_MODULE_2___default.a.component({
+      className: "Button Button--primary Button--cancel",
+      icon: "fas fa-times",
+      children: app.translator.trans("fof-nightmode.forum.auto_theme.dialog.turn_off_btn"),
+      onclick: function onclick(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        _this.onButtonClick("undo");
+      }
+    })))), m("div", {
+      className: "Modal-footer"
+    }, m("p", {
+      className: "ggNightModeModal--note"
+    }, m("span", {
+      className: "ggNightModeModal-note--large-screen"
+    }, app.translator.trans("fof-nightmode.forum.auto_theme.dialog.note")), m("span", {
+      className: "ggNightModeModal-note--small-screen"
+    }, app.translator.trans("fof-nightmode.forum.auto_theme.dialog.note_mobile"))))];
+  };
+
+  _proto.onsubmit = function onsubmit(e) {
+    e.preventDefault();
+  };
+
+  _proto.onButtonClick = function onButtonClick(e) {
+    if (this.props.onsubmit) this.props.onsubmit(e);
+    app.modal.close();
+    m.redraw.strategy("none");
+  };
+
+  return AutoThemeModal;
+}(flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1___default.a);
+
+
+
+/***/ }),
+
 /***/ "./src/forum/index.js":
 /*!****************************!*\
   !*** ./src/forum/index.js ***!
@@ -239,6 +385,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var flarum_models_User__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! flarum/models/User */ "flarum/models/User");
 /* harmony import */ var flarum_models_User__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(flarum_models_User__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _addMenuItems__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./addMenuItems */ "./src/forum/addMenuItems.js");
+/* harmony import */ var _components_AutoThemeModal__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/AutoThemeModal */ "./src/forum/components/AutoThemeModal.js");
 
 
 
@@ -246,35 +393,73 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-flarum_app__WEBPACK_IMPORTED_MODULE_1___default.a.initializers.add('fof-nightmode', function (app) {
-  flarum_models_User__WEBPACK_IMPORTED_MODULE_5___default.a.prototype.canUseDarkMode = flarum_Model__WEBPACK_IMPORTED_MODULE_4___default.a.attribute('canUseDarkMode');
-  flarum_models_User__WEBPACK_IMPORTED_MODULE_5___default.a.prototype.canChangeDarkModeType = flarum_Model__WEBPACK_IMPORTED_MODULE_4___default.a.attribute('canChangeDarkModeType');
-  Object(flarum_extend__WEBPACK_IMPORTED_MODULE_0__["extend"])(flarum_components_Page__WEBPACK_IMPORTED_MODULE_2___default.a.prototype, 'init', function () {
+
+flarum_app__WEBPACK_IMPORTED_MODULE_1___default.a.initializers.add("fof-nightmode", function (app) {
+  flarum_models_User__WEBPACK_IMPORTED_MODULE_5___default.a.prototype.canUseDarkMode = flarum_Model__WEBPACK_IMPORTED_MODULE_4___default.a.attribute("canUseDarkMode");
+  flarum_models_User__WEBPACK_IMPORTED_MODULE_5___default.a.prototype.canChangeDarkModeType = flarum_Model__WEBPACK_IMPORTED_MODULE_4___default.a.attribute("canChangeDarkModeType");
+  Object(flarum_extend__WEBPACK_IMPORTED_MODULE_0__["extend"])(flarum_components_Page__WEBPACK_IMPORTED_MODULE_2___default.a.prototype, "init", function () {
+    function HandleModalSubmit(e) {
+      if (e === "keep") {
+        // keep auto theme (i.e. i like my retinas being perfectly healthy)
+        app.session.user.savePreferences({
+          fofNightMode: true,
+          fofNightModeOverrideAuto: false
+        });
+      } else {
+        // go back to light mode (i.e. i like burning my retinas)
+        app.session.user.savePreferences({
+          fofNightMode: false,
+          fofNightModeOverrideAuto: true
+        });
+        $("body").removeClass("dark");
+      }
+    }
+
     if (app.session.user && app.session.user.canUseDarkMode() && app.session.user.preferences().fofNightMode) {
-      $('body').addClass('dark');
+      $("body").addClass("dark");
+    } else if ((!app.session.user || app.session.user && !app.session.user.preferences().fofNightModeOverrideAuto) && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      $("body").addClass("dark"); // show dialog asking logged in user if they wish
+      // to override detected theme
+
+      if (app.session.user) {
+        app.modal.show(new _components_AutoThemeModal__WEBPACK_IMPORTED_MODULE_7__["default"]({
+          onsubmit: HandleModalSubmit
+        }));
+      }
     } else {
-      $('body').removeClass('dark');
+      $("body").removeClass("dark");
     }
 
     if (app.session.user && app.session.user.canUseDarkMode() && app.session.user.canChangeDarkModeType() && app.session.user.preferences().fofNightModeOledType) {
-      $('body').addClass('dark--oled');
+      $("body").addClass("dark--oled");
     } else {
-      $('body').removeClass('dark--oled');
+      $("body").removeClass("dark--oled");
     }
   });
 
   if (flarum_tags_components_TagsPage__WEBPACK_IMPORTED_MODULE_3___default.a) {
-    Object(flarum_extend__WEBPACK_IMPORTED_MODULE_0__["extend"])(flarum_tags_components_TagsPage__WEBPACK_IMPORTED_MODULE_3___default.a.prototype, 'config', function () {
+    var HandleModalSubmit = function HandleModalSubmit(e) {};
+
+    Object(flarum_extend__WEBPACK_IMPORTED_MODULE_0__["extend"])(flarum_tags_components_TagsPage__WEBPACK_IMPORTED_MODULE_3___default.a.prototype, "config", function () {
       if (app.session.user && app.session.user.canUseDarkMode() && app.session.user.preferences().fofNightMode) {
-        $('body').addClass('dark');
+        $("body").addClass("dark");
+      } else if ((!app.session.user || app.session.user && !app.session.user.preferences().fofNightModeOverrideAuto) && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        $("body").addClass("dark"); // show dialog asking logged in user if they wish
+        // to override detected theme
+
+        if (app.session.user) {
+          app.modal.show(new _components_AutoThemeModal__WEBPACK_IMPORTED_MODULE_7__["default"]({
+            onsubmit: HandleModalSubmit
+          }));
+        }
       } else {
-        $('body').removeClass('dark');
+        $("body").removeClass("dark");
       }
 
       if (app.session.user && app.session.user.canUseDarkMode() && app.session.user.canChangeDarkModeType() && app.session.user.preferences().fofNightModeOledType) {
-        $('body').addClass('dark--oled');
+        $("body").addClass("dark--oled");
       } else {
-        $('body').removeClass('dark--oled');
+        $("body").removeClass("dark--oled");
       }
     });
   }
@@ -314,6 +499,17 @@ module.exports = flarum.core.compat['app'];
 /***/ (function(module, exports) {
 
 module.exports = flarum.core.compat['components/Button'];
+
+/***/ }),
+
+/***/ "flarum/components/Modal":
+/*!*********************************************************!*\
+  !*** external "flarum.core.compat['components/Modal']" ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = flarum.core.compat['components/Modal'];
 
 /***/ }),
 
@@ -369,6 +565,17 @@ module.exports = flarum.core.compat['models/User'];
 /***/ (function(module, exports) {
 
 module.exports = flarum.core.compat['tags/components/TagsPage'];
+
+/***/ }),
+
+/***/ "flarum/utils/KeyboardNavigatable":
+/*!******************************************************************!*\
+  !*** external "flarum.core.compat['utils/KeyboardNavigatable']" ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = flarum.core.compat['utils/KeyboardNavigatable'];
 
 /***/ })
 

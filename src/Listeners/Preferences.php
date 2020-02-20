@@ -26,5 +26,6 @@ class Preferences
     {
         $event->add('fofNightMode', 'boolval', false);
         $event->add('fofNightModeOledType', 'boolval', false);
+        $event->add('fofNightModeOverrideAuto', 'boolval', false);
     }
 }
