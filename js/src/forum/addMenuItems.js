@@ -39,18 +39,49 @@ export default function() {
         ) {
             let banner = document.createElement("section");
             banner.className = "ggDarkModeBanner";
-            banner.innerHTML = `If dark mode is still too light, you can <a href='#' class="blackmodebannershow">switch to black mode</a> (saves battery on OLED screens). <a href="#" class="dismiss-btn" title="Dismiss alert"><i class="fas fa-times"></i></a>`;
+            banner.innerHTML =
+                _app.translator
+                    .trans("fof-nightmode.forum.oled_banner", {
+                        a1: `<a href='#' class="blackmodebannershow">`,
+                        a2: `</a>`
+                    })
+                    .join("") +
+                ` <a href="#" class="dismiss-btn" title="Dismiss alert"><i class="fas fa-times"></i></a>`;
 
             document.body.appendChild(banner);
 
             $("section.ggDarkModeBanner a.blackmodebannershow").click(
                 function() {
-                    $(
-                        "#header-secondary > ul > li.item-session > div > button"
-                    ).click();
-                    $(
-                        "#header-secondary > ul > li.item-session > div > ul > li.item-toggleOledDarkMode > button"
-                    ).focus();
+                    if (window.matchMedia("(min-width: 768px)").matches) {
+                        $(
+                            "#header-secondary > ul > li.item-session > div > button.Button--user"
+                        ).click();
+                        "#header-secondary > ul > li.item-session > div > ul > li.item-toggleOledDarkMode > button".focus();
+                    } else {
+                        // small screen
+                        while (
+                            $(
+                                ".App-backControl .Button.Navigation-back.Button--icon.hasIcon"
+                            ).length > 0
+                        ) {
+                            $(
+                                ".App-backControl .Button.Navigation-back.Button--icon.hasIcon"
+                            ).click();
+                        }
+
+                        $(
+                            ".App-backControl .Button.Button--icon.Navigation-drawer.hasIcon"
+                        ).click();
+                        $(
+                            "#header-secondary > ul > li.item-session > div > button.Button--user"
+                        ).click();
+                        
+                        let $toggleBtn = $(
+                            "#header-secondary > ul > li.item-session > div > ul > li.item-toggleOledDarkMode > button"
+                        );
+                        $toggleBtn.parent().css("overflow", "hidden");
+                        $toggleBtn.addClass("pulsate");
+                    }
                     return false;
                 }
             );
@@ -135,7 +166,7 @@ export default function() {
 
                             // Toggle night mode on or off by changing the user preference
                             app.session.user.savePreferences({
-                                fofNightModeOledType: !oledState,
+                                fofNightModeOledType: !oledState
                             });
 
                             $("body").toggleClass("dark--oled");

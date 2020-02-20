@@ -9,6 +9,7 @@
 /* General Colors */
 
 @gg-yellow: #fcc31e;
+@gg-pink: #eb5f8e;
 
 .ggDarkModeBanner {
     position: fixed;
@@ -24,6 +25,9 @@
 body.dark:not(.dark--oled) {
     background: @dark;
     color: @main-text;
+
+    @checkbox-border: #eee;
+    @checkbox-bg: #313131;
 
     @black: #000;
     @dark: #151515;
@@ -47,8 +51,6 @@ body.dark:not(.dark--oled) {
 
     /* Special Colors */
 
-    @best-answer--accent: #007349;
-    @best-answer--accent-hover: #06ce85;
     @red: #d0021b;
     @green: #58a400;
 
@@ -72,6 +74,9 @@ body.dark.dark--oled {
     background: @dark;
     color: @main-text;
 
+    @checkbox-border: #ddd;
+    @checkbox-bg: #141414;
+
     @black: #000;
     @dark: #000;
     @grey: #111;
@@ -92,8 +97,6 @@ body.dark.dark--oled {
 
     /* Special Colors */
 
-    @best-answer--accent: #007349;
-    @best-answer--accent-hover: #06ce85;
     @red: #d0021b;
     @green: #58a400;
 
@@ -158,7 +161,7 @@ body.dark.dark--oled {
     .PostStream-item,
     .UserPage .PostsUserPage .PostsUserPage-list > li {
         background-color: @black !important;
-        border: 2px solid @borderColor;
+        outline: 2px solid @borderColor;
     }
 
     .PostStream-item .Post,
@@ -179,8 +182,8 @@ body.dark.dark--oled {
 .styleMixin() {
     // #region Hero Extension Warning
 
-    .Hero::after {
-        & when(@should-display-extension-warning =true) {
+    .Hero:after {
+        & when(@should-display-extension-warning = true) {
             display: block;
             content: @extension-warning-text;
             background: @med-grey;
@@ -636,7 +639,7 @@ body.dark.dark--oled {
     /* #region Best Answers */
 
     .DiscussionPage .PostStream .PostStream-item .Post .item-bestAnswerPost {
-        background-color: @med-grey;
+        background-color: fade(@green, 15%);
         color: @main-text-2;
         border-left: 4px solid fade(@green, 50%);
 
@@ -1286,22 +1289,42 @@ body.dark.dark--oled {
 
             &[data-selected="true"] {
                 border-color: @contrast-grey !important;
+
+                .PollAnswer {
+                    color: @main-text;
+                }
+            }
+
+            .PollPercent {
+                color: @main-text-3 !important;
             }
 
             & .PollOption-active {
-                background: @lightest-grey !important;
+                background: fade(@gg-pink, 60%) !important;
+            }
+
+            // override poll checkbox colours
+            // ? It's really annoying that the polls use their own custom checkboxes :(
+            .checkmark {
+                background: @checkbox-bg !important;
+                border-color: @checkbox-border !important;
+
+                &::after {
+                    background: none !important;
+                    border-color: @checkbox-border !important;
+                    color: @checkbox-border !important;
+                }
             }
         }
-    }
-
-    .PollVoted .PollBar[data-selected="true"] .PollPercent {
-        color: @medium-color !important;
     }
 
     label.checkbox > input[type="checkbox"] {
         visibility: hidden !important;
         margin-right: 16px !important;
         position: relative !important;
+
+        background: @checkbox-bg !important;
+        border-color: @checkbox-border !important;
 
         &::before,
         &::after {
@@ -1319,14 +1342,9 @@ body.dark.dark--oled {
             /* centres with label text */
             top: -3px !important;
             cursor: pointer !important;
-
-            &:disabled {
-                cursor: not-allowed !important;
-                background: fade(@light-color, 20%) !important;
-            }
         }
 
-        > input[type="checkbox"]:checked::after {
+        &:checked::after {
             content: "" !important;
             display: inline-block !important;
             visibility: visible !important;
@@ -1340,8 +1358,15 @@ body.dark.dark--oled {
             cursor: pointer !important;
         }
 
-        > input[type="checkbox"]:disabled::after {
-            cursor: not-allowed !important;
+        &:disabled {
+            &::before,
+            &::after {
+                cursor: not-allowed !important;
+            }
+
+            &::before {
+                background: fade(@light-color, 20%) !important;
+            }
         }
     }
 
