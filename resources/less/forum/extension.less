@@ -142,6 +142,16 @@ body.dark.dark--oled {
                     border-color: @borderColor;
                 }
 
+                &.active,
+                &.active:hover {
+                    color: @main-text !important;
+                    background: #fff1;
+
+                    * {
+                        color: @main-text !important;
+                    }
+                }
+
                 .DiscussionListItem-content {
                     &.read {
                         background-color: unset !important;
@@ -1544,11 +1554,11 @@ body.dark.dark--oled {
 
     .IndexPage-nav.sideNav .Dropdown-menu.dropdown-menu li {
         * {
-            color: @medium-text !important;
+            color: @main-text-4 !important;
         }
 
         &.active * {
-            color: @main-text-3 !important;
+            color: @main-text !important;
         }
     }
 
@@ -1559,7 +1569,11 @@ body.dark.dark--oled {
 
     .item-nav > .Dropdown .Dropdown-menu > li > a:hover,
     .item-nav > .Dropdown .Dropdown-menu > li > a:focus {
-        color: @main-text-3;
+        &,
+        span.Button-label,
+        i.icon {
+            color: @main-text !important;
+        }
     }
 
     /* #endregion */
