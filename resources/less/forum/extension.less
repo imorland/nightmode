@@ -314,7 +314,7 @@ body.dark.dark--oled {
         &:focus,
         &.focus {
             color: @main-text-2;
-            border-color: @lighter-grey;
+            border-color: @light-grey;
         }
     }
 
@@ -323,7 +323,7 @@ body.dark.dark--oled {
     }
 
     hr {
-        border-color: @lighter-grey;
+        border-color: @light-grey;
     }
 
     /* #region Placeholders */
@@ -720,10 +720,12 @@ body.dark.dark--oled {
 
     /* #region Best Answers */
 
-    .DiscussionPage .PostStream .PostStream-item .Post .item-bestAnswerPost {
-        background-color: fade(@green, 15%);
-        color: @main-text-2;
-        border-left: 4px solid fade(@green, 50%);
+    .DiscussionPage .PostStream .PostStream-item .Post {
+        .item-bestAnswerPost {
+            // used as a green background accent
+            background-color: fade(@green, 17.5%);
+            color: @main-text-2;
+            border-left: 4px solid @green;
 
         .Post-body a {
             color: unset;
@@ -1242,10 +1244,6 @@ body.dark.dark--oled {
             }
         }
 
-        .IndexPage-nav.sideNav .Dropdown-menu.dropdown-menu li * {
-            color: @main-text-2 !important;
-        }
-
         .DiscussionPage .PostStream .PostStream-item .Post.ReplyPlaceholder {
             background-color: @lighter-grey;
         }
@@ -1382,7 +1380,7 @@ body.dark.dark--oled {
             }
 
             & .PollOption-active {
-                background: fade(@gg-pink, 60%) !important;
+                background: fade(@gg-color-light-pink, 70%) !important;
             }
 
             // override poll checkbox colours
@@ -1464,13 +1462,23 @@ body.dark.dark--oled {
     /* #region Tables */
 
     table {
-        background-color: @grey-accent !important;
+        background-color: @grey !important;
         background-clip: content-box;
         max-width: max-content;
 
         td,
         th {
-            border-color: @lighter-grey !important;
+            border-color: @med-grey !important;
+        }
+    }
+
+    .Post table {
+        // override if in a post, generating higher contrast.
+        background-color: @med-grey !important;
+
+        td,
+        th {
+            border-color: @light-grey !important;
         }
     }
 
@@ -1518,7 +1526,7 @@ body.dark.dark--oled {
             }
 
             &.today {
-                border-color: @gg-yellow;
+                border-color: @gg-color-yellow;
             }
 
             &.flatpickr-disabled,
