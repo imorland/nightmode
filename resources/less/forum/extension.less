@@ -6,17 +6,49 @@
 @small-screen: ~"only screen and (max-width: 767px)";
 @large-screen: ~"only screen and (min-width: 768px)";
 
-/* General Colors */
+// ! giffgaff branding colours
+//
+// Below are the set giffgaff branding colours
+// taken from the giffgaff design system website.
+//
+// These colours should be deviated from as
+// little as possible, except where necessary
+// (e.g. native Flarum component re-colouring
+// which matches the current look of the
+// community).
+//
+// ? Website: https://www.giffgaff.design/
+//
+// Variables below match the design tokens
+// found on the website:
+// https://www.giffgaff.design/design-fundamentals/colour-palette/
 
-@gg-yellow: #fcc31e;
-@gg-pink: #eb5f8e;
+// ! If you deviate from a colour, please
+// ! explain why in a comment next to/above
+// ! the deviation
+
+@gg-color-alto: #d0d0d0;
+@gg-color-black: #000000;
+@gg-color-dark-blue: #00528a;
+@gg-color-dark-green: #007349;
+@gg-color-dark-pink: #ae0d21; // guys this is red...
+@gg-color-dove-grey: #666666;
+@gg-color-gallery: #ececec;
+@gg-color-graphite: #2f2e31;
+@gg-color-light-blue: #35adce;
+@gg-color-light-green: #72b72a;
+@gg-color-light-pink: #eb5f8e;
+@gg-color-orange: #ea5b25;
+@gg-color-white: #ffffff;
+@gg-color-wild-sand: #f5f5f5;
+@gg-color-yellow: #fcc31e;
 
 .ggDarkModeBanner {
     position: fixed;
     padding: 8px 4px;
     font-size: 1rem;
     text-align: center;
-    background: #00528a;
+    background: @gg-color-dark-blue;
     bottom: 0;
     left: 0;
     right: 0;
@@ -26,33 +58,34 @@ body.dark:not(.dark--oled) {
     background: @dark;
     color: @main-text;
 
-    @checkbox-border: #eee;
-    @checkbox-bg: #313131;
+    @checkbox-border: @gg-color-wild-sand;
+    @checkbox-bg: @gg-color-graphite;
 
-    @black: #000;
-    @dark: #151515;
-    @grey: #212121;
-    @grey-accent: #262626;
+    @black: @gg-color-black;
+    // darkened to generate contrast from items on screen and background
+    @dark: darken(@gg-color-graphite, 10%);
+    // darkened to meet text contrast requirements on read posts
+    @grey: darken(@gg-color-graphite, 5%);
 
-    /* used for table color only */
-    @med-grey: #313131;
-    @lighter-grey: #444;
-    @light-grey: #555;
-    @lightest-grey: #666;
+    @med-grey: @gg-color-graphite;
+    // used for hover emphasis
+    @lighter-grey: @gg-color-graphite;
+    @light-grey: @gg-color-dove-grey;
+    @lightest-grey: @gg-color-dove-grey;
 
     @contrast-grey: #999;
     @medium-color--lighter: #bbb;
     @medium-color: #aaa;
 
-    @light-color-4: #ccc;
-    @light-color-3: #ddd;
-    @light-color-2: #eee;
-    @light-color: #fff;
+    @light-color-4: @gg-color-alto;
+    @light-color-3: @gg-color-gallery;
+    @light-color-2: @gg-color-wild-sand;
+    @light-color: @gg-color-white;
 
     /* Special Colors */
 
-    @red: #d0021b;
-    @green: #58a400;
+    @red: @gg-color-dark-pink;
+    @green: @gg-color-light-green;
 
     @borderColor: @black;
     @composerBg: fade(@grey, 97.5%);
@@ -74,34 +107,35 @@ body.dark.dark--oled {
     background: @dark;
     color: @main-text;
 
-    @checkbox-border: #ddd;
-    @checkbox-bg: #141414;
+    @checkbox-border: @gg-color-alto;
+    @checkbox-bg: @gg-color-graphite;
 
-    @black: #000;
-    @dark: #000;
-    @grey: #111;
-    @grey-accent: #141414;
-    @med-grey: #181818;
-    @lighter-grey: #222;
-    @light-grey: #2a2a2a;
-    @lightest-grey: #333;
+    @black: @gg-color-black;
+    @dark: @gg-color-black;
+    // darkened to meet text contrast requirements on read posts
+    @grey: darken(@gg-color-graphite, 10%);
+    @med-grey: darken(@gg-color-graphite, 4%);
+    // used for hover emphasis
+    @lighter-grey: @gg-color-graphite;
+    @light-grey: @gg-color-dove-grey;
+    @lightest-grey: @gg-color-dove-grey;
 
-    @contrast-grey: #999;
+    @contrast-grey: darken(@gg-color-alto, 15%);
     @medium-color--lighter: #bbb;
-    @medium-color: #aaa;
+    @medium-color: darken(@gg-color-alto, 15%);
 
-    @light-color-4: #ccc;
-    @light-color-3: #ddd;
-    @light-color-2: #eee;
-    @light-color: #fff;
+    @light-color-4: @gg-color-alto;
+    @light-color-3: @gg-color-alto;
+    @light-color-2: @gg-color-gallery;
+    @light-color: @gg-color-wild-sand;
 
     /* Special Colors */
 
-    @red: #d0021b;
-    @green: #58a400;
+    @red: @gg-color-dark-pink;
+    @green: @gg-color-light-green;
 
-    @borderColor: @light-grey;
-    @composerBg: fade(@black, 92.5%);
+    @borderColor: @gg-color-graphite;
+    @composerBg: fade(@grey, 97.5%);
 
     /* Text Colors */
 
