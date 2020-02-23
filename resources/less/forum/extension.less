@@ -652,7 +652,8 @@ body.dark.dark--oled {
                 blockquote,
                 code,
                 pre {
-                    background-color: @lighter-grey !important;
+                    // lightened for embedded item contrast against background
+                    background-color: lighten(@med-grey, 5%) !important;
 
                     blockquote,
                     code,
