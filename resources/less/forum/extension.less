@@ -366,7 +366,10 @@ body.dark.dark--oled {
 
     /* #region Nav Pane */
 
-    .App.hasPane .DiscussionListItem .DiscussionListItem .DiscussionListItem-content {
+    .App.hasPane
+        .DiscussionListItem
+        .DiscussionListItem
+        .DiscussionListItem-content {
         &.unread {
             background-color: @med-grey !important;
 
@@ -726,12 +729,11 @@ body.dark.dark--oled {
 
     /* #region Best Answers */
 
-    .DiscussionPage .PostStream .PostStream-item .Post {
-        .item-bestAnswerPost {
-            // used as a green background accent
-            background-color: fade(@green, 17.5%);
-            color: @main-text-2;
-            border-left: 4px solid @green;
+    .DiscussionPage .PostStream .PostStream-item .Post .item-bestAnswerPost {
+        // used as a green background accent
+        background-color: fade(@green, 17.5%);
+        color: @main-text-2;
+        border-left: 4px solid @green;
 
         .Post-body a {
             color: unset;
@@ -1294,7 +1296,9 @@ body.dark.dark--oled {
             font-style: 14px !important;
         }
 
-        .DiscussionListItem .DiscussionListItem-content.read .DiscussionListItem-info {
+        .DiscussionListItem
+            .DiscussionListItem-content.read
+            .DiscussionListItem-info {
             .item-terminalPost,
             .item-discussion-views,
             .item-discussion-views::before,
@@ -1305,7 +1309,9 @@ body.dark.dark--oled {
             }
         }
 
-        .DiscussionListItem .DiscussionListItem-content.unread .DiscussionListItem-info {
+        .DiscussionListItem
+            .DiscussionListItem-content.unread
+            .DiscussionListItem-info {
             .item-terminalPost,
             .item-discussion-views,
             .item-discussion-views::before,
@@ -1340,7 +1346,9 @@ body.dark.dark--oled {
         }
 
         .DiscussionList.DiscussionList--searchResults {
-            .DiscussionListItem .DiscussionListItem-content.unread .DiscussionListItem-title {
+            .DiscussionListItem
+                .DiscussionListItem-content.unread
+                .DiscussionListItem-title {
                 font-weight: normal;
             }
         }
@@ -1529,11 +1537,8 @@ body.dark.dark--oled {
 
     .flatpickr-calendar {
         background: @med-grey;
-        box-shadow:
-            1px 0 0 @lightest-grey,
-            -1px 0 0 @lightest-grey,
-            0 1px 0 @lightest-grey,
-            0 -1px 0 @lightest-grey,
+        box-shadow: 1px 0 0 @lightest-grey, -1px 0 0 @lightest-grey,
+            0 1px 0 @lightest-grey, 0 -1px 0 @lightest-grey,
             0 3px 13px rgba(0, 0, 0, 0.08);
 
         .flatpickr-months {
