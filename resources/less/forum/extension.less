@@ -134,8 +134,24 @@ body.dark.dark--oled {
             border-bottom: 1px solid @lightest-grey;
         }
 
-        .DiscussionListItem .DiscussionListItem-content.read {
-            background: none !important;
+        &.hasPane {
+            .DiscussionListItem {
+                background-color: unset !important;
+
+                @media @large-screen {
+                    border-color: @borderColor;
+                }
+
+                .DiscussionListItem-content {
+                    &.read {
+                        background-color: unset !important;
+                    }
+
+                    &.unread {
+                        background-color: @grey !important;
+                    }
+                }
+            }
         }
 
         &:not(.hasPane) {
@@ -150,6 +166,28 @@ body.dark.dark--oled {
                 &::before {
                     background-color: lighten(@borderColor, 10%) !important;
                 }
+            }
+        }
+    }
+
+    @media @large-screen {
+        .DiscussionPage-list {
+            -webkit-box-shadow: unset;
+            box-shadow: unset;
+            overflow: visible;
+
+            //! Hack for an 'outline-right'
+            // Displays a 2px line on right side of app pane
+            // without affecting layout
+            &::after {
+                content: "";
+                display: block;
+                position: absolute;
+                height: 100%;
+                width: 2px;
+                background: @borderColor;
+                top: 0;
+                left: 100%;
             }
         }
     }
