@@ -366,21 +366,41 @@ body.dark.dark--oled {
 
     /* #region Nav Pane */
 
-    .App.hasPane
-        .DiscussionListItem
-        .DiscussionListItem
-        .DiscussionListItem-content {
+    .App.hasPane .DiscussionListItem .DiscussionListItem-content {
         &.unread {
             background-color: @med-grey !important;
 
+            .DiscussionListItem-info .item-discussion-views,
+            .DiscussionListItem-count {
+                color: @main-text-2 !important;
+
+                &::before {
+                    color: @main-text-2 !important;
+                }
+            }
+
+            .item-recipients .RecipientLabel {
+                &::after,
+                &-text .username {
+                    color: @main-text-2 !important;
+                }
+            }
+
             &:hover,
             &:focus {
-                .DiscussionListItem-info .item-tags .TagLabel {
-                    background-color: @black !important;
-                    color: @main-text !important;
-
-                    &-text {
+                .DiscussionListItem-info {
+                    .item-discussion-views,
+                    .item-replies {
                         color: @main-text !important;
+                    }
+
+                    .item-tags .TagLabel {
+                        background-color: @black !important;
+                        color: @main-text !important;
+
+                        &-text {
+                            color: @main-text !important;
+                        }
                     }
                 }
             }
@@ -388,6 +408,22 @@ body.dark.dark--oled {
 
         &.read {
             background-color: @grey !important;
+
+            .DiscussionListItem-info .item-discussion-views,
+            .DiscussionListItem-count {
+                color: @contrast-grey !important;
+
+                &::before {
+                    color: @contrast-grey !important;
+                }
+            }
+
+            .item-recipients .RecipientLabel {
+                &::after,
+                &-text .username {
+                    color: @main-text-2 !important;
+                }
+            }
         }
 
         &:hover,
@@ -729,15 +765,16 @@ body.dark.dark--oled {
 
     /* #region Best Answers */
 
-    .DiscussionPage .PostStream .PostStream-item .Post .item-bestAnswerPost {
-        // used as a green background accent
-        background-color: fade(@green, 17.5%);
-        color: @main-text-2;
-        border-left: 4px solid @green;
+    .DiscussionPage .PostStream .PostStream-item .Post {
+        .item-bestAnswerPost {
+            background-color: fade(@green, 15%);
+            color: @main-text-2;
+            border-left: 4px solid fade(@green, 50%);
 
-        .Post-body a {
-            color: unset;
-            border-bottom-color: unset;
+            .Post-body a {
+                color: unset;
+                border-bottom-color: unset;
+            }
         }
     }
 
@@ -771,8 +808,11 @@ body.dark.dark--oled {
 
     /* #endregion */
 
-    .DiscussionPage .PostStream .PostStream-item .Post .item-replies {
-        color: @contrast-grey;
+    .DiscussionPage .PostStream .PostStream-item .Post {
+        .item-replies,
+        .item-discussion-views {
+            color: @contrast-grey;
+        }
     }
 
     .Post-mentionedBy {
