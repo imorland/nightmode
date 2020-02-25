@@ -6,17 +6,54 @@
 @small-screen: ~"only screen and (max-width: 767px)";
 @large-screen: ~"only screen and (min-width: 768px)";
 
-/* General Colors */
+// ! giffgaff branding colours
+//
+// Below are the set giffgaff branding colours
+// taken from the giffgaff design system website.
+//
+// These colours should be deviated from as
+// little as possible, except where necessary
+// (e.g. native Flarum component re-colouring
+// which matches the current look of the
+// community).
+//
+// ? Website: https://www.giffgaff.design/
+//
+// Variables below match the design tokens
+// found on the website:
+// https://www.giffgaff.design/design-fundamentals/colour-palette/
 
-@gg-yellow: #fcc31e;
-@gg-pink: #eb5f8e;
+// ! If you deviate from a colour, please
+// ! explain why in a comment next to/above
+// ! the deviation
+
+@gg-color-alto: #d0d0d0;
+@gg-color-black: #000000;
+@gg-color-dark-blue: #00528a;
+@gg-color-dark-green: #007349;
+@gg-color-dark-pink: #ae0d21; // guys this is red...
+@gg-color-dove-grey: #666666;
+@gg-color-gallery: #ececec;
+@gg-color-graphite: #2f2e31;
+@gg-color-light-blue: #35adce;
+@gg-color-light-green: #72b72a;
+@gg-color-light-pink: #eb5f8e;
+@gg-color-orange: #ea5b25;
+@gg-color-white: #ffffff;
+@gg-color-wild-sand: #f5f5f5;
+@gg-color-yellow: #fcc31e;
+
+// Nowhere in style guides, but used
+// for the button component
+@gg-color-button-dark-yellow: #7d610f;
+@gg-color-button-gray: #b2b2b2;
 
 .ggDarkModeBanner {
     position: fixed;
     padding: 8px 4px;
     font-size: 1rem;
     text-align: center;
-    background: #00528a;
+    background: @gg-color-dark-blue;
     bottom: 0;
     left: 0;
     right: 0;
@@ -26,33 +63,34 @@ body.dark:not(.dark--oled) {
     background: @dark;
     color: @main-text;
 
-    @checkbox-border: #eee;
-    @checkbox-bg: #313131;
+    @checkbox-border: @gg-color-wild-sand;
+    @checkbox-bg: @gg-color-graphite;
 
-    @black: #000;
-    @dark: #151515;
-    @grey: #212121;
-    @grey-accent: #262626;
+    @black: @gg-color-black;
+    // darkened to generate contrast from items on screen and background
+    @dark: darken(@gg-color-graphite, 10%);
+    // darkened to meet text contrast requirements on read posts
+    @grey: darken(@gg-color-graphite, 5%);
 
-    /* used for table color only */
-    @med-grey: #313131;
-    @lighter-grey: #444;
-    @light-grey: #555;
-    @lightest-grey: #666;
+    @med-grey: @gg-color-graphite;
+    // used for hover emphasis
+    @lighter-grey: @gg-color-graphite;
+    @light-grey: @gg-color-dove-grey;
+    @lightest-grey: @gg-color-dove-grey;
 
     @contrast-grey: #999;
     @medium-color--lighter: #bbb;
     @medium-color: #aaa;
 
-    @light-color-4: #ccc;
-    @light-color-3: #ddd;
-    @light-color-2: #eee;
-    @light-color: #fff;
+    @light-color-4: @gg-color-alto;
+    @light-color-3: @gg-color-gallery;
+    @light-color-2: @gg-color-wild-sand;
+    @light-color: @gg-color-white;
 
     /* Special Colors */
 
-    @red: #d0021b;
-    @green: #58a400;
+    @red: @gg-color-dark-pink;
+    @green: @gg-color-light-green;
 
     @borderColor: @black;
     @composerBg: fade(@grey, 97.5%);
@@ -74,34 +112,35 @@ body.dark.dark--oled {
     background: @dark;
     color: @main-text;
 
-    @checkbox-border: #ddd;
-    @checkbox-bg: #141414;
+    @checkbox-border: @gg-color-alto;
+    @checkbox-bg: @gg-color-graphite;
 
-    @black: #000;
-    @dark: #000;
-    @grey: #111;
-    @grey-accent: #141414;
-    @med-grey: #181818;
-    @lighter-grey: #222;
-    @light-grey: #2a2a2a;
-    @lightest-grey: #333;
+    @black: @gg-color-black;
+    @dark: @gg-color-black;
+    // darkened to meet text contrast requirements on read posts
+    @grey: darken(@gg-color-graphite, 10%);
+    @med-grey: darken(@gg-color-graphite, 4%);
+    // used for hover emphasis
+    @lighter-grey: @gg-color-graphite;
+    @light-grey: @gg-color-dove-grey;
+    @lightest-grey: @gg-color-dove-grey;
 
-    @contrast-grey: #999;
+    @contrast-grey: darken(@gg-color-alto, 15%);
     @medium-color--lighter: #bbb;
-    @medium-color: #aaa;
+    @medium-color: darken(@gg-color-alto, 15%);
 
-    @light-color-4: #ccc;
-    @light-color-3: #ddd;
-    @light-color-2: #eee;
-    @light-color: #fff;
+    @light-color-4: @gg-color-alto;
+    @light-color-3: @gg-color-alto;
+    @light-color-2: @gg-color-gallery;
+    @light-color: @gg-color-wild-sand;
 
     /* Special Colors */
 
-    @red: #d0021b;
-    @green: #58a400;
+    @red: @gg-color-dark-pink;
+    @green: @gg-color-light-green;
 
-    @borderColor: @light-grey;
-    @composerBg: fade(@black, 92.5%);
+    @borderColor: @gg-color-graphite;
+    @composerBg: fade(@grey, 97.5%);
 
     /* Text Colors */
 
@@ -280,7 +319,7 @@ body.dark.dark--oled {
         &:focus,
         &.focus {
             color: @main-text-2;
-            border-color: @lighter-grey;
+            border-color: @light-grey;
         }
     }
 
@@ -289,7 +328,7 @@ body.dark.dark--oled {
     }
 
     hr {
-        border-color: @lighter-grey;
+        border-color: @light-grey;
     }
 
     /* #region Placeholders */
@@ -327,7 +366,10 @@ body.dark.dark--oled {
 
     /* #region Nav Pane */
 
-    .App.hasPane .DiscussionListItem .DiscussionListItem .DiscussionListItem-content {
+    .App.hasPane
+        .DiscussionListItem
+        .DiscussionListItem
+        .DiscussionListItem-content {
         &.unread {
             background-color: @med-grey !important;
 
@@ -613,7 +655,8 @@ body.dark.dark--oled {
                 blockquote,
                 code,
                 pre {
-                    background-color: @lighter-grey !important;
+                    // lightened for embedded item contrast against background
+                    background-color: lighten(@med-grey, 5%) !important;
 
                     blockquote,
                     code,
@@ -687,9 +730,10 @@ body.dark.dark--oled {
     /* #region Best Answers */
 
     .DiscussionPage .PostStream .PostStream-item .Post .item-bestAnswerPost {
-        background-color: fade(@green, 15%);
+        // used as a green background accent
+        background-color: fade(@green, 17.5%);
         color: @main-text-2;
-        border-left: 4px solid fade(@green, 50%);
+        border-left: 4px solid @green;
 
         .Post-body a {
             color: unset;
@@ -778,42 +822,77 @@ body.dark.dark--oled {
 
     /* #region Primary Discussion Button */
 
-    button.Button--primary {
-        &.Button--cancel .Button-label {
-            background-color: @med-grey;
-            color: @light-color-4;
-        }
+    .primaryButtonMixin() {
+        button.Button--primary {
+            &.Button--cancel {
+                background-color: @gg-color-button-gray !important;
 
-        .Button-label {
-            // SVG doodles from gg static CDN, converted to data
-            // URIs, and set to use @contrast-grey as their colour
-            //
-            // This is much better supported than the previous
-            // filter: brightness(x.xx) hack, at the cost of size
-            &::after {
-                @svg: escape(
-                    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36.9 37.1"><path fill="@{contrast-grey}" d="M3.7 36A34.4 34.4 0 0028.2 2.9c0-3.9-6-3.9-6 0a28.3 28.3 0 01-20 27.3c-3.8 1-2.2 6.9 1.5 5.8zM33.2 16a17.5 17.5 0 01-11.5 17.4c-2.2.8-1.3 4.3 1 3.5a21.2 21.2 0 0014.2-21c-.1-2.3-3.8-2.3-3.7 0z"/></svg>'
-                );
+                &:disabled,
+                &.disabled {
+                    background-color: @gg-color-button-gray !important;
 
-                background-image: url("data:image/svg+xml,@{svg}");
+                    .Button-label {
+                        background-color: @gg-color-dove-grey !important;
+                    }
+                }
+
+                &:not(.loading) {
+                    .Button-label {
+                        background-color: @gg-color-white !important;
+
+                        // SVG doodles taken from latest design system
+                        // as per https://giffgaff.design/components/buttons
+                        &::after {
+                            background-image: url("https://static.giffgaff.com/design-system/style-guide/49.1.7/images/svg/CTA_doodles_right-01-gray.svg") !important;
+                        }
+
+                        &::before {
+                            background-image: url("https://static.giffgaff.com/design-system/style-guide/49.1.7/images/svg/CTA_doodles_left-01-gray.svg") !important;
+                        }
+                    }
+                }
             }
 
-            &::before {
-                @svg: escape(
-                    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36.9 37.1"><path fill="@{contrast-grey}" d="M33.2 1A34.4 34.4 0 008.7 34.3c0 3.8 6 3.8 6 0A28.3 28.3 0 0134.8 6.9c3.7-1.1 2.1-7-1.6-5.8zM3.7 21.1A17.5 17.5 0 0115.2 3.7c2.3-.8 1.3-4.4-1-3.6A21.2 21.2 0 000 21.1c.1 2.4 3.8 2.4 3.7 0z"/></svg>'
-                );
+            &:not(.Button--cancel) {
+                background-color: @gg-color-button-dark-yellow !important;
 
-                background-image: url("data:image/svg+xml,@{svg}");
+                &:disabled,
+                &.disabled {
+                    background-color: @gg-color-button-gray !important;
+
+                    .Button-label {
+                        background-color: @gg-color-dove-grey !important;
+                    }
+                }
+
+                &:not(.loading) {
+                    .Button-label {
+                        background-color: @gg-color-yellow !important;
+
+                        // SVG doodles taken from latest design system
+                        // as per https://giffgaff.design/components/buttons
+                        &::after {
+                            background-image: url("https://static.giffgaff.com/design-system/style-guide/49.1.7/images/svg/CTA_doodles_right-01-yellow.svg") !important;
+                        }
+
+                        &::before {
+                            background-image: url("https://static.giffgaff.com/design-system/style-guide/49.1.7/images/svg/CTA_doodles_left-01-yellow.svg") !important;
+                        }
+                    }
+                }
             }
         }
     }
 
-    .DiscussionPage .DiscussionPage-nav .item-controls .itemCount1 button.Button--primary {
-        background-color: @grey;
+    .Modal .Modal-body,
+    .item-bestAnswer,
+    .DiscussionPage .DiscussionPage-nav .item-controls .itemCount1 {
+        .primaryButtonMixin();
+    }
 
-        .Button-label {
-            border-color: @grey;
-            color: @black;
+    @media @large-screen {
+        .sideNav {
+            .primaryButtonMixin();
         }
     }
 
@@ -1208,10 +1287,6 @@ body.dark.dark--oled {
             }
         }
 
-        .IndexPage-nav.sideNav .Dropdown-menu.dropdown-menu li * {
-            color: @main-text-2 !important;
-        }
-
         .DiscussionPage .PostStream .PostStream-item .Post.ReplyPlaceholder {
             background-color: @lighter-grey;
         }
@@ -1221,7 +1296,9 @@ body.dark.dark--oled {
             font-style: 14px !important;
         }
 
-        .DiscussionListItem .DiscussionListItem-content.read .DiscussionListItem-info {
+        .DiscussionListItem
+            .DiscussionListItem-content.read
+            .DiscussionListItem-info {
             .item-terminalPost,
             .item-discussion-views,
             .item-discussion-views::before,
@@ -1232,7 +1309,9 @@ body.dark.dark--oled {
             }
         }
 
-        .DiscussionListItem .DiscussionListItem-content.unread .DiscussionListItem-info {
+        .DiscussionListItem
+            .DiscussionListItem-content.unread
+            .DiscussionListItem-info {
             .item-terminalPost,
             .item-discussion-views,
             .item-discussion-views::before,
@@ -1267,7 +1346,9 @@ body.dark.dark--oled {
         }
 
         .DiscussionList.DiscussionList--searchResults {
-            .DiscussionListItem .DiscussionListItem-content.unread .DiscussionListItem-title {
+            .DiscussionListItem
+                .DiscussionListItem-content.unread
+                .DiscussionListItem-title {
                 font-weight: normal;
             }
         }
@@ -1348,7 +1429,7 @@ body.dark.dark--oled {
             }
 
             & .PollOption-active {
-                background: fade(@gg-pink, 60%) !important;
+                background: fade(@gg-color-light-pink, 70%) !important;
             }
 
             // override poll checkbox colours
@@ -1430,13 +1511,23 @@ body.dark.dark--oled {
     /* #region Tables */
 
     table {
-        background-color: @grey-accent !important;
+        background-color: @grey !important;
         background-clip: content-box;
         max-width: max-content;
 
         td,
         th {
-            border-color: @lighter-grey !important;
+            border-color: @med-grey !important;
+        }
+    }
+
+    .Post table {
+        // override if in a post, generating higher contrast.
+        background-color: @med-grey !important;
+
+        td,
+        th {
+            border-color: @light-grey !important;
         }
     }
 
@@ -1446,11 +1537,8 @@ body.dark.dark--oled {
 
     .flatpickr-calendar {
         background: @med-grey;
-        box-shadow:
-            1px 0 0 @lightest-grey,
-            -1px 0 0 @lightest-grey,
-            0 1px 0 @lightest-grey,
-            0 -1px 0 @lightest-grey,
+        box-shadow: 1px 0 0 @lightest-grey, -1px 0 0 @lightest-grey,
+            0 1px 0 @lightest-grey, 0 -1px 0 @lightest-grey,
             0 3px 13px rgba(0, 0, 0, 0.08);
 
         .flatpickr-months {
@@ -1484,7 +1572,7 @@ body.dark.dark--oled {
             }
 
             &.today {
-                border-color: @gg-yellow;
+                border-color: @gg-color-yellow;
             }
 
             &.flatpickr-disabled,
@@ -1598,6 +1686,8 @@ body.dark.dark--oled {
                     padding: 8px 12px;
                 }
             }
+
+            .primaryButtonMixin();
         }
 
         .Modal-footer {
