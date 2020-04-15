@@ -7,12 +7,15 @@ import User from "flarum/models/User";
 
 import addMenuItems from "./addMenuItems";
 import AutoThemeModal from "./components/AutoThemeModal";
+import addSettingsItems from "./addSettingsItems";
 
 app.initializers.add("fof-nightmode", app => {
     User.prototype.canUseDarkMode = Model.attribute("canUseDarkMode");
     User.prototype.canChangeDarkModeType = Model.attribute(
         "canChangeDarkModeType"
     );
+
+    addSettingsItems();
 
     extend(Page.prototype, "init", function() {
         function HandleModalSubmit(e) {

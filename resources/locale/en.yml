@@ -13,6 +13,7 @@ fof-nightmode:
             settings:
                 oled_on: Enable OLED dark mode
                 oled_off: Disable OLED dark mode
+                dark_mode: Use dark mode
         auto_theme:
             dialog:
                 title: "Dark mode"
