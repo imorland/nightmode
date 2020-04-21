@@ -241,10 +241,6 @@ body.dark.dark--oled {
         }
     }
 
-    .DiscussionPage .PostStream .PostStream-item .Post .item-bestAnswerPost {
-        background-color: fade(@grey, 50%) !important;
-    }
-
     .PostStream-item,
     .UserPage .PostsUserPage .PostsUserPage-list > li {
         background-color: @black !important;
@@ -769,13 +765,15 @@ body.dark.dark--oled {
 
     /* #region Best Answers */
 
-    .DiscussionPage .PostStream .PostStream-item .Post {
-        .item-bestAnswerPost {
-            background-color: fade(@green, 15%);
-            color: @main-text-2;
-            border-left: 4px solid fade(@green, 50%);
+    .Post-footer .item-bestAnswerPost {
+        background-color: fade(@grey, 50%) !important;
+        color: @main-text-2 !important;
+        border-left: 4px solid fade(@green, 50%);
 
-            .Post-body a {
+        .Post-body {
+            color: @main-text-2 !important;
+
+            a {
                 color: unset;
                 border-bottom-color: unset;
             }
