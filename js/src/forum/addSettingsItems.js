@@ -2,8 +2,11 @@ import { extend } from "flarum/extend";
 
 import SettingsPage from "flarum/components/SettingsPage";
 
+import LoadingIndicator from "flarum/components/LoadingIndicator";
 import Select from "flarum/components/Select";
 import FieldSet from "flarum/components/FieldSet";
+
+import { SetTheme } from "./setSelectedTheme";
 
 export default function () {
     extend(SettingsPage.prototype, "settingsItems", function (items) {
@@ -13,10 +16,9 @@ export default function () {
 
         if (!CanChangeTheme) return;
 
-        const CurrentTheme =
-            typeof user.preferences().fofNightModeThemeType !== "boolean"
-                ? 0
-                : user.preferences().fofNightModeThemeType;
+        const CurrentTheme = user.preferences().davwheat_themer_themetype
+            ? user.preferences().davwheat_themer_themetype
+            : 0;
 
         items.add(
             "theme",
@@ -37,17 +39,17 @@ export default function () {
                         key: "selected_theme",
                         className: "Settings-theme--input",
                         onchange: (e) => {
-                            let auto = false,
-                                light = false,
-                                dark = false,
-                                oled = false;
-
+                            m.redraw();
                             user.savePreferences({
-                                fofNightModeThemeType: e.toString(),
+                                davwheat_themer_themetype: e,
                             }).then(() => {
                                 console.info("SAVED", e);
                                 console.log(user);
                                 m.redraw();
+
+                                // need to force-update selected theme (as it's only set
+                                // on a page load and redraw doesn't count as a apge load)
+                                SetTheme();
                             });
                         },
                         options: [
@@ -78,9 +80,12 @@ export default function () {
                             ? app.translator.trans(
                                   "fof-nightmode.forum.user.settings.option_descriptions.dark"
                               )
-                            : app.translator.trans(
+                            : CurrentTheme === 3
+                            ? app.translator.trans(
                                   "fof-nightmode.forum.user.settings.option_descriptions.oled"
-                              )}
+                              )
+                            : // prevents nasty paragraph switching
+                              LoadingIndicator.component()}
                     </p>,
                 ],
             })

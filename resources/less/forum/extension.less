@@ -1789,3 +1789,23 @@ body.dark.dark--oled {
         }
     }
 }
+
+body.dark {
+    .SettingsPage {
+        .Settings-theme {
+            select.FormControl {
+                border-color: #777;
+                background: #222224;
+
+                &:focus {
+                    color: #fff;
+                    background: #2f2e31;
+
+                    ~ .Select-caret {
+                        color: #fff;
+                    }
+                }
+            }
+        }
+    }
+}
