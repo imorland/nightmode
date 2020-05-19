@@ -1752,3 +1752,40 @@ body.dark.dark--oled {
     }
     // #endregion
 }
+
+.UserPage {
+    .SettingsPage {
+        .Settings-theme {
+            p {
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 24px;
+            }
+
+            select.FormControl {
+                color: #fff;
+
+                ~ .Select-caret {
+                    color: #fff;
+                }
+
+                &:focus {
+                    color: #000;
+
+                    ~ .Select-caret {
+                        color: #000;
+                    }
+                }
+            }
+
+            &--selection_description {
+                @border: 4px dotted rgba(128, 128, 128, 0.2);
+
+                padding: 12px 8px;
+                background-color: rgba(128, 128, 128, 0.08);
+                border-top: @border;
+                border-bottom: @border;
+            }
+        }
+    }
+}

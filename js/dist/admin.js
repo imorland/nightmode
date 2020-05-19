@@ -125,12 +125,17 @@ flarum_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializers.add("fof-nightmod
       icon: "fas fa-moon",
       label: flarum_app__WEBPACK_IMPORTED_MODULE_0___default.a.translator.trans("fof-nightmode.admin.permissions.use"),
       permission: "user.canUseDarkMode"
-    }, 1);
-    items.add("change-dark-mode-type", {
-      icon: "far fa-sun",
-      label: flarum_app__WEBPACK_IMPORTED_MODULE_0___default.a.translator.trans("fof-nightmode.admin.permissions.changeType"),
-      permission: "user.canChangeDarkModeType"
-    }, 1);
+    }, 1); // items.add(
+    //     "change-dark-mode-type",
+    //     {
+    //         icon: "far fa-sun",
+    //         label: app.translator.trans(
+    //             "fof-nightmode.admin.permissions.changeType"
+    //         ),
+    //         permission: "user.canChangeDarkModeType"
+    //     },
+    //     1
+    // );
   });
 });
 
