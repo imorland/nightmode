@@ -24,8 +24,6 @@ class Preferences
 
     public function addUserPreference(ConfigureUserPreferences $event)
     {
-        $event->add('fofNightMode', 'boolval', false);
-        $event->add('fofNightModeOledType', 'boolval', false);
-        $event->add('fofNightModeOverrideAuto', 'boolval', false);
+        $event->add('davwheat_themer_themetype', 'intval', false);
     }
 }

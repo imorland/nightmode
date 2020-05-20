@@ -241,10 +241,6 @@ body.dark.dark--oled {
         }
     }
 
-    .DiscussionPage .PostStream .PostStream-item .Post .item-bestAnswerPost {
-        background-color: fade(@grey, 50%) !important;
-    }
-
     .PostStream-item,
     .UserPage .PostsUserPage .PostsUserPage-list > li {
         background-color: @black !important;
@@ -769,13 +765,15 @@ body.dark.dark--oled {
 
     /* #region Best Answers */
 
-    .DiscussionPage .PostStream .PostStream-item .Post {
-        .item-bestAnswerPost {
-            background-color: fade(@green, 15%);
-            color: @main-text-2;
-            border-left: 4px solid fade(@green, 50%);
+    .Post-footer .item-bestAnswerPost {
+        background-color: fade(@grey, 50%) !important;
+        color: @main-text-2 !important;
+        border-left: 4px solid fade(@green, 50%);
 
-            .Post-body a {
+        .Post-body {
+            color: @main-text-2 !important;
+
+            a {
                 color: unset;
                 border-bottom-color: unset;
             }
@@ -1753,4 +1751,61 @@ body.dark.dark--oled {
         }
     }
     // #endregion
+}
+
+.UserPage {
+    .SettingsPage {
+        .Settings-theme {
+            p {
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 24px;
+            }
+
+            select.FormControl {
+                color: #fff;
+
+                ~ .Select-caret {
+                    color: #fff;
+                }
+
+                &:focus {
+                    color: #000;
+
+                    ~ .Select-caret {
+                        color: #000;
+                    }
+                }
+            }
+
+            &--selection_description {
+                @border: 4px dotted rgba(128, 128, 128, 0.2);
+
+                padding: 12px 8px;
+                background-color: rgba(128, 128, 128, 0.08);
+                border-top: @border;
+                border-bottom: @border;
+            }
+        }
+    }
+}
+
+body.dark {
+    .SettingsPage {
+        .Settings-theme {
+            select.FormControl {
+                border-color: #777;
+                background: #222224;
+
+                &:focus {
+                    color: #fff;
+                    background: #2f2e31;
+
+                    ~ .Select-caret {
+                        color: #fff;
+                    }
+                }
+            }
+        }
+    }
 }
