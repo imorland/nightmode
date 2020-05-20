@@ -24,6 +24,7 @@ class Preferences
 
     public function addUserPreference(ConfigureUserPreferences $event)
     {
-        $event->add('davwheat_themer_themetype', 'intval', false);
+        $event->add('davwheat_themer_themetype', 'intval', 0);
+        $event->add('davwheat_themer_use_per_device', 'boolval', false);
     }
 }

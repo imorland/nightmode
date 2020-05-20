@@ -15,7 +15,10 @@ fof-nightmode:
         user:
             settings:
                 heading: Theme
-                description: Choose which colour theme you want to use with the giffgaff community. This theme will be linked to your account and applies to all your devices #unless you check the box below for per device settings.
+                description: Choose which colour theme you want to use with the giffgaff community.
+                description2: This theme will be linked to your account and applies to all your devices unless you toggle on the switch below for per device settings.
+                device_specific_setting_checkbox: Use per device settings
+                device_specific_setting_checkbox_tooltip: Your theme choice will be saved individually for each of your devices.
                 options:
                     auto: Based on browser or device options
                     light: Light

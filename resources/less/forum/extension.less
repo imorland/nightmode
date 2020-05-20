@@ -869,15 +869,6 @@ body.dark.dark--oled {
             &.Button--cancel {
                 background-color: @gg-color-button-gray !important;
 
-                &:disabled,
-                &.disabled {
-                    background-color: @gg-color-button-gray !important;
-
-                    .Button-label {
-                        background-color: @gg-color-dove-grey !important;
-                    }
-                }
-
                 &:not(.loading) {
                     .Button-label {
                         background-color: @gg-color-white !important;
@@ -893,10 +884,6 @@ body.dark.dark--oled {
                         }
                     }
                 }
-            }
-
-            &:not(.Button--cancel) {
-                background-color: @gg-color-button-dark-yellow !important;
 
                 &:disabled,
                 &.disabled {
@@ -906,6 +893,10 @@ body.dark.dark--oled {
                         background-color: @gg-color-dove-grey !important;
                     }
                 }
+            }
+
+            &:not(.Button--cancel) {
+                background-color: @gg-color-button-dark-yellow !important;
 
                 &:not(.loading) {
                     .Button-label {
@@ -920,6 +911,15 @@ body.dark.dark--oled {
                         &::before {
                             background-image: url("https://static.giffgaff.com/design-system/style-guide/49.1.7/images/svg/CTA_doodles_left-01-yellow.svg") !important;
                         }
+                    }
+                }
+
+                &:disabled,
+                &.disabled {
+                    background-color: @gg-color-button-gray !important;
+
+                    .Button-label {
+                        background-color: @gg-color-dove-grey !important;
                     }
                 }
             }
