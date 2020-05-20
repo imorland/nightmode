@@ -5,8 +5,10 @@ import SettingsPage from "flarum/components/SettingsPage";
 import LoadingIndicator from "flarum/components/LoadingIndicator";
 import Select from "flarum/components/Select";
 import FieldSet from "flarum/components/FieldSet";
+import Switch from "flarum/components/Switch";
 
 import { SetTheme } from "./setSelectedTheme";
+import fixInvalidThemeSetting from "./fixInvalidThemeSetting";
 
 export default function () {
     extend(SettingsPage.prototype, "settingsItems", function (items) {
@@ -16,7 +18,18 @@ export default function () {
 
         if (!CanChangeTheme) return;
 
-        const CurrentTheme = user.preferences().davwheat_themer_themetype
+        const PerDevice = user.preferences().davwheat_themer_use_per_device
+            ? user.preferences().davwheat_themer_use_per_device
+            : false;
+
+        if (PerDevice) {
+            fixInvalidThemeSetting();
+        }
+
+        const CurrentTheme = PerDevice
+            ? // fetch through LS is per device enabled
+              parseInt(localStorage.getItem("davwheat_themer_themetype"))
+            : user.preferences().davwheat_themer_themetype
             ? user.preferences().davwheat_themer_themetype
             : 0;
 
@@ -33,18 +46,67 @@ export default function () {
                             "fof-nightmode.forum.user.settings.description"
                         )}
                     </p>,
+                    <p className="description">
+                        {app.translator.trans(
+                            "fof-nightmode.forum.user.settings.description2"
+                        )}
+                    </p>,
+                    Switch.component({
+                        children: app.translator.trans(
+                            "fof-nightmode.forum.user.settings.device_specific_setting_checkbox"
+                        ),
+                        className: "Settings-theme--per_device_cb",
+                        state: PerDevice,
+                        onchange: (checked) => {
+                            user.savePreferences({
+                                davwheat_themer_use_per_device: checked,
+                            }).then(() => {
+                                if (checked) {
+                                    // save current theme as this device's default
+                                    localStorage.setItem(
+                                        "davwheat_themer_themetype",
+                                        CurrentTheme
+                                    );
+
+                                    m.redraw();
+
+                                    // need to force-update selected theme (as it's only set
+                                    // on a page load and redraw doesn't count as a apge load)
+                                    SetTheme();
+                                } else {
+                                    // set user theme to that of current device
+                                    user.savePreferences({
+                                        davwheat_themer_themetype: CurrentTheme,
+                                    }).then(() => {
+                                        m.redraw();
+
+                                        // need to force-update selected theme (as it's only set
+                                        // on a page load and redraw doesn't count as a apge load)
+                                        SetTheme();
+                                    });
+                                }
+                            });
+                        },
+                    }),
                     Select.component({
                         value: CurrentTheme ? CurrentTheme : 0,
                         label: "test",
                         key: "selected_theme",
                         className: "Settings-theme--input",
                         onchange: (e) => {
-                            m.redraw();
+                            if (PerDevice) {
+                                localStorage.setItem(
+                                    "davwheat_themer_themetype",
+                                    e
+                                );
+                                m.redraw();
+                                SetTheme();
+                                return;
+                            }
+
                             user.savePreferences({
                                 davwheat_themer_themetype: e,
                             }).then(() => {
-                                console.info("SAVED", e);
-                                console.log(user);
                                 m.redraw();
 
                                 // need to force-update selected theme (as it's only set
