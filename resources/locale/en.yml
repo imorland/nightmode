@@ -2,16 +2,7 @@ fof-nightmode:
     admin:
         permissions:
             use: Can set theme for self
-            # changeType: Can change dark mode type
     forum:
-        night: Dark mode
-        day: Light mode
-        # a1 and a2 are variables for the anchor tag, replaced in addMenuItems.js
-        # ! They must remain for the automatic switch link to work !
-        banners:
-            oled: "If dark mode is still too light, you can {a1}switch to black mode{a2} (saves battery on OLED screens)."
-            how_to_change: "We've put you in dark mode based on your device settings. {a1}Click here to change your theme.{a2}"
-
         user:
             settings:
                 heading: Theme
