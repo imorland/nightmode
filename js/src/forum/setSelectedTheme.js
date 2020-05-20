@@ -17,7 +17,7 @@ export function SetTheme() {
         return;
     }
 
-    const PerDevice = user.preferences().davwheat_themer_use_per_device;
+    const PerDevice = user.preferences().giffgaffcommunity_themer_use_per_device;
 
     if (PerDevice) {
         fixInvalidThemeSetting();
@@ -25,9 +25,9 @@ export function SetTheme() {
 
     const CurrentTheme = PerDevice
         ? // fetch through LS is per device enabled
-          parseInt(localStorage.getItem("davwheat_themer_themetype"))
-        : user.preferences().davwheat_themer_themetype
-        ? user.preferences().davwheat_themer_themetype
+          parseInt(localStorage.getItem("giffgaffcommunity_themer_themetype"))
+        : user.preferences().giffgaffcommunity_themer_themetype
+        ? user.preferences().giffgaffcommunity_themer_themetype
         : 0;
 
     SetThemeFromID(CurrentTheme);

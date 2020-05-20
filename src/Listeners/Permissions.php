@@ -1,6 +1,6 @@
 <?php
 
-namespace FoF\NightMode\Listeners;
+namespace GiffgaffCommunity\NightMode\Listeners;
 
 use Flarum\Api\Event\Serializing;
 use Flarum\Api\Serializer\UserSerializer;

@@ -18,8 +18,8 @@ export default function () {
 
         if (!CanChangeTheme) return;
 
-        const PerDevice = user.preferences().davwheat_themer_use_per_device
-            ? user.preferences().davwheat_themer_use_per_device
+        const PerDevice = user.preferences().giffgaffcommunity_themer_use_per_device
+            ? user.preferences().giffgaffcommunity_themer_use_per_device
             : false;
 
         if (PerDevice) {
@@ -28,43 +28,43 @@ export default function () {
 
         const CurrentTheme = PerDevice
             ? // fetch through LS is per device enabled
-              parseInt(localStorage.getItem("davwheat_themer_themetype"))
-            : user.preferences().davwheat_themer_themetype
-            ? user.preferences().davwheat_themer_themetype
+              parseInt(localStorage.getItem("giffgaffcommunity_themer_themetype"))
+            : user.preferences().giffgaffcommunity_themer_themetype
+            ? user.preferences().giffgaffcommunity_themer_themetype
             : 0;
 
         items.add(
             "theme",
             FieldSet.component({
                 label: app.translator.trans(
-                    "fof-nightmode.forum.user.settings.heading"
+                    "giffgaffcommunity-nightmode.forum.user.settings.heading"
                 ),
                 className: "Settings-theme",
                 children: [
                     <p className="description">
                         {app.translator.trans(
-                            "fof-nightmode.forum.user.settings.description"
+                            "giffgaffcommunity-nightmode.forum.user.settings.description"
                         )}
                     </p>,
                     <p className="description">
                         {app.translator.trans(
-                            "fof-nightmode.forum.user.settings.description2"
+                            "giffgaffcommunity-nightmode.forum.user.settings.description2"
                         )}
                     </p>,
                     Switch.component({
                         children: app.translator.trans(
-                            "fof-nightmode.forum.user.settings.device_specific_setting_checkbox"
+                            "giffgaffcommunity-nightmode.forum.user.settings.device_specific_setting_checkbox"
                         ),
                         className: "Settings-theme--per_device_cb",
                         state: PerDevice,
                         onchange: (checked) => {
                             user.savePreferences({
-                                davwheat_themer_use_per_device: checked,
+                                giffgaffcommunity_themer_use_per_device: checked,
                             }).then(() => {
                                 if (checked) {
                                     // save current theme as this device's default
                                     localStorage.setItem(
-                                        "davwheat_themer_themetype",
+                                        "giffgaffcommunity_themer_themetype",
                                         CurrentTheme
                                     );
 
@@ -76,7 +76,7 @@ export default function () {
                                 } else {
                                     // set user theme to that of current device
                                     user.savePreferences({
-                                        davwheat_themer_themetype: CurrentTheme,
+                                        giffgaffcommunity_themer_themetype: CurrentTheme,
                                     }).then(() => {
                                         m.redraw();
 
@@ -96,7 +96,7 @@ export default function () {
                         onchange: (e) => {
                             if (PerDevice) {
                                 localStorage.setItem(
-                                    "davwheat_themer_themetype",
+                                    "giffgaffcommunity_themer_themetype",
                                     e
                                 );
                                 m.redraw();
@@ -105,7 +105,7 @@ export default function () {
                             }
 
                             user.savePreferences({
-                                davwheat_themer_themetype: e,
+                                giffgaffcommunity_themer_themetype: e,
                             }).then(() => {
                                 m.redraw();
 
@@ -116,35 +116,35 @@ export default function () {
                         },
                         options: [
                             app.translator.trans(
-                                "fof-nightmode.forum.user.settings.options.auto"
+                                "giffgaffcommunity-nightmode.forum.user.settings.options.auto"
                             ),
                             app.translator.trans(
-                                "fof-nightmode.forum.user.settings.options.light"
+                                "giffgaffcommunity-nightmode.forum.user.settings.options.light"
                             ),
                             app.translator.trans(
-                                "fof-nightmode.forum.user.settings.options.dark"
+                                "giffgaffcommunity-nightmode.forum.user.settings.options.dark"
                             ),
                             app.translator.trans(
-                                "fof-nightmode.forum.user.settings.options.oled"
+                                "giffgaffcommunity-nightmode.forum.user.settings.options.oled"
                             ),
                         ],
                     }),
                     <p className="Settings-theme--selection_description">
                         {CurrentTheme === 0
                             ? app.translator.trans(
-                                  "fof-nightmode.forum.user.settings.option_descriptions.auto"
+                                  "giffgaffcommunity-nightmode.forum.user.settings.option_descriptions.auto"
                               )
                             : CurrentTheme === 1
                             ? app.translator.trans(
-                                  "fof-nightmode.forum.user.settings.option_descriptions.light"
+                                  "giffgaffcommunity-nightmode.forum.user.settings.option_descriptions.light"
                               )
                             : CurrentTheme === 2
                             ? app.translator.trans(
-                                  "fof-nightmode.forum.user.settings.option_descriptions.dark"
+                                  "giffgaffcommunity-nightmode.forum.user.settings.option_descriptions.dark"
                               )
                             : CurrentTheme === 3
                             ? app.translator.trans(
-                                  "fof-nightmode.forum.user.settings.option_descriptions.oled"
+                                  "giffgaffcommunity-nightmode.forum.user.settings.option_descriptions.oled"
                               )
                             : // prevents nasty paragraph switching
                               LoadingIndicator.component()}
