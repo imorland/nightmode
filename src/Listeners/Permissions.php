@@ -19,9 +19,6 @@ class Permissions
             $event->attributes['canUseDarkMode'] = $event
                 ->actor
                 ->hasPermissionLike('user.canUseDarkMode');
-            $event->attributes['canChangeDarkModeType'] = $event
-                ->actor
-                ->hasPermissionLike('user.canChangeDarkModeType');
         }
     }
 }
