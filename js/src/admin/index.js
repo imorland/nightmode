@@ -15,17 +15,5 @@ app.initializers.add("fof-nightmode", () => {
             },
             1
         );
-
-        // items.add(
-        //     "change-dark-mode-type",
-        //     {
-        //         icon: "far fa-sun",
-        //         label: app.translator.trans(
-        //             "fof-nightmode.admin.permissions.changeType"
-        //         ),
-        //         permission: "user.canChangeDarkModeType"
-        //     },
-        //     1
-        // );
     });
 });
