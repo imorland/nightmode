@@ -21,7 +21,6 @@
 */
 
 export default function fixInvalidThemeSetting() {
-  
     let wasInvalid = false;
     let t;
 
@@ -32,8 +31,6 @@ export default function fixInvalidThemeSetting() {
         localStorage.setItem("davwheat_themer_themetype", 0);
         wasInvalid = true;
     }
-
-    console.log(t);
 
     if (isNaN(t)) {
         console.error("Theme is not a valid integer! (2)");
