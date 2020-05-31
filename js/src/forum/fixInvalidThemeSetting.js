@@ -25,23 +25,23 @@ export default function fixInvalidThemeSetting() {
     let t;
 
     try {
-        t = parseInt(localStorage.getItem("davwheat_themer_themetype"));
+        t = parseInt(localStorage.getItem("giffgaffcommunity_themer_themetype"));
     } catch (error) {
         console.error("Theme is not a valid integer! (1)");
-        localStorage.setItem("davwheat_themer_themetype", 0);
+        localStorage.setItem("giffgaffcommunity_themer_themetype", 0);
         wasInvalid = true;
     }
 
     if (isNaN(t)) {
         console.error("Theme is not a valid integer! (2)");
-        localStorage.setItem("davwheat_themer_themetype", 0);
+        localStorage.setItem("giffgaffcommunity_themer_themetype", 0);
         wasInvalid = true;
     }
 
     if (!wasInvalid && (t > 3 || t < 0)) {
         // theme out of bounds
         console.error("Theme is out of bounds (not between 0 and 3)!");
-        localStorage.setItem("davwheat_themer_themetype", 0);
+        localStorage.setItem("giffgaffcommunity_themer_themetype", 0);
         wasInvalid = true;
     }
 

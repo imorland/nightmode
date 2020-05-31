@@ -1,16 +1,19 @@
 <?php
 /*
- * This file is part of reflar/nightmode.
+ * This file is part of GiffgaffCommunity/nightmode
+ * This file is derived from the reflar/nightmode extension.
  *
  * Copyright (c) ReFlar.
+ * Copyright (c) giffgaff
  *
  * http://reflar.io
+ * https://giffgaff.com
  *
  * For the full copyright and license information, please view the license.md
  * file that was distributed with this source code.
  */
 
-namespace FoF\NightMode\Listeners;
+namespace GiffgaffCommunity\NightMode\Listeners;
 
 use Flarum\Event\ConfigureUserPreferences;
 use Illuminate\Contracts\Events\Dispatcher;
@@ -24,7 +27,7 @@ class Preferences
 
     public function addUserPreference(ConfigureUserPreferences $event)
     {
-        $event->add('davwheat_themer_themetype', 'intval', 0);
-        $event->add('davwheat_themer_use_per_device', 'boolval', false);
+        $event->add('giffgaffcommunity_themer_themetype', 'intval', 0);
+        $event->add('giffgaffcommunity_themer_use_per_device', 'boolval', false);
     }
 }

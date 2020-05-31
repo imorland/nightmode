@@ -1,6 +1,6 @@
 <?php
 
-namespace FoF\NightMode;
+namespace GiffgaffCommunity\NightMode;
 
 use Flarum\Extend;
 use Illuminate\Contracts\Events\Dispatcher;

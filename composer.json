@@ -1,5 +1,5 @@
 {
-    "name": "imorland/nightmode",
+    "name": "giffgaffcommunity/nightmode",
     "description": "A fork of fof/nightmode, tailored to the giffgaff community",
     "keywords": [
         "flarum",
@@ -41,14 +41,14 @@
             "title": "giffgaff dark mode",
             "icon": {
                 "name": "fas fa-moon",
-                "backgroundColor": "#e74c3c",
-                "color": "#fff"
+                "backgroundColor": "#eb5f8e",
+                "color": "#000"
             }
         }
     },
     "autoload": {
         "psr-4": {
-            "FoF\\NightMode\\": "src/"
+            "GiffgaffCommunity\\NightMode\\": "src/"
         }
     }
 }
