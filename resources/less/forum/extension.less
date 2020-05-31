@@ -24,9 +24,10 @@
 // ! explain why in a comment next to/above
 // ! the deviation
 
-@import "_variables-gg.less";
-@import "_variables-flarum.less";
-@import "_typography-scale.less";
+@import "_variables-gg";
+@import "_variables-flarum";
+@import "_typography-scale";
+@import "_educator-notes";
 
 // @gg-color-alto: #d0d0d0;
 // @gg-color-black: #000000;
@@ -263,71 +264,13 @@ body.dark.dark--oled {
         border: 4px solid @borderColor;
     }
 
-    table {
+    table,
+    .Post table {
         background-color: @dark !important;
 
         td,
         th {
-            border-color: @grey !important;
-        }
-    }
-
-    .Button:not(.Navigation-back):not(.Button--primary) {
-        background: @dark;
-        transition: 0.2s background-color;
-
-        &:not(.Button--flat) {
-            @media @tablet-up {
-                border: @gg-border;
-            }
-        }
-
-        &:hover {
-            background: @grey;
-        }
-    }
-
-    .ButtonGroup.App-primaryControl {
-        border: @gg-border;
-
-        .Button:not(.Button--primary) {
-            &:not(.Button--flat) {
-                @media @tablet-up {
-                    border: none;
-                }
-            }
-
-            + .Button {
-                border-left: @gg-border;
-                margin-left: 0;
-            }
-        }
-    }
-
-    *:not(.item-nav) > .Dropdown {
-        &.ButtonGroup button.Dropdown-toggle {
-            &:hover,
-            &:focus,
-            &[aria-expanded="true"] {
-                background: @grey !important;
-            }
-        }
-
-        .Dropdown-menu {
-            background: @dark !important;
-
-            @media @tablet-up {
-                border: @gg-border;
-            }
-
-            > li > a,
-            button {
-                background: @dark !important;
-
-                &:hover {
-                    background-color: @grey !important;
-                }
-            }
+            border-color: lighten(@grey, 2.5%) !important;
         }
     }
 }
@@ -785,6 +728,14 @@ body.dark.dark--oled {
             h6 {
                 color: @main-text;
             }
+
+            .ButtonGroup[data-fof-upload-download-uuid] {
+                background: @lighter-grey;
+                .Button {
+                    background: @grey;
+                    color: @main-text-2;
+                }
+            }
         }
     }
 
@@ -1025,6 +976,10 @@ body.dark.dark--oled {
     .Dropdown-menu {
         background: @med-grey !important;
         color: @main-text !important;
+    }
+
+    .Dropdown.open .Dropdown-menu .Dropdown-separator {
+        background: @gg-color-graphite;
     }
 
     .Dropdown.ButtonGroup button.Dropdown-toggle {
@@ -1778,7 +1733,9 @@ body.dark.dark--oled {
 
     /* #endregion */
 
-    @import "_educator-notes";
+    .ModeratorNotes {
+        .ModeratorNotes();
+    }
 }
 
 .UserPage {
