@@ -1,0 +1,284 @@
+// ----------------------------------------------------------------------------
+// Educator notes
+// ----------------------------------------------------------------------------
+
+.ModeratorNotes {
+  // --------------------------------------------------------------------------
+  // #region CONFIG
+
+  // true/false
+  @use-border-bottom-for-link-underlines: true;
+
+  // size at which the creation date slips under username
+  @creation-time-size: 550px;
+
+  // changing this keeps the username and date centred except on
+  // small viewports where date slips
+  @avatar-size: 32px;
+  @date-slip-translateY: -7px;
+
+  // #endregion
+  // --------------------------------------------------------------------------
+
+  @creation-time-max-size: @creation-time-size - 1px;
+  @to-date-slip: ~"(max-width: @{creation-time-max-size})";
+  @date-slip-up: ~"(min-width: @{creation-time-size})";
+
+  &-toolbar {
+    @media @to-tablet {
+      // keep using giffgaff buttons even on smaller viewports
+      .primaryButtonMixin();
+      // @import (multiple) "_button-disabled.less";
+      // @import (multiple) "_button-cancel.less";
+    }
+  }
+
+  &List {
+    &-discussions {
+      > label {
+        // no notes notice
+        // match Flarum's "It looks like there are no posts here" styles
+        font-size: 1.4em;
+        color: @main-text;
+        text-align: center;
+        display: block;
+      }
+
+      .ModeratorNotesListItem {
+        background: @dark;
+
+        padding: @gg-spacer-medium @gg-spacer-medium @gg-spacer-small
+          @gg-spacer-medium;
+        box-shadow: none;
+        position: relative;
+
+        border: @gg-border;
+
+        @media @to-date-slip {
+          padding: (@gg-spacer-medium + @date-slip-translateY) @gg-spacer-medium
+            @gg-spacer-small @gg-spacer-medium;
+        }
+
+        @media (hover) {
+          &-controls {
+            opacity: 0 !important;
+          }
+
+          &:hover .ModeratorNotesListItem-controls {
+            opacity: 1 !important;
+          }
+        }
+
+        @media @tablet-up {
+          transition: none;
+          margin-left: 0;
+          margin-right: 0;
+
+          @media (hover) {
+            &:before {
+              content: "";
+              position: absolute;
+              left: 0;
+              top: 0;
+              background-color: #000;
+              opacity: 0;
+              width: 8px;
+              height: 100%;
+            }
+
+            &:hover:before {
+              opacity: 1;
+            }
+          }
+        }
+
+        // @media @to-tablet {
+        //   // stretch to edges of viewport
+        //   margin-left: -@gg-spacer-small;
+        //   margin-right: -@gg-spacer-small;
+        // }
+
+        &-controls {
+          padding-top: @gg-spacer-small;
+
+          @media @tablet-up {
+            padding-right: @gg-spacer-small;
+          }
+
+          position: absolute;
+          right: 5px;
+          top: 5px;
+          z-index: 1;
+          opacity: 1;
+          transition: opacity 0.2s;
+
+          button.Dropdown-toggle {
+            color: @main-text !important; // needed to override nightmode (even when not enabled)
+            display: block;
+
+            &:active,
+            &:focus,
+            &:focus-within,
+            &:hover {
+              color: @gg-color-white !important;
+            }
+          }
+        }
+
+        &-main {
+          padding: 0;
+        }
+
+        @username-left-spacing: 2px;
+
+        &-title {
+          color: @gg-color-black;
+          margin-bottom: @gg-spacer-tiny;
+          overflow: visible;
+
+          @media @date-slip-up {
+            display: inline-block;
+            float: left;
+          }
+
+          .ModeratorNotesListItem-author {
+            @media @to-date-slip {
+              transform: translateY(@date-slip-translateY);
+            }
+
+            .Avatar {
+              width: @avatar-size;
+              height: @avatar-size;
+              border-radius: 50%;
+              font-size: @avatar-size / 2;
+              line-height: @avatar-size;
+              vertical-align: middle;
+
+              @media @to-date-slip {
+                transform: translateY(-@date-slip-translateY);
+              }
+            }
+
+            .username {
+              .typography-speak-up();
+              vertical-align: middle;
+              padding-right: 10px;
+              margin-left: @username-left-spacing;
+
+              @media @to-date-slip {
+                margin-top: -8px;
+              }
+            }
+          }
+
+          + p {
+            @media @date-slip-up {
+              vertical-align: middle;
+              display: inline-block;
+
+              // keeps time vertically centred alongside username
+              // no matter what avatar size is set
+              margin-top: @avatar-size / 2 - 12px;
+              margin-bottom: 0;
+            }
+
+            time {
+              .typography-speak-up();
+
+              @media @to-date-slip {
+                .typography-whisper-loud();
+                padding-left: @avatar-size + @gg-spacer-tiny +
+                  @username-left-spacing;
+                margin-top: -@gg-spacer-small;
+                display: block;
+              }
+
+              color: @gg-color-dove-grey;
+            }
+          }
+        }
+
+        hr {
+          border: none;
+          margin-bottom: @gg-spacer-tiny;
+        }
+
+        &-info {
+          .typography-speak();
+          color: @main-text;
+          padding-left: @avatar-size + @gg-spacer-tiny + @username-left-spacing;
+
+          @media @to-date-slip {
+            // decreases white space between author and body
+            // when date slips
+            margin-top: -9px;
+          }
+
+          a:any-link {
+            color: @gg-color-dark-blue;
+            border-bottom: none;
+            text-decoration: underline;
+
+            & when (@use-border-bottom-for-link-underlines = true) {
+              border-bottom: @gg-color-dark-blue 1px solid;
+              text-decoration: none;
+            }
+          }
+
+          > li.item-content > :first-child > *:first-child {
+            margin-top: 0;
+          }
+
+          h1,
+          h2,
+          h3,
+          h4,
+          h5,
+          h6 {
+            margin-top: 1em;
+            margin-bottom: 16px;
+          }
+
+          h1 {
+            font-size: 225%;
+          }
+
+          h2 {
+            font-size: 175%;
+          }
+
+          h3 {
+            font-size: 150%;
+          }
+
+          h4 {
+            font-size: 125%;
+          }
+
+          h5,
+          h6 {
+            font-size: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  &CreateModal {
+    .Modal {
+      &-body {
+        // without removing some padding, there's way too much whitespace
+        padding-top: 0;
+
+        label {
+          .typography-speak();
+
+          textarea {
+            margin-top: @gg-spacer-tiny;
+            .typography-speak();
+          }
+        }
+      }
+    }
+  }
+}

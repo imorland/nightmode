@@ -1,0 +1,63 @@
+// ============================================================================
+// Flarum override variables
+// ============================================================================
+
+// Border radius
+@border-radius: 0;
+
+// Colours
+@control-bg: @gg-color-black;
+
+// Dropdowns on the homepage,and the hover states (in DiscussionListItem.less.)
+@hero-bg: @gg-color-light-blue;
+@hero-color: @gg-color-black;
+
+@body-bg: @gg-color-white;
+
+@control-color: @gg-color-black;
+
+// Colour of text in the options table in profile > settings
+@text-color: @gg-color-black;
+@muted-color: @gg-color-dove-grey;
+
+// Nav link colour
+@muted-more-color: @gg-color-black;
+
+// Discussion text colour
+@header-control-bg: @gg-color-white;
+
+// Nav searchbar background
+@header-control-color: @gg-color-white;
+
+// Controls to the right of the search bar
+@alert-bg: @gg-color-dark-blue;
+@alert-color: @gg-color-white;
+@alert-error-bg: @gg-color-dark-pink;
+@alert-error-color: @gg-color-white;
+@alert-success-bg: @gg-color-dark-green;
+@alert-success-color: @gg-color-white;
+
+@header-height: 58px;
+
+// Tooltip
+@tooltip-color: @gg-color-white;
+@tooltip-bg: @gg-color-dark-blue;
+
+// Breakpoints
+@screen-small-phone:               @gg-breakpoint-extra-tiny;
+@screen-phone-max:                 (@screen-tablet - 1);
+@screen-tablet:                    @gg-breakpoint-medium;
+@screen-tablet-max:                (@screen-desktop - 1);
+@screen-desktop:                   @gg-breakpoint-large;
+@screen-desktop-max:               (@screen-desktop-hd - 1);
+@screen-desktop-hd:                1140px;
+
+@small-phone:                      ~"(max-width: @{screen-small-phone})";
+@phone:                            ~"(max-width: @{screen-phone-max})";
+@tablet:                           ~"(min-width: @{screen-tablet}) and (max-width: @{screen-tablet-max})";
+@to-tablet:                        ~"(max-width: @{screen-tablet})";
+@to-desktop:                       ~"(max-width: @{screen-desktop})";
+@desktop:                          ~"(min-width: @{screen-desktop}) and (max-width: @{screen-desktop-max})";
+@desktop-hd:                       ~"(min-width: @{screen-desktop-hd})";
+@desktop-up:                       ~"(min-width: @{screen-desktop})";
+@tablet-up:                        ~"(min-width: @{screen-tablet})";

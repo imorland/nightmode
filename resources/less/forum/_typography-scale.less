@@ -1,0 +1,69 @@
+// ----------------------------------------------------------------------------
+// Typography scale
+// ----------------------------------------------------------------------------
+
+// mixins
+.typography-whisper() {
+  font-weight: @gg-text-whisper-font-weight;
+  font-size: @gg-text-whisper-font-size;
+  line-height: @gg-text-whisper-line-height;
+}
+
+.typography-whisper-loud() {
+  font-weight: @gg-text-whisper-loud-font-weight;
+  font-size: @gg-text-whisper-loud-font-size;
+  line-height: @gg-text-whisper-loud-line-height;
+}
+
+.typography-speak() {
+  font-weight: @gg-text-speak-font-weight;
+  font-size: @gg-text-speak-font-size;
+  line-height: @gg-text-speak-line-height;
+}
+
+.typography-speak-up() {
+  font-weight: @gg-text-speak-up-font-weight;
+  font-size: @gg-text-speak-up-font-size;
+  line-height: @gg-text-speak-up-line-height;
+}
+
+.typography-shout() {
+  font-weight: @gg-text-shout-font-weight;
+  font-size: @gg-text-shout-font-size-small-screens;
+  line-height: @gg-text-shout-line-height-small-screens;
+  @media @tablet-up {
+    font-size: @gg-text-shout-font-size-large-screens;
+    line-height: @gg-text-shout-line-height-large-screens;
+  }
+}
+
+.typography-loud() {
+  font-weight: @gg-text-loud-font-weight;
+  font-size: @gg-text-loud-font-size-small-screens;
+  line-height: @gg-text-loud-line-height-small-screens;
+  @media @tablet-up {
+    font-size: @gg-text-loud-font-size-large-screens;
+    line-height: @gg-text-loud-line-height-large-screens;
+  }
+}
+
+.typography-louder() {
+  font-weight: @gg-text-louder-font-weight;
+  font-size: @gg-text-louder-font-size-small-screens;
+  line-height: @gg-text-louder-line-height-small-screens;
+  @media @tablet-up {
+    font-size: @gg-text-louder-font-size-large-screens;
+    line-height: @gg-text-louder-line-height-large-screens;
+  }
+}
+
+.typography-megaphone() {
+  font-weight: @gg-text-megaphone-font-weight;
+  font-size: @gg-text-megaphone-font-size-small-screens;
+  line-height: @gg-text-megaphone-line-height-small-screens;
+  @media @tablet-up {
+    letter-spacing: -.02em;
+    font-size: @gg-text-megaphone-font-size-large-screens;
+    line-height: @gg-text-megaphone-line-height-large-screens;
+  }
+}

@@ -3,9 +3,6 @@
 
 // Media Queries
 
-@small-screen: ~"only screen and (max-width: 767px)";
-@large-screen: ~"only screen and (min-width: 768px)";
-
 // ! giffgaff branding colours
 //
 // Below are the set giffgaff branding colours
@@ -27,21 +24,25 @@
 // ! explain why in a comment next to/above
 // ! the deviation
 
-@gg-color-alto: #d0d0d0;
-@gg-color-black: #000000;
-@gg-color-dark-blue: #00528a;
-@gg-color-dark-green: #007349;
-@gg-color-dark-pink: #ae0d21; // guys this is red...
-@gg-color-dove-grey: #666666;
-@gg-color-gallery: #ececec;
-@gg-color-graphite: #2f2e31;
-@gg-color-light-blue: #35adce;
-@gg-color-light-green: #72b72a;
-@gg-color-light-pink: #eb5f8e;
-@gg-color-orange: #ea5b25;
-@gg-color-white: #ffffff;
-@gg-color-wild-sand: #f5f5f5;
-@gg-color-yellow: #fcc31e;
+@import "_variables-gg.less";
+@import "_variables-flarum.less";
+@import "_typography-scale.less";
+
+// @gg-color-alto: #d0d0d0;
+// @gg-color-black: #000000;
+// @gg-color-dark-blue: #00528a;
+// @gg-color-dark-green: #007349;
+// @gg-color-dark-pink: #ae0d21; // guys this is red...
+// @gg-color-dove-grey: #666666;
+// @gg-color-gallery: #ececec;
+// @gg-color-graphite: #2f2e31;
+// @gg-color-light-blue: #35adce;
+// @gg-color-light-green: #72b72a;
+// @gg-color-light-pink: #eb5f8e;
+// @gg-color-orange: #ea5b25;
+// @gg-color-white: #ffffff;
+// @gg-color-wild-sand: #f5f5f5;
+// @gg-color-yellow: #fcc31e;
 
 // Nowhere in style guides, but used
 // for the button component
@@ -164,6 +165,7 @@ body.dark.dark--oled {
 ##     ## ##       ##       ##     ##    ##     ##   ## ##   ##       ##    ##  ##    ##   ##  ##     ## ##       ##    ##
  #######  ######## ######## ########      #######     ###    ######## ##     ## ##     ## #### ########  ########  ######
 
+ OLED Overrides
     */
 
     // Separates header from main page content as they're the same colour
@@ -177,7 +179,7 @@ body.dark.dark--oled {
             .DiscussionListItem {
                 background-color: unset !important;
 
-                @media @large-screen {
+                @media @tablet-up {
                     border-color: @borderColor;
                 }
 
@@ -219,7 +221,7 @@ body.dark.dark--oled {
         }
     }
 
-    @media @large-screen {
+    @media @tablet-up {
         .DiscussionPage-list {
             -webkit-box-shadow: unset;
             box-shadow: unset;
@@ -259,6 +261,74 @@ body.dark.dark--oled {
 
     .Modal {
         border: 4px solid @borderColor;
+    }
+
+    table {
+        background-color: @dark !important;
+
+        td,
+        th {
+            border-color: @grey !important;
+        }
+    }
+
+    .Button:not(.Navigation-back):not(.Button--primary) {
+        background: @dark;
+        transition: 0.2s background-color;
+
+        &:not(.Button--flat) {
+            @media @tablet-up {
+                border: @gg-border;
+            }
+        }
+
+        &:hover {
+            background: @grey;
+        }
+    }
+
+    .ButtonGroup.App-primaryControl {
+        border: @gg-border;
+
+        .Button:not(.Button--primary) {
+            &:not(.Button--flat) {
+                @media @tablet-up {
+                    border: none;
+                }
+            }
+
+            + .Button {
+                border-left: @gg-border;
+                margin-left: 0;
+            }
+        }
+    }
+
+    *:not(.item-nav) > .Dropdown {
+        &.ButtonGroup button.Dropdown-toggle {
+            &:hover,
+            &:focus,
+            &[aria-expanded="true"] {
+                background: @grey !important;
+            }
+        }
+
+        .Dropdown-menu {
+            background: @dark !important;
+
+            @media @tablet-up {
+                border: @gg-border;
+            }
+
+            > li > a,
+            button {
+                background: @dark !important;
+
+                &:hover {
+                    background-color: @grey !important;
+                }
+            }
+        }
     }
 }
 
@@ -932,7 +1002,7 @@ body.dark.dark--oled {
         .primaryButtonMixin();
     }
 
-    @media @large-screen {
+    @media @tablet-up {
         .sideNav {
             .primaryButtonMixin();
         }
@@ -1708,49 +1778,7 @@ body.dark.dark--oled {
 
     /* #endregion */
 
-    // #region Auto Theme Modal
-
-    .ggNightModeModal {
-        .Modal-body {
-            // Override stupid 56px top margin on small devices
-            @media @small-screen {
-                margin-top: 8px !important;
-            }
-
-            .ggNightModeModal--auto-theme {
-                .ggNightModeModal--paragraph {
-                    font-size: 16px;
-                    text-align: center;
-                }
-
-                .ggNightModeModal--negativeButton {
-                    height: unset;
-                    padding: 8px 12px;
-                }
-            }
-
-            .primaryButtonMixin();
-        }
-
-        .Modal-footer {
-            .ggNightModeModal-note--large-screen {
-                display: block;
-
-                @media @small-screen {
-                    display: none;
-                }
-            }
-
-            .ggNightModeModal-note--small-screen {
-                display: block;
-
-                @media @large-screen {
-                    display: none;
-                }
-            }
-        }
-    }
-    // #endregion
+    @import "_educator-notes";
 }
 
 .UserPage {
