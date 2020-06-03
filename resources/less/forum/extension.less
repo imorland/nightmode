@@ -27,7 +27,9 @@
 @import "_variables-gg";
 @import "_variables-flarum";
 @import "_typography-scale";
+
 @import "_educator-notes";
+@import "_tags";
 
 // @gg-color-alto: #d0d0d0;
 // @gg-color-black: #000000;
@@ -1351,11 +1353,6 @@ body.dark.dark--oled {
             background-color: @lighter-grey;
         }
 
-        .SelectTagListItem-name,
-        .SelectTagListItem-description {
-            font-style: 14px !important;
-        }
-
         .DiscussionListItem
             .DiscussionListItem-content.read
             .DiscussionListItem-info {
@@ -1411,11 +1408,6 @@ body.dark.dark--oled {
                 .DiscussionListItem-title {
                 font-weight: normal;
             }
-        }
-
-        .SelectTagList > li.pinned:not(.child),
-        .SelectTagList > li.pinned:not(.child) i {
-            color: @main-text-2 !important;
         }
 
         .TextEditor textarea {
@@ -1729,6 +1721,8 @@ body.dark.dark--oled {
     .ModeratorNotes {
         .ModeratorNotes();
     }
+
+    .Tags();
 }
 
 .UserPage {
