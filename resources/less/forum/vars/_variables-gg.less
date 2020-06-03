@@ -20,7 +20,7 @@
 @gg-color-gallery: #ececec;
 
 // Custom dark mode colours
-@gg-color-graphite--darker: darken(@gg-color-graphite, 10%);
+@gg-color-graphite--darker: darken(@gg-color-graphite, 15%);
 
 // avoiding repetition using variables
 @gg-color-discussion-bg: @gg-color-wild-sand;
@@ -41,7 +41,8 @@
 @gg-badge-following-color: @gg-color-white;
 
 // Borders
-@gg-border: solid 2px @gg-color-graphite--darker;
+@gg-border-color: @gg-color-graphite;
+@gg-border: solid 2px @gg-border-color;
 @gg-shadow-tiny: @gg-spacer-tiny @gg-spacer-tiny @gg-color-graphite--darker;
 @gg-shadow-fine: @gg-spacer-fine @gg-spacer-fine @gg-color-graphite--darker;
 

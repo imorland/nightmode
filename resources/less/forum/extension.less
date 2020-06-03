@@ -92,7 +92,8 @@ body.dark:not(.dark--oled) {
     @red: @gg-color-dark-pink;
     @green: @gg-color-light-green;
 
-    @borderColor: @black;
+    @discussionListItemBg: #0e0e11;
+    @borderColor: @gg-border-color;
     @composerBg: fade(@grey, 97.5%);
 
     /* Text Colors */
@@ -118,7 +119,7 @@ body.dark.dark--oled {
     @black: @gg-color-black;
     @dark: @gg-color-black;
     // darkened to meet text contrast requirements on read posts
-    @grey: darken(@gg-color-graphite, 10%);
+    @grey: darken(@gg-color-graphite, 12.5%);
     @med-grey: darken(@gg-color-graphite, 4%);
     // used for hover emphasis
     @lighter-grey: @gg-color-graphite;
@@ -139,7 +140,8 @@ body.dark.dark--oled {
     @red: @gg-color-dark-pink;
     @green: @gg-color-light-green;
 
-    @borderColor: @gg-color-graphite;
+    @discussionListItemBg: @dark;
+    @borderColor: @gg-border-color;
     @composerBg: fade(@grey, 97.5%);
 
     /* Text Colors */
@@ -400,16 +402,33 @@ body.dark.dark--oled {
     /* #region Notifications */
 
     .NotificationList {
-        background-color: @grey;
+        background-color: @dark;
 
-        &-header h4,
-        &-header .Button {
-            color: @medium-text;
+        &-header {
+            h4,
+            .Button {
+                color: @medium-text;
+            }
+
+            .Button {
+                &:hover {
+                    &,
+                    .Button-icon {
+                        color: @gg-color-white;
+                    }
+                }
+            }
+
+            border-bottom-color: @gg-border-color;
         }
 
         .Notification {
             &.unread {
-                background-color: @med-grey;
+                background-color: @grey;
+
+                .Notification-content {
+                    color: @main-text !important;
+                }
             }
 
             &-content {
@@ -419,15 +438,28 @@ body.dark.dark--oled {
             &-excerpt {
                 color: @grey-text !important;
             }
+
+            .Button {
+                &:hover {
+                    &,
+                    .Button-icon {
+                        color: @gg-color-white;
+                    }
+                }
+
+                color: @medium-text;
+            }
+
+            &:hover {
+                background-color: @med-grey;
+            }
         }
 
         .NotificationGroup {
-            &-header {
-                color: @main-text-2 !important;
-            }
+            border-top-color: @gg-border-color;
 
-            &-content .Notification:hover {
-                background-color: @lighter-grey;
+            &-header {
+                color: @main-text-3 !important;
             }
         }
     }
@@ -910,29 +942,35 @@ body.dark.dark--oled {
 
     /* #region Post Scrubber */
 
-    .PostStreamScrubber .Scrubber .Scrubber {
-        a:hover,
-        a:focus {
-            color: @medium-text;
-        }
-
-        &-before,
-        &-after,
-        &-handle {
-            border-color: @medium-color;
-        }
-
-        &-handle {
-            background-color: @med-grey;
-            color: @main-text-2;
-
-            .Scrubber-bar {
-                background-color: @medium-color;
+    .PostStreamScrubber {
+        .Scrubber .Scrubber {
+            a:hover,
+            a:focus {
+                color: @medium-text;
             }
 
-            .Scrubber-description {
-                color: @grey-text;
+            &-before,
+            &-after,
+            &-handle {
+                border-color: @medium-color;
             }
+
+            &-handle {
+                background-color: @med-grey;
+                color: @main-text-2;
+
+                .Scrubber-bar {
+                    background-color: @medium-color;
+                }
+
+                .Scrubber-description {
+                    color: @grey-text;
+                }
+            }
+        }
+
+        .Dropdown-menu {
+            background: none !important;
         }
     }
 
@@ -969,11 +1007,17 @@ body.dark.dark--oled {
     /* #region Discussion Feed */
 
     .DiscussionListItem {
-        background: @grey !important;
+        background: @discussionListItemBg !important;
+
+        border-color: @borderColor !important;
+
+        &::before {
+            background-color: @borderColor !important;
+        }
 
         &:hover,
         &:focus {
-            background: @med-grey !important;
+            background: @grey !important;
         }
 
         &-content,
@@ -1001,16 +1045,6 @@ body.dark.dark--oled {
         & .DiscussionListItem-content .item-excerpt {
             color: @light-color !important;
             background-color: @grey !important;
-        }
-    }
-
-    .App:not(.hasPane) {
-        .DiscussionListItem {
-            border-color: @borderColor !important;
-
-            &::before {
-                background-color: @borderColor !important;
-            }
         }
     }
 
@@ -1142,14 +1176,15 @@ body.dark.dark--oled {
             }
         }
 
-        .Dropdown .Dropdown-menu > li {
-            > a,
-            > button {
-                background: @med-grey !important;
-                color: @main-text-2 !important;
+        .Dropdown .Dropdown-menu {
+            border-top: @gg-border !important;
+            background: @dark !important;
 
-                * {
-                    font-size: 16px !important;
+            > li {
+                > a,
+                > button {
+                    background: @dark !important;
+                    color: @main-text-2 !important;
                 }
             }
         }
@@ -1507,17 +1542,22 @@ body.dark.dark--oled {
         }
     }
 
-    .sideNav .Dropdown--select .Dropdown-menu,
-    .PostStreamScrubber .Dropdown-menu {
-        background: none !important;
-    }
+    .item-nav {
+        > .Dropdown {
+            .Dropdown-menu {
+                background: @dark !important;
 
-    .item-nav > .Dropdown .Dropdown-menu > li > a:hover,
-    .item-nav > .Dropdown .Dropdown-menu > li > a:focus {
-        &,
-        span.Button-label,
-        i.icon {
-            color: @main-text !important;
+                > li > {
+                    a:focus,
+                    a:hover {
+                        &,
+                        span.Button-label,
+                        i.icon {
+                            color: @main-text !important;
+                        }
+                    }
+                }
+            }
         }
     }
 
