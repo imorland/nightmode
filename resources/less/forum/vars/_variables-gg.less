@@ -19,6 +19,9 @@
 @gg-color-wild-sand: #f5f5f5;
 @gg-color-gallery: #ececec;
 
+// Custom dark mode colours
+@gg-color-graphite--darker: darken(@gg-color-graphite, 10%);
+
 // avoiding repetition using variables
 @gg-color-discussion-bg: @gg-color-wild-sand;
 @gg-color-mention: @gg-color-dark-blue;
@@ -38,9 +41,9 @@
 @gg-badge-following-color: @gg-color-white;
 
 // Borders
-@gg-border: solid 2px @gg-color-graphite;
-@gg-shadow-tiny: @gg-spacer-tiny @gg-spacer-tiny @gg-color-graphite;
-@gg-shadow-fine: @gg-spacer-fine @gg-spacer-fine @gg-color-graphite;
+@gg-border: solid 2px @gg-color-graphite--darker;
+@gg-shadow-tiny: @gg-spacer-tiny @gg-spacer-tiny @gg-color-graphite--darker;
+@gg-shadow-fine: @gg-spacer-fine @gg-spacer-fine @gg-color-graphite--darker;
 
 // Breakpoints
 @gg-breakpoint-extra-tiny: 238px;
