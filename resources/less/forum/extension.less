@@ -31,6 +31,8 @@
 @import "_educator-notes";
 @import "_tags";
 
+@import "_oled-overrides";
+
 // @gg-color-alto: #d0d0d0;
 // @gg-color-black: #000000;
 // @gg-color-dark-blue: #00528a;
@@ -146,124 +148,7 @@ body.dark.dark--oled {
     @grey-text: @contrast-grey;
 
     .styleMixin();
-
-    /*
-
- #######  ##       ######## ########      #######  ##     ## ######## ########  ########  #### ########  ########  ######
-##     ## ##       ##       ##     ##    ##     ## ##     ## ##       ##     ## ##     ##  ##  ##     ## ##       ##    ##
-##     ## ##       ##       ##     ##    ##     ## ##     ## ##       ##     ## ##     ##  ##  ##     ## ##       ##
-##     ## ##       ######   ##     ##    ##     ## ##     ## ######   ########  ########   ##  ##     ## ######    ######
-##     ## ##       ##       ##     ##    ##     ##  ##   ##  ##       ##   ##   ##   ##    ##  ##     ## ##             ##
-##     ## ##       ##       ##     ##    ##     ##   ## ##   ##       ##    ##  ##    ##   ##  ##     ## ##       ##    ##
- #######  ######## ######## ########      #######     ###    ######## ##     ## ##     ## #### ########  ########  ######
-
- OLED Overrides
-    */
-
-    // Separates header from main page content as they're the same colour
-
-    .App {
-        header.App-header {
-            border-bottom: 1px solid @lightest-grey;
-        }
-
-        &.hasPane {
-            .DiscussionListItem {
-                background-color: unset !important;
-
-                @media @tablet-up {
-                    border-color: @borderColor;
-                }
-
-                &.active,
-                &.active:hover {
-                    color: @main-text !important;
-                    background: #fff1;
-
-                    * {
-                        color: @main-text !important;
-                    }
-                }
-
-                .DiscussionListItem-content {
-                    &.read {
-                        background-color: unset !important;
-                    }
-
-                    &.unread {
-                        background-color: @grey !important;
-                    }
-                }
-            }
-        }
-
-        &:not(.hasPane) {
-            .DiscussionListItem {
-                background-color: @black !important;
-
-                &:hover {
-                    border-color: lighten(@borderColor, 10%) !important;
-                    background-color: lighten(@black, 4%) !important;
-                }
-
-                &::before {
-                    background-color: lighten(@borderColor, 10%) !important;
-                }
-            }
-        }
-    }
-
-    @media @tablet-up {
-        .DiscussionPage-list {
-            -webkit-box-shadow: unset;
-            box-shadow: unset;
-            overflow: visible;
-
-            //! Hack for an 'outline-right'
-            // Displays a 2px line on right side of app pane
-            // without affecting layout
-            &::after {
-                content: "";
-                display: block;
-                position: absolute;
-                height: 100%;
-                width: 2px;
-                background: @borderColor;
-                top: 0;
-                left: 100%;
-            }
-        }
-    }
-
-    .PostStream-item,
-    .UserPage .PostsUserPage .PostsUserPage-list > li {
-        background-color: @black !important;
-        outline: 2px solid @borderColor;
-    }
-
-    .PostStream-item .Post,
-    .UserPage .PostsUserPage .PostsUserPage-list > li,
-    .UserPage .PostsUserPage .PostsUserPage-list > li .Post {
-        background-color: transparent !important;
-    }
-
-    .TagsPage-content .TagTiles > li.TagTile {
-        border: 2px solid @borderColor;
-    }
-
-    .Modal {
-        border: 4px solid @borderColor;
-    }
-
-    table,
-    .Post table {
-        background-color: @dark !important;
-
-        td,
-        th {
-            border-color: lighten(@grey, 2.5%) !important;
-        }
-    }
+    .oledOverrides();
 }
 
 .styleMixin() {
