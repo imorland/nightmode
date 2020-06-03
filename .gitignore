@@ -8,4 +8,5 @@ bower_components
 .floo*
 
 # ignore vscode compiled css file
-resources/less/forum/extension.css
+resources/less/forum/*.css
+resources/less/forum/*.css.map
