@@ -30,6 +30,7 @@
 @import "_typography-scale";
 
 // Core flarum styles
+@import "_modals";
 
 // Extension support
 @import "_educator-notes";
@@ -831,7 +832,6 @@ body.dark.dark--oled {
         }
     }
 
-    .Modal .Modal-body,
     .item-bestAnswer,
     .DiscussionPage .DiscussionPage-nav .item-controls .itemCount1 {
         .primaryButtonMixin();
@@ -960,90 +960,6 @@ body.dark.dark--oled {
 
             &.active > button {
                 background-color: @lighter-grey;
-            }
-        }
-    }
-
-    /* #endregion */
-
-    /* #region Modals */
-
-    .Modal {
-        &-content,
-        &-body,
-        &-header {
-            color: @main-text-2 !important;
-            background-color: @dark !important;
-        }
-
-        &-footer {
-            color: @contrast-grey !important;
-        }
-
-        &-header {
-            h1,
-            h2,
-            h3,
-            h4,
-            h5,
-            h6 {
-                color: @main-text-4 !important;
-            }
-        }
-
-        .checkbox strong {
-            color: @main-text;
-        }
-
-        .FormControl {
-            background-color: @grey;
-            color: @main-text-2;
-
-            &:focus {
-                background-color: @med-grey;
-            }
-        }
-
-        .VotesModal-list {
-            h4 {
-                color: @main-text-4 !important;
-            }
-
-            h2 {
-                color: @main-text !important;
-            }
-
-            a {
-                color: @medium-text !important;
-            }
-        }
-
-        .helpText {
-            color: @medium-text;
-        }
-
-        .SelectTagList {
-            > li {
-                &.active {
-                    background: @med-grey !important;
-                    color: @main-text !important;
-
-                    .TagIcon {
-                        background: @medium-color !important;
-                    }
-
-                    > li.active:hover .TagIcon {
-                        background: @light-color !important;
-                    }
-                }
-
-                &.pinned + li:not(.pinned) {
-                    border-color: @light-grey !important;
-                }
-
-                &.selected.colored .TagIcon::before {
-                    color: @black !important;
-                }
             }
         }
     }
