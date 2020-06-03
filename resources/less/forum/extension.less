@@ -59,9 +59,9 @@ body.dark:not(.dark--oled) {
 
     @black: @gg-color-black;
     // darkened to generate contrast from items on screen and background
-    @dark: darken(@gg-color-graphite, 12.5%);
+    @dark: darken(@gg-color-graphite, 14.5%);
     // darkened to meet text contrast requirements on read posts
-    @grey: darken(@gg-color-graphite, 7.5%);
+    @grey: darken(@gg-color-graphite, 10%);
 
     @med-grey: darken(@gg-color-graphite, 2%);
     // used for hover emphasis
@@ -599,11 +599,11 @@ body.dark.dark--oled {
                 color: @main-text-2 !important;
             }
 
-            &-controls li:not(:first-child) .Button {
-                background-color: unset !important;
-            }
-
             &-controls {
+                .item-submit.App-primaryControl {
+                    .primaryButtonMixin()
+                }
+
                 .TextEditor-toolbar .Button:not(.flagrow-upload-button) &:hover,
                 &:focus {
                     background-color: @lighter-grey !important;
@@ -615,6 +615,10 @@ body.dark.dark--oled {
                     &:hover {
                         background-color: @lighter-grey !important;
                     }
+                }
+
+                li:not(:first-child) .Button {
+                    background-color: unset !important;
                 }
             }
         }
