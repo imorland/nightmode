@@ -24,10 +24,14 @@
 // ! explain why in a comment next to/above
 // ! the deviation
 
+// Main imports
 @import "_variables-gg";
 @import "_variables-flarum";
 @import "_typography-scale";
 
+// Core flarum styles
+
+// Extension support
 @import "_educator-notes";
 @import "_tags";
 
@@ -488,7 +492,7 @@ body.dark.dark--oled {
 
             &-controls {
                 .item-submit.App-primaryControl {
-                    .primaryButtonMixin()
+                    .primaryButtonMixin();
                 }
 
                 .TextEditor-toolbar .Button:not(.flagrow-upload-button) &:hover,
@@ -1603,11 +1607,10 @@ body.dark.dark--oled {
 
     /* #endregion */
 
-    .ModeratorNotes {
-        .ModeratorNotes();
-    }
-
     .Tags();
+    .Modals();
+
+    .ModeratorNotes();
 }
 
 .UserPage {

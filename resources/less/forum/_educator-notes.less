@@ -3,93 +3,95 @@
 // ----------------------------------------------------------------------------
 
 .ModeratorNotes() {
-    &-toolbar {
-        @media @to-tablet {
-            // keep using giffgaff buttons even on smaller viewports
-            .primaryButtonMixin();
-        }
-    }
-
-    &List {
-        &-discussions {
-            > label {
-                color: @main-text;
+    .ModeratorNotes {
+        &-toolbar {
+            @media @to-tablet {
+                // keep using giffgaff buttons even on smaller viewports
+                .primaryButtonMixin();
             }
+        }
 
-            .ModeratorNotesListItem {
-                background: @dark;
-                border: @gg-border;
-
-                @media (hover) {
-                    &-controls {
-                        opacity: 0 !important;
-                    }
-
-                    &:hover .ModeratorNotesListItem-controls {
-                        opacity: 1 !important;
-                    }
+        &List {
+            &-discussions {
+                > label {
+                    color: @main-text;
                 }
 
-                @media @tablet-up {
+                .ModeratorNotesListItem {
+                    background: @dark;
+                    border: @gg-border;
+
                     @media (hover) {
-                        &:before {
-                            content: "";
-                            position: absolute;
-                            left: 0;
-                            top: 0;
-                            background-color: @gg-color-graphite;
-                            opacity: 0;
-                            width: 8px;
-                            height: 100%;
+                        &-controls {
+                            opacity: 0 !important;
                         }
 
-                        &:hover:before {
-                            opacity: 1;
+                        &:hover .ModeratorNotesListItem-controls {
+                            opacity: 1 !important;
                         }
                     }
-                }
 
-                // @media @to-tablet {
-                //   // stretch to edges of viewport
-                //   margin-left: -@gg-spacer-small;
-                //   margin-right: -@gg-spacer-small;
-                // }
+                    @media @tablet-up {
+                        @media (hover) {
+                            &:before {
+                                content: "";
+                                position: absolute;
+                                left: 0;
+                                top: 0;
+                                background-color: @gg-color-graphite;
+                                opacity: 0;
+                                width: 8px;
+                                height: 100%;
+                            }
 
-                &-controls {
-                    button.Dropdown-toggle {
-                        color: @main-text !important; // needed to override nightmode (even when not enabled)
-
-                        &:active,
-                        &:focus,
-                        &:focus-within,
-                        &:hover {
-                            color: @main-text !important;
+                            &:hover:before {
+                                opacity: 1;
+                            }
                         }
                     }
-                }
 
-                &-main {
-                    padding: 0;
-                }
+                    // @media @to-tablet {
+                    //   // stretch to edges of viewport
+                    //   margin-left: -@gg-spacer-small;
+                    //   margin-right: -@gg-spacer-small;
+                    // }
 
-                @username-left-spacing: 2px;
+                    &-controls {
+                        button.Dropdown-toggle {
+                            color: @main-text !important; // needed to override nightmode (even when not enabled)
 
-                &-title {
-                    color: @main-text;
-
-                    + p {
-                        time {
-                            color: @gg-color-dove-grey;
+                            &:active,
+                            &:focus,
+                            &:focus-within,
+                            &:hover {
+                                color: @main-text !important;
+                            }
                         }
                     }
-                }
 
-                &-info {
-                    color: @main-text;
+                    &-main {
+                        padding: 0;
+                    }
 
-                    a:any-link {
+                    @username-left-spacing: 2px;
+
+                    &-title {
                         color: @main-text;
-                        border-color: @main-text;
+
+                        + p {
+                            time {
+                                color: @gg-color-dove-grey;
+                            }
+                        }
+                    }
+
+                    &-info {
+                        color: @main-text;
+
+                        a:any-link {
+                            color: @main-text;
+                            border-color: @main-text;
+                        }
                     }
                 }
             }
