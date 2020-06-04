@@ -1,0 +1,273 @@
+// ----------------------------------------------------------------------------
+// Button primary
+// ----------------------------------------------------------------------------
+
+.primaryButtonMixin() {
+    button {
+        &.Button {
+            &--primary {
+                background-color: @gg-color-button-dark-yellow !important;
+
+                // gg button specific variables
+                @shadowSize: @gg-spacer-fine;
+                @switchStartPosition: -1 * @shadowSize;
+                @switchEndPosition: 0;
+                @borderRadius: @gg-spacer-medium;
+
+                // standard gg styles for buttons
+                -webkit-tap-highlight-color: transparent;
+                outline: none;
+                white-space: nowrap;
+                border-radius: @borderRadius;
+                // stops it from overlapping the previous element
+                transform: translateY(@shadowSize);
+                display: inline-block !important;
+                font-weight: 900;
+                // the font size has to be a bit smaller for now
+                font-size: 20px;
+
+                // flarum overrides
+                padding: 0 !important;
+                overflow: visible !important;
+                width: unset !important;
+
+                .Button-label {
+                    // gg __switch styles
+                    border: solid 2px @gg-color-black;
+                    border-radius: @borderRadius;
+                    // matching the appearance of the gg button
+                    line-height: 44px;
+                    display: inline-block;
+                    transition: all 150ms ease-in-out;
+                    transform: translateY(@switchStartPosition);
+                    padding: 0 @gg-spacer-medium;
+                    position: relative;
+                    color: @gg-color-black;
+                    background-color: @gg-color-yellow;
+
+                    &:active {
+                        transform: translateY(@switchEndPosition);
+
+                        @media (hover) {
+                            &:before,
+                            &:after {
+                                animation: c-btn-doodle-fade 150ms ease-in-out;
+                            }
+                        }
+                    }
+
+                    &:before,
+                    &:after {
+                        content: "";
+                        position: absolute;
+                        width: @gg-icon-small;
+                        height: @gg-icon-small;
+                        opacity: 0;
+                        display: block;
+                        background-size: 100%;
+                    }
+
+                    @media (hover) {
+                        &:before {
+                            background-image: url("https://static.giffgaff.com/design-system/style-guide/50.0.5/images/svg/CTA_doodles_left-01-yellow.svg");
+                            left: -12px;
+                            top: -4px;
+                        }
+
+                        &:after {
+                            background-image: url("https://static.giffgaff.com/design-system/style-guide/50.0.5/images/svg/CTA_doodles_right-01-yellow.svg");
+                            right: -12px;
+                            bottom: -4px;
+                        }
+                    }
+                }
+
+                &:focus,
+                &:hover {
+                    .Button-label {
+                        transition: all 150ms ease-in-out;
+
+                        @media (hover) {
+                            &:before {
+                                animation: c-btn-doodle-animation-left 300ms
+                                    ease-in-out;
+                                animation-fill-mode: both;
+                            }
+
+                            &:after {
+                                animation: c-btn-doodle-animation-right 300ms
+                                    ease-in-out;
+                                animation-fill-mode: both;
+                            }
+                        }
+                    }
+                }
+
+                &:disabled,
+                &[disabled],
+                &.disabled {
+                    background-color: @gg-color-button-gray !important;
+
+                    &:active {
+                        .Button-label {
+                            transform: translateY($switchStartPosition);
+                        }
+                    }
+
+                    .Button-label {
+                        background-color: @gg-color-dove-grey !important;
+                        animation: none;
+
+                        &:before,
+                        &:after {
+                            display: none;
+                            animation: none;
+                        }
+                    }
+
+                    cursor: default;
+                    pointer-events: none;
+                    background-color: transparent;
+                    opacity: 1;
+
+                    &:after {
+                        display: none;
+                    }
+
+                    .Button-label {
+                        color: @gg-color-white;
+                        background-color: @gg-color-dove-grey;
+                        border-color: @gg-color-dove-grey;
+                    }
+
+                    &.loading {
+                        opacity: 1;
+                        position: relative;
+
+                        .Button-label {
+                            background-color: @gg-color-white;
+                            color: transparent;
+                            margin-right: 0;
+
+                            &:before {
+                                display: none;
+                            }
+
+                            &:after {
+                                display: block !important;
+                                opacity: 1;
+                                background-image: none;
+                                width: @gg-spacer-medium;
+                                height: @gg-spacer-medium;
+                                border: @gg-border;
+                                border-top-color: transparent;
+                                border-radius: 50%;
+                                animation: spin 0.7s linear infinite;
+
+                                position: absolute;
+                                margin: auto;
+                                top: 0;
+                                right: 0;
+                                bottom: 0;
+                                left: 0;
+                            }
+                        }
+
+                        .LoadingIndicator {
+                            &.LoadingIndicator--inline {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
+
+            &--cancel {
+                background-color: @gg-color-button-gray !important;
+
+                &:not(.loading) {
+                    .Button-label {
+                        // background-color: @gg-color-white !important;
+
+                        // SVG doodles taken from latest design system
+                        // as per https://giffgaff.design/components/buttons
+                        &::after {
+                            background-image: url("https://static.giffgaff.com/design-system/style-guide/50.0.5/images/svg/CTA_doodles_right-01-gray.svg") !important;
+                        }
+
+                        &::before {
+                            background-image: url("https://static.giffgaff.com/design-system/style-guide/50.0.5/images/svg/CTA_doodles_left-01-gray.svg") !important;
+                        }
+                    }
+                }
+
+                &:disabled,
+                &.disabled {
+                    background-color: @gg-color-button-gray !important;
+
+                    .Button-label {
+                        background-color: @gg-color-dove-grey !important;
+                    }
+                }
+            }
+        }
+    }
+
+    // ============================================================================
+    // Button animations
+    // ============================================================================
+
+    @keyframes c-btn-doodle-animation-left {
+        0% {
+            opacity: 0;
+            transform: translate(4px, 4px) scale(0.95);
+        }
+
+        60% {
+            opacity: 1;
+            transform: translate(-2px, -2px) scale(1.02);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translate(0) scale(1);
+        }
+    }
+
+    @keyframes c-btn-doodle-animation-right {
+        0% {
+            opacity: 0;
+            transform: translate(-4px, -4px) scale(0.95);
+        }
+
+        60% {
+            opacity: 1;
+            transform: translate(2px, 2px) scale(1.02);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translate(0) scale(1);
+        }
+    }
+
+    @keyframes c-btn-doodle-fade {
+        from {
+            opacity: 1;
+        }
+
+        to {
+            opacity: 0;
+        }
+    }
+
+    @keyframes spin {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+}
