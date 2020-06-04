@@ -1,0 +1,72 @@
+.Notifications() {
+    .NotificationsDropdown {
+        .Dropdown-toggle.new:hover {
+            .Button-icon {
+                color: @main-text;
+            }
+        }
+    }
+
+    .NotificationList {
+        background-color: @dark;
+
+        &-header {
+            h4,
+            .Button {
+                color: @medium-text;
+            }
+
+            .Button {
+                &:hover {
+                    &,
+                    .Button-icon {
+                        color: @gg-color-white;
+                    }
+                }
+            }
+
+            border-bottom-color: @gg-border-color;
+        }
+
+        .Notification {
+            &.unread {
+                background-color: @grey;
+
+                .Notification-content {
+                    color: @main-text !important;
+                }
+            }
+
+            &-content {
+                color: @main-text-3 !important;
+            }
+
+            &-excerpt {
+                color: @grey-text !important;
+            }
+
+            .Button {
+                &:hover {
+                    &,
+                    .Button-icon {
+                        color: @gg-color-white;
+                    }
+                }
+
+                color: @medium-text;
+            }
+
+            &:hover {
+                background-color: @med-grey;
+            }
+        }
+
+        .NotificationGroup {
+            border-top-color: @gg-border-color;
+
+            &-header {
+                color: @main-text-3 !important;
+            }
+        }
+    }
+}
