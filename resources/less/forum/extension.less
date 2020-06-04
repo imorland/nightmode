@@ -29,30 +29,19 @@
 @import "vars/_variables-flarum";
 @import "vars/_typography-scale";
 
+@import "vars/_button-primary";
+@import "vars/_button-primary-small";
+
 // Core flarum styles
 @import "core/_modals";
+@import "core/_discussion-lists";
+@import "core/_notifications";
 
 // Extension support
 @import "extensions/_educator-notes";
 @import "extensions/_tags";
 
 @import "_oled-overrides";
-
-// @gg-color-alto: #d0d0d0;
-// @gg-color-black: #000000;
-// @gg-color-dark-blue: #00528a;
-// @gg-color-dark-green: #007349;
-// @gg-color-dark-pink: #ae0d21; // guys this is red...
-// @gg-color-dove-grey: #666666;
-// @gg-color-gallery: #ececec;
-// @gg-color-graphite: #2f2e31;
-// @gg-color-light-blue: #35adce;
-// @gg-color-light-green: #72b72a;
-// @gg-color-light-pink: #eb5f8e;
-// @gg-color-orange: #ea5b25;
-// @gg-color-white: #ffffff;
-// @gg-color-wild-sand: #f5f5f5;
-// @gg-color-yellow: #fcc31e;
 
 // Nowhere in style guides, but used
 // for the button component
@@ -71,6 +60,10 @@ body.dark:not(.dark--oled) {
     @dark: darken(@gg-color-graphite, 14.5%);
     // darkened to meet text contrast requirements on read posts
     @grey: darken(@gg-color-graphite, 10%);
+
+    // DiscussionListItem base colour
+    @discussion--base: @gg-color-graphite;
+    @discussion--bg-base: #0e0e11;
 
     @med-grey: darken(@gg-color-graphite, 2%);
     // used for hover emphasis
@@ -92,7 +85,6 @@ body.dark:not(.dark--oled) {
     @red: @gg-color-dark-pink;
     @green: @gg-color-light-green;
 
-    @discussionListItemBg: #0e0e11;
     @borderColor: @gg-border-color;
     @composerBg: fade(@grey, 97.5%);
 
@@ -120,6 +112,11 @@ body.dark.dark--oled {
     @dark: @gg-color-black;
     // darkened to meet text contrast requirements on read posts
     @grey: darken(@gg-color-graphite, 12.5%);
+
+    // DiscussionListItem base colour
+    @discussion--base: @gg-color-graphite;
+    @discussion--bg-base: @dark;
+
     @med-grey: darken(@gg-color-graphite, 4%);
     // used for hover emphasis
     @lighter-grey: @gg-color-graphite;
@@ -140,7 +137,6 @@ body.dark.dark--oled {
     @red: @gg-color-dark-pink;
     @green: @gg-color-light-green;
 
-    @discussionListItemBg: @dark;
     @borderColor: @gg-border-color;
     @composerBg: fade(@grey, 97.5%);
 
@@ -260,76 +256,6 @@ body.dark.dark--oled {
 
     /* #endregion */
 
-    /* #region Nav Pane */
-
-    .App.hasPane .DiscussionListItem .DiscussionListItem-content {
-        &.unread {
-            background-color: @med-grey !important;
-
-            .DiscussionListItem-info .item-discussion-views,
-            .DiscussionListItem-count {
-                color: @main-text-2 !important;
-
-                &::before {
-                    color: @main-text-2 !important;
-                }
-            }
-
-            .item-recipients .RecipientLabel {
-                &::after,
-                &-text .username {
-                    color: @main-text-2 !important;
-                }
-            }
-
-            &:hover,
-            &:focus {
-                .DiscussionListItem-info {
-                    .item-discussion-views,
-                    .item-replies {
-                        color: @main-text !important;
-                    }
-
-                    .item-tags .TagLabel {
-                        background-color: @black !important;
-                        color: @main-text !important;
-
-                        &-text {
-                            color: @main-text !important;
-                        }
-                    }
-                }
-            }
-        }
-
-        &.read {
-            background-color: @grey !important;
-
-            .DiscussionListItem-info .item-discussion-views,
-            .DiscussionListItem-count {
-                color: @contrast-grey !important;
-
-                &::before {
-                    color: @contrast-grey !important;
-                }
-            }
-
-            .item-recipients .RecipientLabel {
-                &::after,
-                &-text .username {
-                    color: @main-text-2 !important;
-                }
-            }
-        }
-
-        &:hover,
-        &:focus {
-            background-color: @lighter-grey !important;
-        }
-    }
-
-    /* #endregion */
-
     /* #region Site Header */
 
     .App-header .FormControl {
@@ -399,73 +325,6 @@ body.dark.dark--oled {
         }
     }
 
-    /* #region Notifications */
-
-    .NotificationList {
-        background-color: @dark;
-
-        &-header {
-            h4,
-            .Button {
-                color: @medium-text;
-            }
-
-            .Button {
-                &:hover {
-                    &,
-                    .Button-icon {
-                        color: @gg-color-white;
-                    }
-                }
-            }
-
-            border-bottom-color: @gg-border-color;
-        }
-
-        .Notification {
-            &.unread {
-                background-color: @grey;
-
-                .Notification-content {
-                    color: @main-text !important;
-                }
-            }
-
-            &-content {
-                color: @main-text-3 !important;
-            }
-
-            &-excerpt {
-                color: @grey-text !important;
-            }
-
-            .Button {
-                &:hover {
-                    &,
-                    .Button-icon {
-                        color: @gg-color-white;
-                    }
-                }
-
-                color: @medium-text;
-            }
-
-            &:hover {
-                background-color: @med-grey;
-            }
-        }
-
-        .NotificationGroup {
-            border-top-color: @gg-border-color;
-
-            &-header {
-                color: @main-text-3 !important;
-            }
-        }
-    }
-
-    /* #endregion */
-
     /* #endregion */
 
     /* #region Post Composer */
@@ -525,7 +384,9 @@ body.dark.dark--oled {
 
             &-controls {
                 .item-submit.App-primaryControl {
-                    .primaryButtonMixin();
+                    @media @tablet-up {
+                        .primaryButtonMixin();
+                    }
                 }
 
                 .TextEditor-toolbar .Button:not(.flagrow-upload-button) &:hover,
@@ -802,69 +663,10 @@ body.dark.dark--oled {
 
     /* #region Primary Discussion Button */
 
-    .primaryButtonMixin() {
-        button.Button--primary {
-            &.Button--cancel {
-                background-color: @gg-color-button-gray !important;
-
-                &:not(.loading) {
-                    .Button-label {
-                        background-color: @gg-color-white !important;
-
-                        // SVG doodles taken from latest design system
-                        // as per https://giffgaff.design/components/buttons
-                        &::after {
-                            background-image: url("https://static.giffgaff.com/design-system/style-guide/49.1.7/images/svg/CTA_doodles_right-01-gray.svg") !important;
-                        }
-
-                        &::before {
-                            background-image: url("https://static.giffgaff.com/design-system/style-guide/49.1.7/images/svg/CTA_doodles_left-01-gray.svg") !important;
-                        }
-                    }
-                }
-
-                &:disabled,
-                &.disabled {
-                    background-color: @gg-color-button-gray !important;
-
-                    .Button-label {
-                        background-color: @gg-color-dove-grey !important;
-                    }
-                }
-            }
-
-            &:not(.Button--cancel) {
-                background-color: @gg-color-button-dark-yellow !important;
-
-                &:not(.loading) {
-                    .Button-label {
-                        background-color: @gg-color-yellow !important;
-
-                        // SVG doodles taken from latest design system
-                        // as per https://giffgaff.design/components/buttons
-                        &::after {
-                            background-image: url("https://static.giffgaff.com/design-system/style-guide/49.1.7/images/svg/CTA_doodles_right-01-yellow.svg") !important;
-                        }
-
-                        &::before {
-                            background-image: url("https://static.giffgaff.com/design-system/style-guide/49.1.7/images/svg/CTA_doodles_left-01-yellow.svg") !important;
-                        }
-                    }
-                }
-
-                &:disabled,
-                &.disabled {
-                    background-color: @gg-color-button-gray !important;
-
-                    .Button-label {
-                        background-color: @gg-color-dove-grey !important;
-                    }
-                }
-            }
-        }
+    .DiscussionPage .PostStream .PostStream-item .Post .item-bestAnswer {
+        .primaryButtonSmallMixin();
     }
 
-    .item-bestAnswer,
     .DiscussionPage .DiscussionPage-nav .item-controls .itemCount1 {
         .primaryButtonMixin();
     }
@@ -1004,139 +806,20 @@ body.dark.dark--oled {
 
     /* #endregion */
 
-    /* #region Discussion Feed */
-
-    .DiscussionListItem {
-        background: @discussionListItemBg !important;
-
-        border-color: @borderColor !important;
-
-        &::before {
-            background-color: @borderColor !important;
-        }
-
-        &:hover,
-        &:focus {
-            background: @grey !important;
-        }
-
-        &-content,
-        &-info,
-        &-title,
-        &-count {
-            color: @main-text-2 !important;
-        }
-
-        &-title mark {
-            color: @main-text !important;
-        }
-
-        &:not(.DiscussionList--searchResults) {
-            .read {
-                .DiscussionListItem-title,
-                .DiscussionListItem-info,
-                .DiscussionListItem-count,
-                .DiscussionListItem-content .item-excerpt {
-                    color: @grey-text !important;
-                }
-            }
-        }
-
-        & .DiscussionListItem-content .item-excerpt {
-            color: @light-color !important;
-            background-color: @grey !important;
-        }
-    }
-
-    /* #endregion */
-
-    // #region Pop-out Discussion Bar
-
-    .App.hasPane .DiscussionPage-list {
-        background: @dark;
-    }
-
-    // App Pane styles
-
-    .App .hasPane .DiscussionListItem {
-        &.active {
-            background-color: @lighter-grey;
-
-            .DiscussionListItem-content {
-                background-color: @lighter-grey;
-            }
-        }
-
-        .DiscussionListItem-controls .Button--icon {
-            color: inherit;
-        }
-
-        // Read thread
-        .DiscussionListItem-content.read {
-            .DiscussionListItem-info {
-                .item-terminalPost,
-                .item-discussion-views,
-                .item-discussion-views::before,
-                .item-recipients .RecipientLabel-text,
-                .item-recipients .RecipientLabel::after,
-                .item-excerpt {
-                    color: @medium-text-0;
-                }
-            }
-        }
-
-        // Unread thread
-        .DiscussionListItem-content.unread {
-            .DiscussionListItem-info {
-                .item-terminalPost,
-                .item-discussion-views,
-                .item-discussion-views::before,
-                .item-recipients .RecipientLabel-text,
-                .item-recipients .RecipientLabel::after,
-                .item-excerpt {
-                    color: @main-text;
-                }
-
-                .item-tags {
-                    background-color: @light-grey !important;
-
-                    .TagLabel-text {
-                        color: @main-text !important;
-                    }
-                }
-            }
-        }
-
-        // Active or hovered thread
-        .DiscussionListItem-content.active,
-        .DiscussionListItem-content:hover {
-            .DiscussionListItem-info {
-                .item-terminalPost,
-                .item-discussion-views,
-                .item-discussion-views::before,
-                .item-recipients .RecipientLabel-text,
-                .item-recipients .RecipientLabel::after,
-                .item-excerpt {
-                    color: @main-text;
-                }
-
-                .item-tags {
-                    background-color: @lighter-grey !important;
-
-                    .TagLabel-text {
-                        color: @main-text !important;
-                    }
-                }
-            }
-        }
-    }
-
     /* #region User Page */
 
-    .UserPage .PostsUserPage .PostsUserPage-list > li {
-        background-color: @grey;
-    }
+    .UserPage .PostsUserPage {
+        &-list > li {
+            background-color: @grey;
+        }
 
+        &-discussion {
+            &,
+            a {
+                color: @contrast-grey;
+            }
+        }
+    }
     .sideNav .Dropdown--select .Dropdown-menu {
         > li {
             > a {
@@ -1563,9 +1246,11 @@ body.dark.dark--oled {
 
     /* #endregion */
 
-    .Tags();
     .Modals();
+    .DiscussionLists();
+    .Notifications();
 
+    .Tags();
     .ModeratorNotes();
 }
 
