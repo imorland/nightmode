@@ -18,32 +18,37 @@
 
     David Wheatley
     GitHub: davwheat || giffgaff: mrjeeves
+    (not a giffgaff employee, though)
 */
+
+import Themes from "./Themes";
+
+// get array of valid values without duplicate entries
+let validValues = Array.from(new Set(Object.values(Themes)));
+const LocalStorageKey = `giffgaffcommunity_themer_themetype`;
 
 export default function fixInvalidThemeSetting() {
     let wasInvalid = false;
     let t;
 
     try {
-        t = parseInt(localStorage.getItem("giffgaffcommunity_themer_themetype"));
+        t = parseInt(localStorage.getItem(LocalStorageKey));
     } catch (error) {
-        console.error("Theme is not a valid integer! (1)");
-        localStorage.setItem("giffgaffcommunity_themer_themetype", 0);
+        console.warn("Theme is not a valid integer! Resetting... (1)");
+        localStorage.setItem(LocalStorageKey, Themes.DEFAULT);
         wasInvalid = true;
     }
 
     if (isNaN(t)) {
-        console.error("Theme is not a valid integer! (2)");
-        localStorage.setItem("giffgaffcommunity_themer_themetype", 0);
+        console.warn("Theme is not a valid integer! Resetting... (2)");
+        localStorage.setItem(LocalStorageKey, Themes.DEFAULT);
         wasInvalid = true;
     }
 
-    if (!wasInvalid && (t > 3 || t < 0)) {
+    if (!wasInvalid && !validValues.includes(t)) {
         // theme out of bounds
-        console.error("Theme is out of bounds (not between 0 and 3)!");
-        localStorage.setItem("giffgaffcommunity_themer_themetype", 0);
+        console.warn(`Theme is out of bounds! Resetting...`);
+        localStorage.setItem(LocalStorageKey, Themes.DEFAULT);
         wasInvalid = true;
     }
-
-    // if (wasInvalid) location.reload();
 }

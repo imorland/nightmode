@@ -9,6 +9,10 @@ import Switch from "flarum/components/Switch";
 
 import { SetTheme } from "./setSelectedTheme";
 import fixInvalidThemeSetting from "./fixInvalidThemeSetting";
+import GetTheme from "./getTheme";
+import Themes from "./Themes";
+
+const LocalStorageKey = `giffgaffcommunity_themer_themetype`;
 
 export default function () {
     extend(SettingsPage.prototype, "settingsItems", function (items) {
@@ -18,7 +22,8 @@ export default function () {
 
         if (!CanChangeTheme) return;
 
-        const PerDevice = user.preferences().giffgaffcommunity_themer_use_per_device
+        const PerDevice = user.preferences()
+            .giffgaffcommunity_themer_use_per_device
             ? user.preferences().giffgaffcommunity_themer_use_per_device
             : false;
 
@@ -26,12 +31,7 @@ export default function () {
             fixInvalidThemeSetting();
         }
 
-        const CurrentTheme = PerDevice
-            ? // fetch through LS is per device enabled
-              parseInt(localStorage.getItem("giffgaffcommunity_themer_themetype"))
-            : user.preferences().giffgaffcommunity_themer_themetype
-            ? user.preferences().giffgaffcommunity_themer_themetype
-            : 0;
+        const CurrentTheme = GetTheme(user);
 
         items.add(
             "theme",
@@ -58,30 +58,28 @@ export default function () {
                         className: "Settings-theme--per_device_cb",
                         state: PerDevice,
                         onchange: (checked) => {
+                            if (checked) {
+                                // save current theme as this device's default
+                                localStorage.setItem(
+                                    LocalStorageKey,
+                                    CurrentTheme
+                                );
+                            }
+
                             user.savePreferences({
                                 giffgaffcommunity_themer_use_per_device: checked,
                             }).then(() => {
                                 if (checked) {
-                                    // save current theme as this device's default
-                                    localStorage.setItem(
-                                        "giffgaffcommunity_themer_themetype",
-                                        CurrentTheme
-                                    );
-
-                                    m.redraw();
-
                                     // need to force-update selected theme (as it's only set
-                                    // on a page load and redraw doesn't count as a apge load)
+                                    // on a page load and redraw doesn't count as a page load)
                                     SetTheme();
                                 } else {
                                     // set user theme to that of current device
                                     user.savePreferences({
                                         giffgaffcommunity_themer_themetype: CurrentTheme,
                                     }).then(() => {
-                                        m.redraw();
-
                                         // need to force-update selected theme (as it's only set
-                                        // on a page load and redraw doesn't count as a apge load)
+                                        // on a page load and redraw doesn't count as a page load)
                                         SetTheme();
                                     });
                                 }
@@ -89,17 +87,14 @@ export default function () {
                         },
                     }),
                     Select.component({
-                        value: CurrentTheme ? CurrentTheme : 0,
+                        value: CurrentTheme ? CurrentTheme : Themes.DEFAULT,
                         label: "test",
                         key: "selected_theme",
                         className: "Settings-theme--input",
                         onchange: (e) => {
                             if (PerDevice) {
-                                localStorage.setItem(
-                                    "giffgaffcommunity_themer_themetype",
-                                    e
-                                );
-                                m.redraw();
+                                localStorage.setItem(LocalStorageKey, e);
+
                                 SetTheme();
                                 return;
                             }
@@ -107,8 +102,6 @@ export default function () {
                             user.savePreferences({
                                 giffgaffcommunity_themer_themetype: e,
                             }).then(() => {
-                                m.redraw();
-
                                 // need to force-update selected theme (as it's only set
                                 // on a page load and redraw doesn't count as a apge load)
                                 SetTheme();
@@ -130,19 +123,19 @@ export default function () {
                         ],
                     }),
                     <p className="Settings-theme--selection_description">
-                        {CurrentTheme === 0
+                        {CurrentTheme === Themes.AUTO
                             ? app.translator.trans(
                                   "giffgaffcommunity-nightmode.forum.user.settings.option_descriptions.auto"
                               )
-                            : CurrentTheme === 1
+                            : CurrentTheme === Themes.LIGHT
                             ? app.translator.trans(
                                   "giffgaffcommunity-nightmode.forum.user.settings.option_descriptions.light"
                               )
-                            : CurrentTheme === 2
+                            : CurrentTheme === Themes.DARK
                             ? app.translator.trans(
                                   "giffgaffcommunity-nightmode.forum.user.settings.option_descriptions.dark"
                               )
-                            : CurrentTheme === 3
+                            : CurrentTheme === Themes.OLED
                             ? app.translator.trans(
                                   "giffgaffcommunity-nightmode.forum.user.settings.option_descriptions.oled"
                               )

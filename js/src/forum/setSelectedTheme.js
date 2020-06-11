@@ -3,6 +3,9 @@ import { extend } from "flarum/extend";
 // import app from "flarum/app";
 import Page from "flarum/components/Page";
 import fixInvalidThemeSetting from "./fixInvalidThemeSetting";
+import Themes from "./Themes";
+
+const LocalStorageKey = `giffgaffcommunity_themer_themetype`;
 
 export default function () {
     extend(Page.prototype, "init", SetTheme);
@@ -13,11 +16,12 @@ export function SetTheme() {
 
     if (!user) {
         // Default to automatic theme when visiting as guest
-        SetThemeFromID(0);
+        SetThemeFromID(Themes.DEFAULT);
         return;
     }
 
-    const PerDevice = user.preferences().giffgaffcommunity_themer_use_per_device;
+    const PerDevice = user.preferences()
+        .giffgaffcommunity_themer_use_per_device;
 
     if (PerDevice) {
         fixInvalidThemeSetting();
@@ -25,7 +29,7 @@ export function SetTheme() {
 
     const CurrentTheme = PerDevice
         ? // fetch through LS is per device enabled
-          parseInt(localStorage.getItem("giffgaffcommunity_themer_themetype"))
+          parseInt(localStorage.getItem(LocalStorageKey))
         : user.preferences().giffgaffcommunity_themer_themetype
         ? user.preferences().giffgaffcommunity_themer_themetype
         : 0;
@@ -35,16 +39,16 @@ export function SetTheme() {
 
 export function SetThemeFromID(theme) {
     switch (theme) {
-        case 0: // auto
+        case Themes.AUTO: // auto
             setAuto();
             break;
-        case 1: // light
+        case Themes.LIGHT: // light
             setLight();
             break;
-        case 2: // dark
+        case Themes.DARK: // dark
             setDark();
             break;
-        case 3: // oled
+        case Themes.OLED: // oled
             setOLED();
             break;
 
