@@ -675,8 +675,9 @@ body.dark.dark--oled {
         @media @tablet-up {
             .primaryButtonMixin();
         }
-        
-        .Button--icon .Button-label, .Button--icon .Button-caret {
+
+        .Button--icon .Button-label,
+        .Button--icon .Button-caret {
             display: none;
         }
     }
@@ -1264,6 +1265,9 @@ body.dark.dark--oled {
 
     .Tags();
     .ModeratorNotes();
+
+    // Custom Highlight JS code block theme
+    @import "core/_code-blocks--gruvbox-dark";
 }
 
 .UserPage {
