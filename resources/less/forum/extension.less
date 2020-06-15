@@ -669,11 +669,13 @@ body.dark.dark--oled {
     }
 
     .DiscussionPage .DiscussionPage-nav .item-controls .itemCount1 {
-        .primaryButtonMixin();
+        @media @tablet-up {
+            .primaryButtonMixin();
+        }
     }
 
-    @media @tablet-up {
-        .sideNav {
+    .sideNav {
+        @media @tablet-up {
             .primaryButtonMixin();
         }
     }
