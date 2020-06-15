@@ -9,6 +9,10 @@
     @discussion-pane--active-hover: lighten(@discussion--base, 1%);
     @discussion-pane--unread-hover: @discussion-pane--hover;
 
+    @text-color: @main-text-2;
+    @text-color--hover: @main-text;
+    @text-color--read: @main-text-4;
+
     @disussion-border: @borderColor;
 
     .DiscussionLists--MainList();
@@ -61,7 +65,7 @@
 .DiscussionLists--NavPane() {
     .App.hasPane {
         .DiscussionPage-list {
-            background: @dark;
+            background: @grey;
 
             .DiscussionListItem {
                 background: @disussion-bg !important;
@@ -69,6 +73,17 @@
 
                 &:hover,
                 &:focus {
+                    &-content,
+                    &-info,
+                    &-title,
+                    &-count {
+                        color: @text-color--hover !important;
+                    }
+
+                    .DiscussionListItem-info .item-discussion-views {
+                        color: @text-color--hover !important;
+                    }
+
                     background: @discussion-pane--hover !important;
                 }
 
@@ -79,8 +94,27 @@
                     color: @main-text-2 !important;
                 }
 
+                &.read {
+                    &-content,
+                    &-info,
+                    &-title,
+                    &-count {
+                        color: @text-color--read !important;
+                    }
+
+                    .DiscussionListItem-info .item-discussion-views {
+                        color: @text-color--read !important;
+                    }
+                }
+
                 &-title mark {
                     color: @main-text !important;
+                }
+
+                .TagLabel.colored {
+                    outline: 2px white solid;
+                    margin-left: 2px;
+                    margin-bottom: @gg-spacer-fine;
                 }
 
                 .DiscussionListItem-content {
