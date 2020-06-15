@@ -1,0 +1,31 @@
+.PostBody() {
+    .Post-body {
+        ul {
+            // checkboxes
+            li[data-task-id] {
+                &::before {
+                    border-color: @gg-color-white;
+                }
+                &:not([data-task-state="indeterminate"])::after {
+                    // invert black tick icon
+                    filter: invert(100%);
+                }
+            }
+
+            li:not([data-task-id]) {
+                &::before {
+                    background-color: @main-text;
+                }
+            }
+        }
+
+        ol {
+            li {
+                &:before {
+                    color: @gg-color-black;
+                    background-color: @gg-color-white;
+                }
+            }
+        }
+    }
+}
