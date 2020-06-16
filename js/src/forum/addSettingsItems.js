@@ -31,7 +31,7 @@ export default function () {
             fixInvalidThemeSetting();
         }
 
-        const CurrentTheme = GetTheme(user);
+        const CurrentTheme = GetTheme(app);
 
         items.add(
             "theme",
@@ -76,7 +76,9 @@ export default function () {
                                 } else {
                                     // set user theme to that of current device
                                     user.savePreferences({
-                                        giffgaffcommunity_themer_themetype: CurrentTheme,
+                                        giffgaffcommunity_themer_themetype: Number.parseInt(
+                                            CurrentTheme
+                                        ),
                                     }).then(() => {
                                         // need to force-update selected theme (as it's only set
                                         // on a page load and redraw doesn't count as a page load)
@@ -99,8 +101,12 @@ export default function () {
                                 return;
                             }
 
+                            console.log(Number.parseInt(e));
+
                             user.savePreferences({
-                                giffgaffcommunity_themer_themetype: e,
+                                giffgaffcommunity_themer_themetype: Number.parseInt(
+                                    e
+                                ),
                             }).then(() => {
                                 // need to force-update selected theme (as it's only set
                                 // on a page load and redraw doesn't count as a apge load)
