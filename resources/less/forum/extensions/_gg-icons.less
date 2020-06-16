@@ -23,4 +23,14 @@
     .Badge {
         .dontInvertIcon();
     }
+
+    // Don't invert coloured icons!
+
+    .gg-icon.gg- {
+        &exclamation-circle-alert-reversed-red-no-padding-optimised,
+        &exclamation-circle-red,
+        &tick-in-circle-green {
+            .dontInvertIcon();
+        }
+    }
 }
