@@ -3,4 +3,24 @@
         // make giffgaff icons white
         filter: invert(100%);
     }
+
+    .dontInvertIcon() {
+        .gg-icon {
+            filter: none;
+        }
+    }
+
+    // Selectors to prevent inversion on
+
+    .Hero-title {
+        .dontInvertIcon();
+    }
+
+    .Hero .item-tags .TagLabel.colored {
+        .dontInvertIcon();
+    }
+
+    .Badge {
+        .dontInvertIcon();
+    }
 }
