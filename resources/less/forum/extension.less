@@ -32,6 +32,8 @@
 @import "vars/_button-primary";
 @import "vars/_button-primary-small";
 
+@import "vars/_button-small";
+
 // Core flarum styles
 @import "core/_modals";
 @import "core/_discussion-lists";
@@ -669,7 +671,17 @@ body.dark.dark--oled {
     /* #region Primary Discussion Button */
 
     .DiscussionPage .PostStream .PostStream-item .Post .item-bestAnswer {
-        .primaryButtonSmallMixin();
+        .buttonSmallMixin();
+
+        // Flatten (as per real community)
+
+        .Button {
+            background-color: none !important;
+        }
+
+        .Button-label {
+            transform: none !important;
+        }
     }
 
     .DiscussionPage .DiscussionPage-nav .item-controls .itemCount1 {
