@@ -44,6 +44,7 @@
 @import "extensions/_tags";
 @import "extensions/_gg-icons";
 @import "extensions/_gg-usage-stats";
+@import "extensions/_gg-notification-settings";
 
 // Misc
 @import "_post-body";
@@ -983,20 +984,6 @@ body.dark.dark--oled {
         color: @main-text;
     }
 
-    .NotificationGrid td,
-    .NotificationGrid th {
-        color: @main-text;
-    }
-
-    .UserPage .UserPage-content .NotificationGrid {
-        background: @med-grey;
-    }
-
-    .item-notifications .NotificationGrid td,
-    .item-notifications .NotificationGrid th {
-        border-color: @lighter-grey;
-    }
-
     /* #endregion */
 
     // #region Custom Checkboxes
@@ -1108,13 +1095,6 @@ body.dark.dark--oled {
             &::before {
                 background: fade(@light-color, 20%) !important;
             }
-        }
-    }
-
-    .SettingsPage .item-notifications .NotificationGrid-checkbox {
-        &.highlighted .Checkbox:not(.disabled),
-        .Checkbox:hover:not(.disabled) {
-            background: @lighter-grey;
         }
     }
 
@@ -1293,6 +1273,7 @@ body.dark.dark--oled {
     .ModeratorNotes();
     .ggIcons();
     .ggUsageStats();
+    .ggNotificationSettings();
 
     // Custom Highlight JS code block theme
     @import "core/_code-blocks--gruvbox-dark.less";

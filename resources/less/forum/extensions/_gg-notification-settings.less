@@ -1,0 +1,36 @@
+.ggNotificationSettings() {
+    .NotificationGrid {
+        background: transparent !important;
+
+        td,
+        th {
+            color: @main-text;
+        }
+
+        tbody tr:nth-of-type(odd) {
+            background-color: @grey;
+        }
+
+        tbody tr:nth-of-type(even) {
+            background-color: @dark;
+        }
+
+        .NotificationGrid-groupToggle .icon {
+            color: @gg-color-white;
+        }
+
+        .NotificationGrid-checkbox {
+            &.highlighted,
+            &:hover {
+                background: darken(@med-grey, 2%);
+
+                .Checkbox:not(.disabled) {
+                    &,
+                    &:hover {
+                        background: unset !important;
+                    }
+                }
+            }
+        }
+    }
+}
