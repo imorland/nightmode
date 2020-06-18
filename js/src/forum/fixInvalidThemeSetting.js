@@ -27,11 +27,11 @@ const LocalStorageKey = Constants.localStorageKey;
 
 export default function fixInvalidThemeSetting() {
     // get array of valid values without duplicate entries
-    let validValues = Array.from(new Set(Object.values(Themes)));
+    let validValues = [0, 1, 2, 3];
 
     const Theme = parseInt(localStorage.getItem(LocalStorageKey));
 
-    if (isNaN(Theme) || !Theme) {
+    if (isNaN(Theme)) {
         resetTheme('Theme is not a valid integer! Resetting...');
     } else if (!validValues.includes(Theme)) {
         // theme out of bounds
