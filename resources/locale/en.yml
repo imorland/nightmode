@@ -1,8 +1,28 @@
 giffgaffcommunity-nightmode:
+    ref:
+        auto: Automatic (based on browser or device options)
+        light: Light Mode
+        dark: Dark Mode
+        oled: Very Dark Mode (OLED)
+
     admin:
         permissions:
             use: Can set theme for self
+        settings:
+            modal:
+                title: FoF Night Mode
+                default_theme: Default forum theme
+                default_theme_helper: The default theme is automatically set for new users and guests.
+                default_theme_important: This will also affect existing users who have not manually selected a theme!
+                theme_auto: => giffgaffcommunity-nightmode.ref.auto
+                theme_light: => giffgaffcommunity-nightmode.ref.light
+                theme_dark: => giffgaffcommunity-nightmode.ref.dark
+                theme_oled: => giffgaffcommunity-nightmode.ref.oled
     forum:
+        day: => giffgaffcommunity-nightmode.ref.light
+        dark: => giffgaffcommunity-nightmode.ref.dark
+        oled: => giffgaffcommunity-nightmode.ref.oled
+
         user:
             settings:
                 heading: Theme
@@ -11,12 +31,12 @@ giffgaffcommunity-nightmode:
                 device_specific_setting_checkbox: Use per device settings
                 device_specific_setting_checkbox_tooltip: Your theme choice will be saved individually for each of your devices.
                 options:
-                    auto: Based on browser or device options
-                    light: Light
-                    dark: Dark
-                    oled: Very Dark (OLED)
+                    auto: => giffgaffcommunity-nightmode.ref.auto
+                    light: => giffgaffcommunity-nightmode.ref.light
+                    dark: => giffgaffcommunity-nightmode.ref.dark
+                    oled: => giffgaffcommunity-nightmode.ref.oled
                 option_descriptions:
-                    auto: We'll choose which theme to use based on your browser or device settings. For example, if you have Dark Mode enabled in iOS, we'll enable it on the forums too. Lovely jubbly!
+                    auto: We'll choose which theme to use based on your browser or device settings. For example, if you have Dark Mode enabled in iOS or Android, we'll enable it on the forums too. Lovely jubbly!
                     light: The classic experience which you're used to. Loved and tested.
                     dark: You're a bit of a night owl. You watch over the forum at night, while the birds are sleeping and the foxes are hunting. Or you just prefer the darker colours!
                     oled: You're a battery saver! You opt for the theme which helps you save power on your mobile device. You might also just love the absolute black colour all around the forum instead of the dark grey in dark mode.

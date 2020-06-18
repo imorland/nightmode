@@ -27,7 +27,7 @@ class Preferences
 
     public function addUserPreference(ConfigureUserPreferences $event)
     {
-        $event->add('giffgaffcommunity_themer_themetype', 'intval', 0);
+        $event->add('giffgaffcommunity_themer_themetype', 'intval', (int) app('flarum.settings')->get('giffgaffcommunity-nightmode.default_theme', 0));
         $event->add('giffgaffcommunity_themer_use_per_device', 'boolval', false);
     }
 }

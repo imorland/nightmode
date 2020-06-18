@@ -1,14 +1,15 @@
-import { extend } from "flarum/extend";
+import { extend } from 'flarum/extend';
 
-// import app from "flarum/app";
-import Page from "flarum/components/Page";
-import fixInvalidThemeSetting from "./fixInvalidThemeSetting";
-import Themes from "./Themes";
+import Page from 'flarum/components/Page';
 
-const LocalStorageKey = `giffgaffcommunity_themer_themetype`;
+import fixInvalidThemeSetting from './fixInvalidThemeSetting';
+import Themes, { Constants } from '../common/config';
+import getTheme from './getTheme';
+
+const LocalStorageKey = Constants.localStorageKey;
 
 export default function () {
-    extend(Page.prototype, "init", SetTheme);
+    extend(Page.prototype, 'init', SetTheme);
 }
 
 export function SetTheme() {
@@ -16,32 +17,23 @@ export function SetTheme() {
 
     if (!user) {
         // Default to automatic theme when visiting as guest
-        SetThemeFromID(Themes.DEFAULT);
+        SetThemeFromID(Themes.DEFAULT(app));
         return;
     }
 
-    const PerDevice = user.preferences()
-        .giffgaffcommunity_themer_use_per_device;
+    const PerDevice = user.preferences().giffgaffcommunity_themer_use_per_device;
 
     if (PerDevice) {
         fixInvalidThemeSetting();
     }
 
-    const CurrentTheme = PerDevice
-        ? // fetch through LS is per device enabled
-          parseInt(localStorage.getItem(LocalStorageKey))
-        : user.preferences().giffgaffcommunity_themer_themetype
-        ? user.preferences().giffgaffcommunity_themer_themetype
-        : 0;
+    const CurrentTheme = getTheme(app);
 
     SetThemeFromID(CurrentTheme);
 }
 
 export function SetThemeFromID(theme) {
     switch (theme) {
-        case Themes.AUTO: // auto
-            setAuto();
-            break;
         case Themes.LIGHT: // light
             setLight();
             break;
@@ -52,6 +44,7 @@ export function SetThemeFromID(theme) {
             setOLED();
             break;
 
+        // Handles auto and other unexpected cases
         default:
             setAuto();
             break;
@@ -65,7 +58,7 @@ export function SetThemeFromID(theme) {
 */
 
 function setAuto() {
-    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
         setDark();
     } else {
         setLight();
@@ -73,16 +66,16 @@ function setAuto() {
 }
 
 function setLight() {
-    $("body").removeClass("dark");
-    $("body").removeClass("dark--oled");
+    $('body').removeClass('dark');
+    $('body').removeClass('dark--oled');
 }
 
 function setDark() {
-    $("body").addClass("dark");
-    $("body").removeClass("dark--oled");
+    $('body').addClass('dark');
+    $('body').removeClass('dark--oled');
 }
 
 function setOLED() {
     setDark();
-    $("body").addClass("dark--oled");
+    $('body').addClass('dark--oled');
 }

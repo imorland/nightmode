@@ -21,34 +21,25 @@
     (not a giffgaff employee, though)
 */
 
-import Themes from "./Themes";
+import { Themes, Constants } from '../common/config';
 
-// get array of valid values without duplicate entries
-let validValues = Array.from(new Set(Object.values(Themes)));
-const LocalStorageKey = `giffgaffcommunity_themer_themetype`;
+const LocalStorageKey = Constants.localStorageKey;
 
 export default function fixInvalidThemeSetting() {
-    let wasInvalid = false;
-    let t;
+    // get array of valid values without duplicate entries
+    let validValues = Array.from(new Set(Object.values(Themes)));
 
-    try {
-        t = parseInt(localStorage.getItem(LocalStorageKey));
-    } catch (error) {
-        console.warn("Theme is not a valid integer! Resetting... (1)");
-        localStorage.setItem(LocalStorageKey, Themes.DEFAULT);
-        wasInvalid = true;
-    }
+    const Theme = parseInt(localStorage.getItem(LocalStorageKey));
 
-    if (isNaN(t)) {
-        console.warn("Theme is not a valid integer! Resetting... (2)");
-        localStorage.setItem(LocalStorageKey, Themes.DEFAULT);
-        wasInvalid = true;
-    }
-
-    if (!wasInvalid && !validValues.includes(t)) {
+    if (isNaN(Theme) || !Theme) {
+        resetTheme('Theme is not a valid integer! Resetting...');
+    } else if (!validValues.includes(Theme)) {
         // theme out of bounds
-        console.warn(`Theme is out of bounds! Resetting...`);
-        localStorage.setItem(LocalStorageKey, Themes.DEFAULT);
-        wasInvalid = true;
+        resetTheme(`Theme is out of bounds! Resetting...`);
     }
+}
+
+function resetTheme(reason) {
+    console.warn(reason);
+    localStorage.setItem(LocalStorageKey, Themes.DEFAULT(app));
 }

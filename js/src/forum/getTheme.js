@@ -1,53 +1,53 @@
-import Themes from "./Themes";
+import { Themes, Constants } from '../common/config';
 
-const LocalStorageKey = `giffgaffcommunity_themer_themetype`;
-
-export default function GetTheme(app) {
+export default function getTheme(app) {
     const { user } = app.session;
 
-    const PerDevice = user.preferences().giffgaffcommunity_themer_use_per_device
-        ? user.preferences().giffgaffcommunity_themer_use_per_device
-        : false;
+    const IsUsingPerDeviceSettings = !!user.preferences().giffgaffcommunity_themer_use_per_device;
+    const SelectedTheme = user.preferences().giffgaffcommunity_themer_themetype;
 
-    if (PerDevice) {
+    //* Theme selection for previous extension users.
+    //? This could have been better off as a migration, but
+    //? this is far less hassle imo, and works just as easily.
+    const OldThemeSelection = user.preferences().fofNightMode;
+
+    if (IsUsingPerDeviceSettings) {
         // fetch through LS is per device enabled
-        return parseInt(localStorage.getItem(LocalStorageKey));
+        return parseInt(localStorage.getItem(Constants.localStorageKey));
     } else {
-        if (
-            typeof user.preferences().giffgaffcommunity_themer_themetype ===
-            "number"
-        ) {
+        if (typeof SelectedTheme === 'number') {
             // use user prefs
-            return user.preferences().giffgaffcommunity_themer_themetype;
+            return SelectedTheme;
         } else {
-            if (user.preferences().fofNightMode) {
+            if (OldThemeSelection) {
                 // migrate previous preferences
-
-                const preMigration = user.preferences().fofNightMode;
                 let migrated = Themes.LIGHT;
 
-                if (preMigration === true) {
+                if (OldThemeSelection === true) {
                     // user selected dark before migration
                     migrated = Themes.DARK;
                 }
 
+                // save migrated pref and erase old pref
                 user.savePreferences({
                     fofNightMode: null,
                     giffgaffcommunity_themer_themetype: migrated,
                 });
 
-                // assume the prefs will be saved correctly and just return what the value should have been
+                // assume the prefs will be saved correctly and just return
+                // what the value should have been for better "performance"
                 return migrated;
             } else {
-                // user never set a pref
+                // user never set a pref, so use the default
 
                 user.savePreferences({
                     fofNightMode: null,
-                    giffgaffcommunity_themer_themetype: Themes.DEFAULT,
+                    giffgaffcommunity_themer_themetype: Themes.DEFAULT(app),
                 });
 
-                // assume the prefs will be saved correctly and just return default
-                return Themes.DEFAULT;
+                // assume the prefs will be saved correctly and just return
+                // what the value should have been for better "performance"
+                return Themes.DEFAULT(app);
             }
         }
     }

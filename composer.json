@@ -34,7 +34,9 @@
         "source": "https://github.com/imorland/nightmode"
     },
     "require": {
-        "flarum/core": "^0.1.0-beta.9"
+        "flarum/core": "^0.1.0-beta.9",
+        "fof/components": ">=0.1.1",
+        "fof/extend": ">=0.2.0"
     },
     "extra": {
         "flarum-extension": {
